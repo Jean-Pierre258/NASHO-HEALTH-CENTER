@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="rw">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>NASHO Health Center | Admin Dashboard</title>
 
+
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -14,278 +23,732 @@
     font-family:Arial,sans-serif;
 }
 
+
+/* =====================================================
+   BODY
+===================================================== */
+
 body{
     background:#f4f7fb;
     color:#172033;
 }
 
+
+/* =====================================================
+   LOGIN PAGE
+===================================================== */
+
 .login-page{
+
     min-height:100vh;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
 }
 
+
 .login-box{
+
     width:100%;
+
     max-width:420px;
+
     background:white;
+
     padding:35px;
+
     border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,.12);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.12);
 }
 
+
 .login-box h1{
+
     text-align:center;
+
     margin-bottom:10px;
 }
 
+
 .login-box p{
+
     text-align:center;
+
     color:#687386;
+
     margin-bottom:25px;
 }
 
+
 .input{
+
     width:100%;
+
     padding:14px;
+
     border:1px solid #dce2ea;
+
     border-radius:10px;
+
     margin-bottom:15px;
+
     font-size:15px;
+
+    outline:none;
 }
 
+
+.input:focus{
+
+    border-color:#1769e0;
+}
+
+
 .btn{
+
     border:0;
+
     padding:13px 18px;
+
     border-radius:10px;
+
     cursor:pointer;
+
     font-weight:bold;
 }
 
+
 .btn-primary{
+
     background:#1769e0;
+
     color:white;
+
     width:100%;
 }
 
-.dashboard{
+
+.btn-primary:hover{
+
+    opacity:.9;
+}
+
+
+.login-loading{
+
     display:none;
+
+    text-align:center;
+
+    margin-top:15px;
+
+    color:#1769e0;
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.dashboard{
+
+    display:none;
+
     min-height:100vh;
 }
 
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
 .sidebar{
+
     position:fixed;
+
     left:0;
+
     top:0;
+
     bottom:0;
+
     width:250px;
+
     background:#102a43;
+
     color:white;
+
     padding:25px 15px;
 }
 
+
 .logo{
+
     text-align:center;
+
     font-size:22px;
+
     font-weight:bold;
+
     margin-bottom:35px;
 }
 
+
 .nav-btn{
+
     width:100%;
+
     border:0;
+
     background:transparent;
+
     color:white;
+
     text-align:left;
+
     padding:14px;
+
     margin-bottom:7px;
+
     border-radius:10px;
+
     cursor:pointer;
+
     font-size:15px;
 }
 
+
 .nav-btn:hover,
 .nav-btn.active{
+
     background:#1769e0;
 }
 
+
 .logout{
+
     position:absolute;
+
     bottom:25px;
+
     left:15px;
+
     right:15px;
+
     background:#c0392b;
 }
 
+
+.logout:hover{
+
+    background:#a93226;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
 .main{
+
     margin-left:250px;
+
     padding:30px;
 }
 
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
 .topbar{
+
     background:white;
+
     padding:20px;
+
     border-radius:15px;
+
     margin-bottom:25px;
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 }
 
+
+.topbar span{
+
+    color:#687386;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
 .cards{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:20px;
+
     margin-bottom:25px;
 }
 
+
 .card{
+
     background:white;
+
     padding:25px;
+
     border-radius:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.06);
 }
 
+
 .card span{
+
     color:#687386;
 }
 
+
 .card strong{
+
     display:block;
+
     font-size:30px;
+
     margin-top:10px;
 }
 
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
 .section{
+
     display:none;
 }
 
+
 .section.active{
+
     display:block;
 }
 
+
+/* =====================================================
+   PANEL
+===================================================== */
+
 .panel{
+
     background:white;
+
     padding:25px;
+
     border-radius:15px;
+
     overflow-x:auto;
 }
 
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
 .search{
+
     width:100%;
+
     padding:13px;
+
     border:1px solid #ddd;
+
     border-radius:10px;
+
     margin:15px 0;
 }
 
+
+/* =====================================================
+   TABLE
+===================================================== */
+
 table{
+
     width:100%;
+
     border-collapse:collapse;
+
     min-width:900px;
 }
 
-th,td{
+
+th,
+td{
+
     padding:13px;
-    border-bottom:1px solid #edf0f4;
+
+    border-bottom:
+        1px solid #edf0f4;
+
     text-align:left;
 }
 
+
 th{
+
     background:#f7f9fc;
 }
 
+
+/* =====================================================
+   STATUS
+===================================================== */
+
 .status{
+
     padding:6px 10px;
+
     border-radius:20px;
+
     font-size:12px;
+
     font-weight:bold;
 }
 
+
 .pending{
+
     background:#fff3cd;
+
     color:#856404;
 }
 
+
 .confirmed{
+
     background:#d4edda;
+
     color:#155724;
 }
 
+
 .cancelled{
+
     background:#f8d7da;
+
     color:#721c24;
 }
 
+
+.completed{
+
+    background:#d1ecf1;
+
+    color:#0c5460;
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
 .action-btn{
+
     border:0;
+
     padding:7px 10px;
+
     margin:2px;
+
     border-radius:7px;
+
     cursor:pointer;
 }
 
+
 .confirm{
+
     background:#28a745;
+
     color:white;
 }
+
 
 .cancel{
+
     background:#dc3545;
+
     color:white;
 }
+
+
+.complete{
+
+    background:#17a2b8;
+
+    color:white;
+}
+
 
 .reply{
+
     background:#1769e0;
+
     color:white;
 }
 
+
+/* =====================================================
+   MESSAGE BOX
+===================================================== */
+
+.message-box{
+
+    padding:18px;
+
+    border:1px solid #edf0f4;
+
+    border-radius:12px;
+
+    margin-top:15px;
+
+    background:#fafbfd;
+}
+
+
+.message-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:10px;
+}
+
+
+.message-name{
+
+    font-weight:bold;
+}
+
+
+.message-email{
+
+    color:#687386;
+
+    font-size:13px;
+}
+
+
+.message-content{
+
+    margin:10px 0;
+
+    line-height:1.6;
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+
+    margin-top:20px;
+}
+
+
+.stat-box{
+
+    padding:25px;
+
+    background:#f7f9fc;
+
+    border-radius:12px;
+
+    text-align:center;
+}
+
+
+.stat-box strong{
+
+    display:block;
+
+    font-size:32px;
+
+    margin-top:10px;
+}
+
+
+/* =====================================================
+   EMPTY / LOADING
+===================================================== */
+
+.loading{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#687386;
+}
+
+
+.empty{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#687386;
+}
+
+
+.error{
+
+    color:#c0392b;
+
+    padding:15px;
+
+    background:#f8d7da;
+
+    border-radius:10px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
 @media(max-width:900px){
+
     .sidebar{
+
         width:210px;
     }
 
+
     .main{
+
         margin-left:210px;
     }
 
+
     .cards{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
+
+
+    .stats-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
 }
 
+
 @media(max-width:650px){
+
     .sidebar{
+
         position:relative;
+
         width:100%;
+
         height:auto;
     }
 
+
     .logout{
+
         position:relative;
+
         left:auto;
+
         right:auto;
+
         bottom:auto;
+
         margin-top:10px;
     }
 
+
     .main{
+
         margin-left:0;
+
         padding:15px;
     }
 
+
     .cards{
+
         grid-template-columns:1fr;
     }
+
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- LOGIN -->
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
 
 <div class="login-page" id="loginPage">
 
@@ -295,584 +758,1982 @@ th{
 
         <p>Health Center Admin</p>
 
-        <input
-            class="input"
-            type="text"
-            id="username"
-            placeholder="Admin username"
-        >
 
         <input
+
             class="input"
-            type="password"
-            id="password"
-            placeholder="Password"
+
+            type="text"
+
+            id="username"
+
+            placeholder="Admin username"
+
+            autocomplete="username"
+
         >
+
+
+        <input
+
+            class="input"
+
+            type="password"
+
+            id="password"
+
+            placeholder="Password"
+
+            autocomplete="current-password"
+
+        >
+
 
         <button
+
             class="btn btn-primary"
+
+            id="loginButton"
+
             onclick="login()"
+
         >
+
             🔐 Login
+
         </button>
 
-        <p id="loginMessage" style="margin-top:15px;color:#c0392b;"></p>
+
+        <div
+
+            class="login-loading"
+
+            id="loginLoading"
+
+        >
+
+            Checking login...
+
+        </div>
+
+
+        <p
+
+            id="loginMessage"
+
+            style="
+                margin-top:15px;
+                color:#c0392b;
+            "
+
+        ></p>
 
     </div>
 
 </div>
 
 
-<!-- DASHBOARD -->
 
-<div class="dashboard" id="dashboard">
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<div
+
+    class="dashboard"
+
+    id="dashboard"
+
+>
+
+
+    <!-- SIDEBAR -->
 
     <aside class="sidebar">
 
+
         <div class="logo">
+
             🏥 NASHO HC
+
         </div>
 
-        <button class="nav-btn active" onclick="showSection('dashboardSection',this)">
+
+        <button
+
+            class="nav-btn active"
+
+            onclick="
+                showSection(
+                    'dashboardSection',
+                    this
+                )
+            "
+
+        >
+
             📊 Dashboard
+
         </button>
 
-        <button class="nav-btn" onclick="showSection('appointments',this)">
+
+        <button
+
+            class="nav-btn"
+
+            onclick="
+                showSection(
+                    'appointments',
+                    this
+                )
+            "
+
+        >
+
             📅 Appointments
+
         </button>
 
-        <button class="nav-btn" onclick="showSection('messages',this)">
+
+        <button
+
+            class="nav-btn"
+
+            onclick="
+                showSection(
+                    'messages',
+                    this
+                )
+            "
+
+        >
+
             ✉️ Messages
+
         </button>
 
-        <button class="nav-btn" onclick="showSection('statistics',this)">
+
+        <button
+
+            class="nav-btn"
+
+            onclick="
+                showSection(
+                    'statistics',
+                    this
+                )
+            "
+
+        >
+
             📈 Statistics
+
         </button>
 
-        <button class="nav-btn logout" onclick="logout()">
+
+        <button
+
+            class="nav-btn logout"
+
+            onclick="logout()"
+
+        >
+
             🚪 Logout
+
         </button>
+
 
     </aside>
 
 
+
+    <!-- MAIN -->
+
     <main class="main">
+
+
+        <!-- TOPBAR -->
 
         <div class="topbar">
 
             <div>
-                <h2>NASHO Health Center</h2>
-                <span>Admin Dashboard</span>
+
+                <h2>
+                    NASHO Health Center
+                </h2>
+
+                <span>
+                    Admin Dashboard
+                </span>
+
             </div>
+
 
             <strong id="today"></strong>
 
         </div>
 
 
-        <!-- DASHBOARD -->
 
-        <section class="section active" id="dashboardSection">
+        <!-- =================================================
+             DASHBOARD SECTION
+        ================================================== -->
+
+        <section
+
+            class="section active"
+
+            id="dashboardSection"
+
+        >
+
 
             <div class="cards">
 
-                <div class="card">
-                    <span>📅 Appointments</span>
-                    <strong id="totalAppointments">0</strong>
-                </div>
 
                 <div class="card">
-                    <span>⏳ Pending</span>
-                    <strong id="pendingAppointments">0</strong>
+
+                    <span>
+                        📅 Appointments
+                    </span>
+
+                    <strong
+                        id="totalAppointments"
+                    >
+                        0
+                    </strong>
+
                 </div>
 
-                <div class="card">
-                    <span>✅ Confirmed</span>
-                    <strong id="confirmedAppointments">0</strong>
-                </div>
 
                 <div class="card">
-                    <span>✉️ Messages</span>
-                    <strong id="totalMessages">0</strong>
+
+                    <span>
+                        ⏳ Pending
+                    </span>
+
+                    <strong
+                        id="pendingAppointments"
+                    >
+                        0
+                    </strong>
+
                 </div>
+
+
+                <div class="card">
+
+                    <span>
+                        ✅ Confirmed
+                    </span>
+
+                    <strong
+                        id="confirmedAppointments"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <span>
+                        ✉️ Messages
+                    </span>
+
+                    <strong
+                        id="totalMessages"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
 
             </div>
 
-        </section>
-
-
-        <!-- APPOINTMENTS -->
-
-        <section class="section" id="appointments">
 
             <div class="panel">
 
-                <h2>📅 Appointments</h2>
-
-                <input
-                    class="search"
-                    id="appointmentSearch"
-                    placeholder="Search name, phone, department..."
-                    onkeyup="filterAppointments()"
-                >
-
-                <div id="appointmentsTable">
-                    Loading appointments...
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- MESSAGES -->
-
-        <section class="section" id="messages">
-
-            <div class="panel">
-
-                <h2>✉️ Messages</h2>
-
-                <div id="messagesTable">
-                    Messages will appear here.
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- STATISTICS -->
-
-        <section class="section" id="statistics">
-
-            <div class="panel">
-
-                <h2>📈 Statistics</h2>
+                <h2>
+                    👋 Welcome to NASHO Admin
+                </h2>
 
                 <p style="margin-top:15px;">
-                    Appointment statistics will appear here.
+
+                    Ubu uri muri Admin Dashboard.
+                    Ushobora gucunga appointments,
+                    messages na statistics.
+
                 </p>
 
             </div>
 
+
         </section>
+
+
+
+        <!-- =================================================
+             APPOINTMENTS
+        ================================================== -->
+
+        <section
+
+            class="section"
+
+            id="appointments"
+
+        >
+
+
+            <div class="panel">
+
+
+                <h2>
+                    📅 Appointments
+                </h2>
+
+
+                <input
+
+                    class="search"
+
+                    id="appointmentSearch"
+
+                    placeholder="
+                    Search name, phone, department...
+                    "
+
+                    onkeyup="filterAppointments()"
+
+                >
+
+
+                <div
+
+                    id="appointmentsTable"
+
+                    class="loading"
+
+                >
+
+                    Loading appointments...
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             MESSAGES
+        ================================================== -->
+
+        <section
+
+            class="section"
+
+            id="messages"
+
+        >
+
+
+            <div class="panel">
+
+
+                <h2>
+                    ✉️ Messages
+                </h2>
+
+
+                <div
+
+                    id="messagesTable"
+
+                    class="loading"
+
+                >
+
+                    Loading messages...
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <section
+
+            class="section"
+
+            id="statistics"
+
+        >
+
+
+            <div class="panel">
+
+
+                <h2>
+                    📈 Statistics
+                </h2>
+
+
+                <div class="stats-grid">
+
+
+                    <div class="stat-box">
+
+                        <span>
+                            Total Appointments
+                        </span>
+
+                        <strong
+                            id="statTotalAppointments"
+                        >
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-box">
+
+                        <span>
+                            Pending
+                        </span>
+
+                        <strong
+                            id="statPending"
+                        >
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-box">
+
+                        <span>
+                            Confirmed
+                        </span>
+
+                        <strong
+                            id="statConfirmed"
+                        >
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-box">
+
+                        <span>
+                            Completed
+                        </span>
+
+                        <strong
+                            id="statCompleted"
+                        >
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-box">
+
+                        <span>
+                            Cancelled
+                        </span>
+
+                        <strong
+                            id="statCancelled"
+                        >
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-box">
+
+                        <span>
+                            Total Messages
+                        </span>
+
+                        <strong
+                            id="statMessages"
+                        >
+                            0
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
 
     </main>
 
 </div>
 
 
+
 <script>
+
+
+// =====================================================
+// GOOGLE APPS SCRIPT WEB APP URL
+// =====================================================
 
 const WEB_APP_URL =
 "https://script.google.com/macros/s/AKfycbzVlDEG0luk1s6p8PTRF5lvfFDuu3ZT4h9C53igSLbqwkIV0saKh8GRJmYfskutpeOSOA/exec";
 
 
-/* LOGIN */
+
+// =====================================================
+// LOGIN
+// =====================================================
 
 function login(){
 
+
     const username =
-        document.getElementById("username").value.trim();
+        document
+            .getElementById("username")
+            .value
+            .trim();
+
 
     const password =
-        document.getElementById("password").value;
+        document
+            .getElementById("password")
+            .value;
 
-    /*
-       TEMPORARY LOGIN
-       We will move authentication to Apps Script
-       before using this dashboard in production.
-    */
 
-    if(username === "admin" && password === "Nasho@2026"){
+    const message =
+        document
+            .getElementById("loginMessage");
 
-        document.getElementById("loginPage").style.display="none";
 
-        document.getElementById("dashboard").style.display="block";
+    const button =
+        document
+            .getElementById("loginButton");
 
-        loadAppointments();
 
-    }else{
+    const loading =
+        document
+            .getElementById("loginLoading");
 
-        document.getElementById("loginMessage").innerText =
-            "Username cyangwa password ntabwo ari byo.";
+
+    // -------------------------------------------------
+    // CHECK EMPTY
+    // -------------------------------------------------
+
+    if(!username || !password){
+
+        message.style.color =
+            "#c0392b";
+
+        message.innerText =
+            "Shyiramo username na password.";
+
+        return;
 
     }
 
-}
+
+    // -------------------------------------------------
+    // LOADING
+    // -------------------------------------------------
+
+    button.disabled = true;
+
+    loading.style.display =
+        "block";
+
+    message.innerText = "";
 
 
-/* LOGOUT */
+    // -------------------------------------------------
+    // CREATE LOGIN URL
+    // -------------------------------------------------
 
-function logout(){
+    const url =
 
-    document.getElementById("dashboard").style.display="none";
+        WEB_APP_URL +
 
-    document.getElementById("loginPage").style.display="flex";
+        "?action=login" +
 
-    document.getElementById("password").value="";
+        "&username=" +
 
-}
+        encodeURIComponent(username) +
 
+        "&password=" +
 
-/* NAVIGATION */
-
-function showSection(id,button){
-
-    document.querySelectorAll(".section")
-        .forEach(section=>{
-            section.classList.remove("active");
-        });
-
-    document.getElementById(id)
-        .classList.add("active");
-
-    document.querySelectorAll(".nav-btn")
-        .forEach(btn=>{
-            btn.classList.remove("active");
-        });
-
-    button.classList.add("active");
-
-    if(id === "appointments"){
-        loadAppointments();
-    }
-
-}
+        encodeURIComponent(password);
 
 
-/* DATE */
+    // -------------------------------------------------
+    // SEND LOGIN REQUEST
+    // -------------------------------------------------
 
-document.getElementById("today").innerText =
-    new Date().toLocaleDateString("rw-RW");
+    fetch(url)
 
 
-/* LOAD APPOINTMENTS */
+        .then(response => {
 
-function loadAppointments(){
+            if(!response.ok){
 
-    document.getElementById("appointmentsTable").innerHTML =
-        "Loading appointments...";
+                throw new Error(
+                    "Server error: " +
+                    response.status
+                );
 
-    fetch(WEB_APP_URL + "?action=getAppointments")
-        .then(response => response.json())
-        .then(data => {
-
-            if(!data || !data.appointments){
-
-                document.getElementById("appointmentsTable").innerHTML =
-                    "Nta appointments zabonetse.";
-
-                return;
             }
 
-            window.allAppointments = data.appointments;
-
-            displayAppointments(data.appointments);
-
-            updateDashboard(data.appointments);
+            return response.json();
 
         })
+
+
+        .then(result => {
+
+
+            if(result.success){
+
+                // -------------------------------------
+                // LOGIN SUCCESS
+                // -------------------------------------
+
+                sessionStorage.setItem(
+                    "nashoAdminLoggedIn",
+                    "true"
+                );
+
+
+                document
+                    .getElementById("loginPage")
+                    .style.display = "none";
+
+
+                document
+                    .getElementById("dashboard")
+                    .style.display = "block";
+
+
+                message.innerText = "";
+
+
+                loadAppointments();
+
+                loadMessages();
+
+            }
+
+
+            else{
+
+                // -------------------------------------
+                // LOGIN FAILED
+                // -------------------------------------
+
+                message.style.color =
+                    "#c0392b";
+
+                message.innerText =
+                    result.message ||
+                    "Username cyangwa password ntabwo ari byo.";
+
+            }
+
+        })
+
+
         .catch(error => {
 
             console.error(error);
 
-            document.getElementById("appointmentsTable").innerHTML =
-                "<p style='color:red'>Failed to load appointments.</p>";
+
+            message.style.color =
+                "#c0392b";
+
+
+            message.innerText =
+                "Login failed. Reba Apps Script deployment na connection.";
+
+        })
+
+
+        .finally(() => {
+
+            button.disabled = false;
+
+            loading.style.display =
+                "none";
 
         });
 
 }
 
 
-/* DISPLAY */
+
+// =====================================================
+// LOGOUT
+// =====================================================
+
+function logout(){
+
+
+    sessionStorage.removeItem(
+        "nashoAdminLoggedIn"
+    );
+
+
+    document
+        .getElementById("dashboard")
+        .style.display = "none";
+
+
+    document
+        .getElementById("loginPage")
+        .style.display = "flex";
+
+
+    document
+        .getElementById("password")
+        .value = "";
+
+
+    document
+        .getElementById("loginMessage")
+        .innerText = "";
+
+}
+
+
+
+// =====================================================
+// NAVIGATION
+// =====================================================
+
+function showSection(id,button){
+
+
+    document
+        .querySelectorAll(".section")
+        .forEach(section => {
+
+            section.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(btn => {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    button.classList.add("active");
+
+
+    // -------------------------------------------------
+    // LOAD APPOINTMENTS
+    // -------------------------------------------------
+
+    if(id === "appointments"){
+
+        loadAppointments();
+
+    }
+
+
+    // -------------------------------------------------
+    // LOAD MESSAGES
+    // -------------------------------------------------
+
+    if(id === "messages"){
+
+        loadMessages();
+
+    }
+
+
+    // -------------------------------------------------
+    // STATISTICS
+    // -------------------------------------------------
+
+    if(id === "statistics"){
+
+        loadAppointments();
+
+        loadMessages();
+
+    }
+
+}
+
+
+
+// =====================================================
+// TODAY
+// =====================================================
+
+document
+    .getElementById("today")
+    .innerText =
+    new Date()
+        .toLocaleDateString(
+            "rw-RW"
+        );
+
+
+
+// =====================================================
+// LOAD APPOINTMENTS
+// =====================================================
+
+function loadAppointments(){
+
+
+    document
+        .getElementById("appointmentsTable")
+        .innerHTML =
+        '<div class="loading">Loading appointments...</div>';
+
+
+    fetch(
+        WEB_APP_URL +
+        "?action=getAppointments"
+    )
+
+
+    .then(response => {
+
+        if(!response.ok){
+
+            throw new Error(
+                "Failed to connect"
+            );
+
+        }
+
+        return response.json();
+
+    })
+
+
+    .then(data => {
+
+
+        if(
+            !data ||
+            !Array.isArray(
+                data.appointments
+            )
+        ){
+
+            window.allAppointments = [];
+
+            document
+                .getElementById(
+                    "appointmentsTable"
+                )
+                .innerHTML =
+                '<div class="empty">Nta appointments zabonetse.</div>';
+
+            updateDashboard([]);
+
+            return;
+
+        }
+
+
+        window.allAppointments =
+            data.appointments;
+
+
+        displayAppointments(
+            data.appointments
+        );
+
+
+        updateDashboard(
+            data.appointments
+        );
+
+    })
+
+
+    .catch(error => {
+
+        console.error(error);
+
+
+        document
+            .getElementById(
+                "appointmentsTable"
+            )
+            .innerHTML =
+            '<div class="error">Failed to load appointments.</div>';
+
+    });
+
+}
+
+
+
+// =====================================================
+// DISPLAY APPOINTMENTS
+// =====================================================
 
 function displayAppointments(data){
 
-    if(data.length === 0){
 
-        document.getElementById("appointmentsTable").innerHTML =
-            "<p>Nta appointment iraboneka.</p>";
+    if(!data || data.length === 0){
+
+        document
+            .getElementById(
+                "appointmentsTable"
+            )
+            .innerHTML =
+            '<div class="empty">Nta appointment iraboneka.</div>';
 
         return;
+
     }
 
 
     let html = `
+
     <table>
 
         <thead>
 
             <tr>
+
                 <th>Timestamp</th>
+
                 <th>Name</th>
+
                 <th>Phone</th>
+
                 <th>Patient ID</th>
+
                 <th>Department</th>
+
                 <th>Date</th>
+
                 <th>Time</th>
+
                 <th>Message</th>
+
                 <th>Status</th>
+
                 <th>Actions</th>
+
             </tr>
 
         </thead>
 
         <tbody>
+
     `;
 
 
     data.forEach((item,index)=>{
 
-        const status =
-            item.status || "Pending";
 
-        let statusClass = "pending";
+        const status =
+            item.status ||
+            "Pending";
+
+
+        let statusClass =
+            "pending";
+
 
         if(status === "Confirmed")
-            statusClass = "confirmed";
+            statusClass =
+                "confirmed";
+
 
         if(status === "Cancelled")
-            statusClass = "cancelled";
+            statusClass =
+                "cancelled";
+
+
+        if(status === "Completed")
+            statusClass =
+                "completed";
 
 
         html += `
+
         <tr>
 
-            <td>${escapeHTML(item.timestamp || "")}</td>
-
-            <td>${escapeHTML(item.name || "")}</td>
-
-            <td>${escapeHTML(item.phone || "")}</td>
-
-            <td>${escapeHTML(item.patientId || "")}</td>
-
-            <td>${escapeHTML(item.department || "")}</td>
-
-            <td>${escapeHTML(item.date || "")}</td>
-
-            <td>${escapeHTML(item.time || "")}</td>
-
-            <td>${escapeHTML(item.message || "")}</td>
+            <td>
+                ${escapeHTML(
+                    item.timestamp || ""
+                )}
+            </td>
 
             <td>
-                <span class="status ${statusClass}">
+                ${escapeHTML(
+                    item.name || ""
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    item.phone || ""
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    item.patientId || ""
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    item.department || ""
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    item.date || ""
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    item.time || ""
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    item.message || ""
+                )}
+            </td>
+
+            <td>
+
+                <span
+                    class="status ${statusClass}"
+                >
+
                     ${escapeHTML(status)}
+
                 </span>
+
             </td>
 
             <td>
 
                 <button
+
                     class="action-btn confirm"
-                    onclick="updateAppointment(${index},'Confirmed')">
-                    ✓
+
+                    onclick="
+                        updateAppointment(
+                            ${index},
+                            'Confirmed'
+                        )
+                    "
+
+                >
+
+                    ✓ Confirm
+
                 </button>
 
+
                 <button
+
+                    class="action-btn complete"
+
+                    onclick="
+                        updateAppointment(
+                            ${index},
+                            'Completed'
+                        )
+                    "
+
+                >
+
+                    ✓ Complete
+
+                </button>
+
+
+                <button
+
                     class="action-btn cancel"
-                    onclick="updateAppointment(${index},'Cancelled')">
-                    ✕
+
+                    onclick="
+                        updateAppointment(
+                            ${index},
+                            'Cancelled'
+                        )
+                    "
+
+                >
+
+                    ✕ Cancel
+
                 </button>
 
+
                 <button
+
                     class="action-btn reply"
-                    onclick="replyAppointment(${index})">
-                    💬
+
+                    onclick="
+                        replyAppointment(
+                            ${index}
+                        )
+                    "
+
+                >
+
+                    💬 Reply
+
                 </button>
 
             </td>
 
         </tr>
+
         `;
 
     });
 
 
     html += `
+
         </tbody>
+
     </table>
+
     `;
 
 
-    document.getElementById("appointmentsTable").innerHTML = html;
+    document
+        .getElementById(
+            "appointmentsTable"
+        )
+        .innerHTML = html;
 
 }
 
 
-/* SEARCH */
+
+// =====================================================
+// SEARCH APPOINTMENTS
+// =====================================================
 
 function filterAppointments(){
 
+
     const search =
-        document.getElementById("appointmentSearch")
-        .value
-        .toLowerCase();
+
+        document
+            .getElementById(
+                "appointmentSearch"
+            )
+            .value
+            .toLowerCase();
+
 
     const filtered =
-        (window.allAppointments || []).filter(item =>
+
+        (window.allAppointments || [])
+        .filter(item =>
 
             JSON.stringify(item)
-            .toLowerCase()
-            .includes(search)
+                .toLowerCase()
+                .includes(search)
 
         );
 
-    displayAppointments(filtered);
+
+    displayAppointments(
+        filtered
+    );
 
 }
 
 
-/* UPDATE APPOINTMENT */
 
-function updateAppointment(index,status){
+// =====================================================
+// UPDATE APPOINTMENT
+// =====================================================
+
+function updateAppointment(
+    index,
+    status
+){
+
 
     const appointment =
         window.allAppointments[index];
 
-    if(!appointment) return;
+
+    if(!appointment)
+        return;
 
 
     if(!confirm(
-        "Hindura status ibe " + status + "?"
+        "Hindura status ibe " +
+        status +
+        "?"
     )){
+
         return;
+
     }
 
 
-    const params = new URLSearchParams();
-
-    params.append("action","updateAppointment");
-
-    params.append("row",appointment.row);
-
-    params.append("status",status);
+    const params =
+        new URLSearchParams();
 
 
-    fetch(WEB_APP_URL,{
-        method:"POST",
-        body:params
-    })
-    .then(response => response.json())
+    params.append(
+        "action",
+        "updateAppointment"
+    );
+
+
+    params.append(
+        "row",
+        appointment.row
+    );
+
+
+    params.append(
+        "status",
+        status
+    );
+
+
+    fetch(
+        WEB_APP_URL,
+        {
+            method:"POST",
+            body:params
+        }
+    )
+
+
+    .then(response =>
+        response.json()
+    )
+
+
     .then(result => {
+
 
         if(result.success){
 
-            alert("Appointment updated successfully.");
+            alert(
+                "Appointment updated successfully."
+            );
+
 
             loadAppointments();
 
-        }else{
+        }
 
-            alert(result.message || "Update failed.");
+        else{
+
+            alert(
+                result.message ||
+                "Update failed."
+            );
 
         }
 
     })
+
+
     .catch(error => {
 
         console.error(error);
 
-        alert("Could not update appointment.");
+        alert(
+            "Could not update appointment."
+        );
 
     });
 
 }
 
 
-/* REPLY */
+
+// =====================================================
+// REPLY TO APPOINTMENT
+// =====================================================
 
 function replyAppointment(index){
+
 
     const appointment =
         window.allAppointments[index];
 
-    if(!appointment) return;
+
+    if(!appointment)
+        return;
 
 
-    const message = prompt(
-        "Andika ubutumwa bwoherezwa kuri " +
-        appointment.email
+    const email =
+        appointment.email || "";
+
+
+    if(!email){
+
+        alert(
+            "Nta email y'uyu muntu iri muri appointment."
+        );
+
+        return;
+
+    }
+
+
+    const message =
+        prompt(
+            "Andika ubutumwa bwoherezwa kuri " +
+            email
+        );
+
+
+    if(!message)
+        return;
+
+
+    const params =
+        new URLSearchParams();
+
+
+    params.append(
+        "action",
+        "replyAppointment"
     );
 
-    if(!message) return;
+
+    params.append(
+        "email",
+        email
+    );
 
 
-    const params = new URLSearchParams();
-
-    params.append("action","replyAppointment");
-
-    params.append("email",appointment.email);
-
-    params.append("name",appointment.name);
-
-    params.append("message",message);
+    params.append(
+        "name",
+        appointment.name || ""
+    );
 
 
-    fetch(WEB_APP_URL,{
-        method:"POST",
-        body:params
-    })
-    .then(response => response.json())
+    params.append(
+        "message",
+        message
+    );
+
+
+    fetch(
+        WEB_APP_URL,
+        {
+            method:"POST",
+            body:params
+        }
+    )
+
+
+    .then(response =>
+        response.json()
+    )
+
+
     .then(result => {
+
 
         if(result.success){
 
-            alert("Reply sent successfully.");
+            alert(
+                "Reply sent successfully."
+            );
 
-        }else{
+        }
 
-            alert(result.message || "Reply failed.");
+        else{
+
+            alert(
+                result.message ||
+                "Reply failed."
+            );
 
         }
 
     })
+
+
     .catch(error => {
 
         console.error(error);
 
-        alert("Could not send reply.");
+        alert(
+            "Could not send reply."
+        );
 
     });
 
 }
 
 
-/* DASHBOARD COUNTS */
+
+// =====================================================
+// LOAD MESSAGES
+// =====================================================
+
+function loadMessages(){
+
+
+    document
+        .getElementById(
+            "messagesTable"
+        )
+        .innerHTML =
+        '<div class="loading">Loading messages...</div>';
+
+
+    fetch(
+        WEB_APP_URL +
+        "?action=getMessages"
+    )
+
+
+    .then(response =>
+        response.json()
+    )
+
+
+    .then(data => {
+
+
+        if(
+            !data ||
+            !Array.isArray(
+                data.messages
+            )
+        ){
+
+            window.allMessages = [];
+
+            document
+                .getElementById(
+                    "messagesTable"
+                )
+                .innerHTML =
+                '<div class="empty">Nta messages zabonetse.</div>';
+
+            document
+                .getElementById(
+                    "totalMessages"
+                )
+                .innerText = "0";
+
+            return;
+
+        }
+
+
+        window.allMessages =
+            data.messages;
+
+
+        displayMessages(
+            data.messages
+        );
+
+
+        document
+            .getElementById(
+                "totalMessages"
+            )
+            .innerText =
+            data.messages.length;
+
+
+        document
+            .getElementById(
+                "statMessages"
+            )
+            .innerText =
+            data.messages.length;
+
+    })
+
+
+    .catch(error => {
+
+        console.error(error);
+
+
+        document
+            .getElementById(
+                "messagesTable"
+            )
+            .innerHTML =
+            '<div class="error">Failed to load messages.</div>';
+
+    });
+
+}
+
+
+
+// =====================================================
+// DISPLAY MESSAGES
+// =====================================================
+
+function displayMessages(data){
+
+
+    if(!data || data.length === 0){
+
+        document
+            .getElementById(
+                "messagesTable"
+            )
+            .innerHTML =
+            '<div class="empty">Nta message iraboneka.</div>';
+
+        return;
+
+    }
+
+
+    let html = "";
+
+
+    data.forEach((item,index)=>{
+
+
+        html += `
+
+        <div class="message-box">
+
+            <div class="message-header">
+
+                <div>
+
+                    <div class="message-name">
+
+                        ${escapeHTML(
+                            item.name || ""
+                        )}
+
+                    </div>
+
+                    <div class="message-email">
+
+                        ${escapeHTML(
+                            item.email || ""
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    ${escapeHTML(
+                        item.timestamp || ""
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div class="message-content">
+
+                ${escapeHTML(
+                    item.message || ""
+                )}
+
+            </div>
+
+
+            <button
+
+                class="action-btn reply"
+
+                onclick="
+                    replyMessage(
+                        ${index}
+                    )
+                "
+
+            >
+
+                💬 Reply
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+
+    document
+        .getElementById(
+            "messagesTable"
+        )
+        .innerHTML = html;
+
+}
+
+
+
+// =====================================================
+// REPLY TO MESSAGE
+// =====================================================
+
+function replyMessage(index){
+
+
+    const item =
+        window.allMessages[index];
+
+
+    if(!item)
+        return;
+
+
+    if(!item.email){
+
+        alert(
+            "Nta email iri kuri message."
+        );
+
+        return;
+
+    }
+
+
+    const message =
+        prompt(
+            "Andika reply yawe kuri " +
+            item.email
+        );
+
+
+    if(!message)
+        return;
+
+
+    const params =
+        new URLSearchParams();
+
+
+    params.append(
+        "action",
+        "replyMessage"
+    );
+
+
+    params.append(
+        "email",
+        item.email
+    );
+
+
+    params.append(
+        "name",
+        item.name || ""
+    );
+
+
+    params.append(
+        "message",
+        message
+    );
+
+
+    fetch(
+        WEB_APP_URL,
+        {
+            method:"POST",
+            body:params
+        }
+    )
+
+
+    .then(response =>
+        response.json()
+    )
+
+
+    .then(result => {
+
+
+        if(result.success){
+
+            alert(
+                "Reply sent successfully."
+            );
+
+        }
+
+        else{
+
+            alert(
+                result.message ||
+                "Reply failed."
+            );
+
+        }
+
+    })
+
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert(
+            "Could not send reply."
+        );
+
+    });
+
+}
+
+
+
+// =====================================================
+// DASHBOARD COUNTS
+// =====================================================
 
 function updateDashboard(data){
 
-    document.getElementById("totalAppointments")
-        .innerText = data.length;
 
-    document.getElementById("pendingAppointments")
-        .innerText =
+    const total =
+        data.length;
+
+
+    const pending =
         data.filter(x =>
-            (x.status || "Pending") === "Pending"
+            (x.status || "Pending")
+            === "Pending"
         ).length;
 
-    document.getElementById("confirmedAppointments")
-        .innerText =
+
+    const confirmed =
         data.filter(x =>
             x.status === "Confirmed"
         ).length;
 
+
+    const completed =
+        data.filter(x =>
+            x.status === "Completed"
+        ).length;
+
+
+    const cancelled =
+        data.filter(x =>
+            x.status === "Cancelled"
+        ).length;
+
+
+    document
+        .getElementById(
+            "totalAppointments"
+        )
+        .innerText =
+        total;
+
+
+    document
+        .getElementById(
+            "pendingAppointments"
+        )
+        .innerText =
+        pending;
+
+
+    document
+        .getElementById(
+            "confirmedAppointments"
+        )
+        .innerText =
+        confirmed;
+
+
+    document
+        .getElementById(
+            "statTotalAppointments"
+        )
+        .innerText =
+        total;
+
+
+    document
+        .getElementById(
+            "statPending"
+        )
+        .innerText =
+        pending;
+
+
+    document
+        .getElementById(
+            "statConfirmed"
+        )
+        .innerText =
+        confirmed;
+
+
+    document
+        .getElementById(
+            "statCompleted"
+        )
+        .innerText =
+        completed;
+
+
+    document
+        .getElementById(
+            "statCancelled"
+        )
+        .innerText =
+        cancelled;
+
 }
 
 
-/* SECURITY */
+
+// =====================================================
+// SECURITY / HTML ESCAPE
+// =====================================================
 
 function escapeHTML(value){
 
     return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
+
+
+
+// =====================================================
+// CHECK EXISTING SESSION
+// =====================================================
+
+window.addEventListener(
+    "load",
+    function(){
+
+        const loggedIn =
+            sessionStorage.getItem(
+                "nashoAdminLoggedIn"
+            );
+
+
+        if(loggedIn === "true"){
+
+            document
+                .getElementById(
+                    "loginPage"
+                )
+                .style.display =
+                "none";
+
+
+            document
+                .getElementById(
+                    "dashboard"
+                )
+                .style.display =
+                "block";
+
+
+            loadAppointments();
+
+            loadMessages();
+
+        }
+
+    }
+);
 
 </script>
 
