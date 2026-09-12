@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NASHO Health Center - Ikigo cy'Ubuzima cya Nasho | Kirehe District, Eastern Province, Rwanda. Ubuvuzi bwiza, Gufata Gahunda, Imbangukiragutabara 24/7.">
+    <title>NASHO Health Center | Ikigo cy'Ubuzima cya Nasho</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ========== EMERGENCY TOP BAR ========== -->
+    <div class="emergency-bar" id="emergencyBar">
+        <div class="emergency-bar__inner">
+            <div class="emergency-bar__pulse"></div>
+            <span class="emergency-bar__icon">🚑</span>
+            <span class="emergency-bar__text" data-rw="Ubutabazi Bwihuse 24/7 — Hamagara:" data-en="Emergency Hotline 24/7 — Call:">Ubutabazi Bwihuse 24/7 — Hamagara:</span>
+            <a href="tel:+250788000000" class="emergency-bar__number">+250 788 000 000</a>
+            <span class="emergency-bar__separator">|</span>
+            <a href="tel:112" class="emergency-bar__number">112</a>
+        </div>
+    </div>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar__container">
+            <a href="#home" class="navbar__logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Coat_of_arms_of_Rwanda.svg" alt="Rwanda Coat of Arms" class="navbar__logo-img">
+                <div class="navbar__logo-text">
+                    <span class="navbar__logo-name">NASHO</span>
+                    <span class="navbar__logo-sub">Health Center</span>
+                </div>
+            </a>
+
+            <ul class="navbar__menu" id="navMenu">
+                <li><a href="#home" class="navbar__link active" data-rw="Ahabanza" data-en="Home">Ahabanza</a></li>
+                <li><a href="#services" class="navbar__link" data-rw="Serivisi" data-en="Services">Serivisi</a></li>
+                <li><a href="#doctors" class="navbar__link" data-rw="Abaganga" data-en="Doctors">Abaganga</a></li>
+                <li><a href="#appointment" class="navbar__link" data-rw="Gahunda" data-en="Appointment">Gahunda</a></li>
+                <li><a href="#contact" class="navbar__link" data-rw="Twandikire" data-en="Contact">Twandikire</a></li>
+                <li><a href="certificate.html" class="navbar__link navbar__link--cert" data-rw="📄 Icyemezo" data-en="📄 Certificate">📄 Icyemezo</a></li>
+            </ul>
+
+            <div class="navbar__actions">
+                <button class="lang-switch" id="langSwitch" onclick="toggleLanguage()">
+                    <span class="lang-switch__flag">🌐</span>
+                    <span id="langLabel">EN</span>
+                </button>
+                <a href="#appointment" class="navbar__cta" data-rw="Fata Gahunda" data-en="Book Now">Fata Gahunda</a>
+                <button class="navbar__hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" id="home">
+        <div class="hero__bg-shapes">
+            <div class="hero__shape hero__shape--1"></div>
+            <div class="hero__shape hero__shape--2"></div>
+            <div class="hero__shape hero__shape--3"></div>
+        </div>
+        <div class="hero__container">
+            <div class="hero__content">
+                <div class="hero__badge" data-rw="✦ Ikigo cy'Ubuzima Kizira" data-en="✦ Quality Healthcare Facility">✦ Ikigo cy'Ubuzima Kizira</div>
+                <h1 class="hero__title">
+                    <span class="hero__title-line" data-rw="Ubuzima Bwawe" data-en="Your Health">Ubuzima Bwawe</span>
+                    <span class="hero__title-line hero__title-line--accent" data-rw="Ni Intego Yacu" data-en="Is Our Priority">Ni Intego Yacu</span>
+                </h1>
+                <p class="hero__description" data-rw="NASHO Health Center itanga serivisi z'ubuvuzi zigezweho ku baturage bo mu Karere ka Kirehe, Intara y'Iburasirazuba. Dukorana urukundo n'ubuhanga mu gufasha abaturage bacu kubona ubuzima bwiza." data-en="NASHO Health Center provides modern healthcare services to the community of Kirehe District, Eastern Province. We work with compassion and expertise to ensure our community's well-being.">NASHO Health Center itanga serivisi z'ubuvuzi zigezweho ku baturage bo mu Karere ka Kirehe, Intara y'Iburasirazuba. Dukorana urukundo n'ubuhanga mu gufasha abaturage bacu kubona ubuzima bwiza.</p>
+                <div class="hero__buttons">
+                    <a href="#appointment" class="btn btn--primary btn--glow">
+                        <span class="btn__icon">📅</span>
+                        <span data-rw="Fata Gahunda" data-en="Book Appointment">Fata Gahunda</span>
+                    </a>
+                    <a href="tel:+250788000000" class="btn btn--emergency btn--pulse">
+                        <span class="btn__icon">🚑</span>
+                        <span data-rw="Ubutabazi Bwihuse" data-en="Emergency Call">Ubutabazi Bwihuse</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero__visual">
+                <div class="hero__card hero__card--main">
+                    <div class="hero__card-icon">🏥</div>
+                    <div class="hero__card-content">
+                        <h3 data-rw="NASHO Health Center" data-en="NASHO Health Center">NASHO Health Center</h3>
+                        <p data-rw="Kirehe, Intara y'Iburasirazuba" data-en="Kirehe, Eastern Province">Kirehe, Intara y'Iburasirazuba</p>
+                    </div>
+                </div>
+                <div class="hero__floating-cards">
+                    <div class="hero__float-card hero__float-card--1">
+                        <span class="hero__float-icon">👨‍⚕️</span>
+                        <div>
+                            <strong>7+</strong>
+                            <small data-rw="Abaganga b'Inzobere" data-en="Expert Staff">Abaganga b'Inzobere</small>
+                        </div>
+                    </div>
+                    <div class="hero__float-card hero__float-card--2">
+                        <span class="hero__float-icon">💊</span>
+                        <div>
+                            <strong>24/7</strong>
+                            <small data-rw="Serivisi Zihoraho" data-en="Always Available">Serivisi Zihoraho</small>
+                        </div>
+                    </div>
+                    <div class="hero__float-card hero__float-card--3">
+                        <span class="hero__float-icon">❤️</span>
+                        <div>
+                            <strong>5000+</strong>
+                            <small data-rw="Abarwayi Bishimiye" data-en="Happy Patients">Abarwayi Bishimiye</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__scroll-indicator">
+            <div class="hero__scroll-mouse">
+                <div class="hero__scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STATS BAR ========== -->
+    <section class="stats">
+        <div class="stats__container">
+            <div class="stats__item">
+                <div class="stats__number" data-count="7">0</div>
+                <div class="stats__label" data-rw="Abaganga b'Inzobere" data-en="Expert Staff">Abaganga b'Inzobere</div>
+            </div>
+            <div class="stats__divider"></div>
+            <div class="stats__item">
+                <div class="stats__number" data-count="5000">0</div>
+                <div class="stats__label" data-rw="Abarwayi ku Mwaka" data-en="Patients Yearly">Abarwayi ku Mwaka</div>
+            </div>
+            <div class="stats__divider"></div>
+            <div class="stats__item">
+                <div class="stats__number" data-count="8">0</div>
+                <div class="stats__label" data-rw="Amashami y'Ubuvuzi" data-en="Departments">Amashami y'Ubuvuzi</div>
+            </div>
+            <div class="stats__divider"></div>
+            <div class="stats__item">
+                <div class="stats__number" data-count="24">0</div>
+                <div class="stats__label" data-rw="Amasaha / Iminsi 7" data-en="Hours / 7 Days">Amasaha / Iminsi 7</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVICES SECTION ========== -->
+    <section class="services" id="services">
+        <div class="services__container">
+            <div class="section-header">
+                <span class="section-header__badge" data-rw="Serivisi Zacu" data-en="Our Services">Serivisi Zacu</span>
+                <h2 class="section-header__title" data-rw="Amashami y'Ubuvuzi Dutanga" data-en="Medical Departments & Services">Amashami y'Ubuvuzi Dutanga</h2>
+                <p class="section-header__subtitle" data-rw="Dutanga serivisi z'ubuvuzi zinyuranye zigezweho kugira ngo dufashe abaturage bacu kubona ubuzima bwiza." data-en="We offer a wide range of modern medical services to help our community achieve better health.">Dutanga serivisi z'ubuvuzi zinyuranye zigezweho kugira ngo dufashe abaturage bacu kubona ubuzima bwiza.</p>
+            </div>
+            <div class="services__grid">
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-card__icon-wrap service-card__icon-wrap--blue">
+                        <span class="service-card__icon">🩺</span>
+                    </div>
+                    <h3 class="service-card__title" data-rw="Ubuvuzi Rusange" data-en="General Medicine">Ubuvuzi Rusange</h3>
+                    <p class="service-card__desc" data-rw="Gusuzuma no kuvura indwara zinyuranye z'abagabo, abagore n'abana ku rwego rwiza." data-en="Diagnosis and treatment of various diseases for men, women, and children at high standards.">Gusuzuma no kuvura indwara zinyuranye z'abagabo, abagore n'abana ku rwego rwiza.</p>
+                    <a href="#appointment" class="service-card__link" data-rw="Fata Gahunda →" data-en="Book Now →">Fata Gahunda →</a>
+                </div>
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-card__icon-wrap service-card__icon-wrap--pink">
+                        <span class="service-card__icon">🤰</span>
+                    </div>
+                    <h3 class="service-card__title" data-rw="Kwita ku Babyeyi" data-en="Maternity & Obstetrics">Kwita ku Babyeyi</h3>
+                    <p class="service-card__desc" data-rw="Gukurikirana inda, kubyara mu buryo bwizewe, no kwita ku mubyeyi n'uruhinja nyuma yo kubyara." data-en="Prenatal care, safe delivery, and postnatal care for mother and newborn.">Gukurikirana inda, kubyara mu buryo bwizewe, no kwita ku mubyeyi n'uruhinja nyuma yo kubyara.</p>
+                    <a href="#appointment" class="service-card__link" data-rw="Fata Gahunda →" data-en="Book Now →">Fata Gahunda →</a>
+                </div>
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-card__icon-wrap service-card__icon-wrap--green">
+                        <span class="service-card__icon">👶</span>
+                    </div>
+                    <h3 class="service-card__title" data-rw="Ubuvuzi bw'Abana" data-en="Pediatrics">Ubuvuzi bw'Abana</h3>
+                    <p class="service-card__desc" data-rw="Kwita ku buzima bw'abana kuva bakivuka kugeza ku myaka 18: inkingo, gusuzuma, no kuvura." data-en="Children's healthcare from birth to 18 years: vaccination, diagnosis, and treatment.">Kwita ku buzima bw'abana kuva bakivuka kugeza ku myaka 18: inkingo, gusuzuma, no kuvura.</p>
+                    <a href="#appointment" class="service-card__link" data-rw="Fata Gahunda →" data-en="Book Now →">Fata Gahunda →</a>
+                </div>
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-card__icon-wrap service-card__icon-wrap--purple">
+                        <span class="service-card__icon">🦷</span>
+                    </div>
+                    <h3 class="service-card__title" data-rw="Ubuvuzi bw'Amenyo" data-en="Dental Care">Ubuvuzi bw'Amenyo</h3>
+                    <p class="service-card__desc" data-rw="Gusuzuma, gukiza, gukuramo no gusana amenyo hakoreshejwe ibikoresho bigezweho." data-en="Dental examination, treatment, extraction, and restoration using modern equipment.">Gusuzuma, gukiza, gukuramo no gusana amenyo hakoreshejwe ibikoresho bigezweho.</p>
+                    <a href="#appointment" class="service-card__link" data-rw="Fata Gahunda →" data-en="Book Now →">Fata Gahunda →</a>
+                </div>
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-card__icon-wrap service-card__icon-wrap--teal">
+                        <span class="service-card__icon">🔬</span>
+                    </div>
+                    <h3 class="service-card__title" data-rw="Laboratwari & Ibipimo" data-en="Laboratory & Diagnostics">Laboratwari & Ibipimo</h3>
+                    <p class="service-card__desc" data-rw="Ibipimo by'amaraso, ibipimo bya CT/Echographie, n'ibindi bipimo bigezweho byihutisha gusuzuma." data-en="Blood tests, CT/Ultrasound scans, and other modern diagnostics for quick examination.">Ibipimo by'amaraso, ibipimo bya CT/Echographie, n'ibindi bipimo bigezweho byihutisha gusuzuma.</p>
+                    <a href="#appointment" class="service-card__link" data-rw="Fata Gahunda →" data-en="Book Now →">Fata Gahunda →</a>
+                </div>
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-card__icon-wrap service-card__icon-wrap--red">
+                        <span class="service-card__icon">🚑</span>
+                    </div>
+                    <h3 class="service-card__title" data-rw="Ubutabazi Bwihuse" data-en="Emergency Services">Ubutabazi Bwihuse</h3>
+                    <p class="service-card__desc" data-rw="Serivisi z'ubutabazi bwihuse n'imbangukiragutabara zihari amasaha 24 ku 24, iminsi 7 ku 7." data-en="Emergency and ambulance services available 24 hours a day, 7 days a week.">Serivisi z'ubutabazi bwihuse n'imbangukiragutabara zihari amasaha 24 ku 24, iminsi 7 ku 7.</p>
+                    <a href="tel:112" class="service-card__link service-card__link--red" data-rw="Hamagara 112 →" data-en="Call 112 →">Hamagara 112 →</a>
+                </div>
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-card__icon-wrap service-card__icon-wrap--orange">
+                        <span class="service-card__icon">💊</span>
+                    </div>
+                    <h3 class="service-card__title" data-rw="Farumasi" data-en="Pharmacy">Farumasi</h3>
+                    <p class="service-card__desc" data-rw="Imiti myiza ikenewe ihari buri gihe, itangwa n'abahanga mu bya farumasi." data-en="Quality medications always available, dispensed by professional pharmacists.">Imiti myiza ikenewe ihari buri gihe, itangwa n'abahanga mu bya farumasi.</p>
+                    <a href="#appointment" class="service-card__link" data-rw="Fata Gahunda →" data-en="Book Now →">Fata Gahunda →</a>
+                </div>
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-card__icon-wrap service-card__icon-wrap--indigo">
+                        <span class="service-card__icon">💉</span>
+                    </div>
+                    <h3 class="service-card__title" data-rw="Inkingo & Gukingira" data-en="Vaccination & Immunization">Inkingo & Gukingira</h3>
+                    <p class="service-card__desc" data-rw="Gukingira abana n'abakuze indwara zinyuranye binyuze mu nkingo zigezweho." data-en="Protecting children and adults from various diseases through modern vaccination.">Gukingira abana n'abakuze indwara zinyuranye binyuze mu nkingo zigezweho.</p>
+                    <a href="#appointment" class="service-card__link" data-rw="Fata Gahunda →" data-en="Book Now →">Fata Gahunda →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DOCTORS SECTION ========== -->
+    <section class="doctors" id="doctors">
+        <div class="doctors__container">
+            <div class="section-header section-header--light">
+                <span class="section-header__badge section-header__badge--light" data-rw="Abakozi Bacu" data-en="Our Team">Abakozi Bacu</span>
+                <h2 class="section-header__title section-header__title--light" data-rw="Abaganga n'Abaforomo b'Inzobere" data-en="Our Expert Medical Staff">Abaganga n'Abaforomo b'Inzobere</h2>
+                <p class="section-header__subtitle section-header__subtitle--light" data-rw="Itsinda ryacu rigizwe n'abaganga n'abaforomo bafite ubunararibonye n'urukundo mu kazi kabo." data-en="Our team consists of experienced and passionate doctors and nurses.">Itsinda ryacu rigizwe n'abaganga n'abaforomo bafite ubunararibonye n'urukundo mu kazi kabo.</p>
+            </div>
+            <div class="doctors__grid">
+                <div class="doctor-card">
+                    <div class="doctor-card__avatar">
+                        <div class="doctor-card__avatar-placeholder">TJ</div>
+                        <div class="doctor-card__status"></div>
+                    </div>
+                    <h3 class="doctor-card__name">TUYISHIME Japhet</h3>
+                    <span class="doctor-card__role" data-rw="Umuyobozi w'Ikigo" data-en="Head of Health Center">Umuyobozi w'Ikigo</span>
+                    <div class="doctor-card__tags">
+                        <span class="doctor-card__tag" data-rw="Ubuvuzi Rusange" data-en="General Medicine">Ubuvuzi Rusange</span>
+                        <span class="doctor-card__tag" data-rw="Ubuyobozi" data-en="Administration">Ubuyobozi</span>
+                    </div>
+                    <a href="#appointment" class="doctor-card__book" data-rw="Fata Gahunda" data-en="Book Appointment">Fata Gahunda</a>
+                </div>
+                <div class="doctor-card">
+                    <div class="doctor-card__avatar">
+                        <div class="doctor-card__avatar-placeholder">HE</div>
+                        <div class="doctor-card__status"></div>
+                    </div>
+                    <h3 class="doctor-card__name">HABIMANA Etienne</h3>
+                    <span class="doctor-card__role" data-rw="Umuforomo Mukuru" data-en="Senior Nurse">Umuforomo Mukuru</span>
+                    <div class="doctor-card__tags">
+                        <span class="doctor-card__tag" data-rw="Ubuvuzi Rusange" data-en="General Medicine">Ubuvuzi Rusange</span>
+                    </div>
+                    <a href="#appointment" class="doctor-card__book" data-rw="Fata Gahunda" data-en="Book Appointment">Fata Gahunda</a>
+                </div>
+                <div class="doctor-card">
+                    <div class="doctor-card__avatar">
+                        <div class="doctor-card__avatar-placeholder">NJ</div>
+                        <div class="doctor-card__status"></div>
+                    </div>
+                    <h3 class="doctor-card__name">NIRERE Lita Jamila</h3>
+                    <span class="doctor-card__role" data-rw="Umuforomo" data-en="Nurse">Umuforomo</span>
+                    <div class="doctor-card__tags">
+                        <span class="doctor-card__tag" data-rw="Kwita ku Babyeyi" data-en="Maternity">Kwita ku Babyeyi</span>
+                    </div>
+                    <a href="#appointment" class="doctor-card__book" data-rw="Fata Gahunda" data-en="Book Appointment">Fata Gahunda</a>
+                </div>
+                <div class="doctor-card">
+                    <div class="doctor-card__avatar">
+                        <div class="doctor-card__avatar-placeholder">MR</div>
+                        <div class="doctor-card__status"></div>
+                    </div>
+                    <h3 class="doctor-card__name">MUKANDAYAMBAJE Rebecca</h3>
+                    <span class="doctor-card__role" data-rw="Umuforomo" data-en="Nurse">Umuforomo</span>
+                    <div class="doctor-card__tags">
+                        <span class="doctor-card__tag" data-rw="Ubuvuzi bw'Abana" data-en="Pediatrics">Ubuvuzi bw'Abana</span>
+                    </div>
+                    <a href="#appointment" class="doctor-card__book" data-rw="Fata Gahunda" data-en="Book Appointment">Fata Gahunda</a>
+                </div>
+                <div class="doctor-card">
+                    <div class="doctor-card__avatar">
+                        <div class="doctor-card__avatar-placeholder">NP</div>
+                        <div class="doctor-card__status"></div>
+                    </div>
+                    <h3 class="doctor-card__name">NJENYERI Patrick</h3>
+                    <span class="doctor-card__role" data-rw="Umuforomo" data-en="Nurse">Umuforomo</span>
+                    <div class="doctor-card__tags">
+                        <span class="doctor-card__tag" data-rw="Laboratwari" data-en="Laboratory">Laboratwari</span>
+                    </div>
+                    <a href="#appointment" class="doctor-card__book" data-rw="Fata Gahunda" data-en="Book Appointment">Fata Gahunda</a>
+                </div>
+                <div class="doctor-card">
+                    <div class="doctor-card__avatar">
+                        <div class="doctor-card__avatar-placeholder">MM</div>
+                        <div class="doctor-card__status"></div>
+                    </div>
+                    <h3 class="doctor-card__name">MUKASINE Marie</h3>
+                    <span class="doctor-card__role" data-rw="Umuforomo" data-en="Nurse">Umuforomo</span>
+                    <div class="doctor-card__tags">
+                        <span class="doctor-card__tag" data-rw="Inkingo" data-en="Vaccination">Inkingo</span>
+                    </div>
+                    <a href="#appointment" class="doctor-card__book" data-rw="Fata Gahunda" data-en="Book Appointment">Fata Gahunda</a>
+                </div>
+                <div class="doctor-card">
+                    <div class="doctor-card__avatar">
+                        <div class="doctor-card__avatar-placeholder">UA</div>
+                        <div class="doctor-card__status"></div>
+                    </div>
+                    <h3 class="doctor-card__name">UWIRINGIYE Assumpta</h3>
+                    <span class="doctor-card__role" data-rw="Umuforomo" data-en="Nurse">Umuforomo</span>
+                    <div class="doctor-card__tags">
+                        <span class="doctor-card__tag" data-rw="Farumasi" data-en="Pharmacy">Farumasi</span>
+                    </div>
+                    <a href="#appointment" class="doctor-card__book" data-rw="Fata Gahunda" data-en="Book Appointment">Fata Gahunda</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== APPOINTMENT SECTION ========== -->
+    <section class="appointment" id="appointment">
+        <div class="appointment__container">
+            <div class="appointment__info">
+                <div class="section-header section-header--left">
+                    <span class="section-header__badge" data-rw="Fata Gahunda" data-en="Book Appointment">Fata Gahunda</span>
+                    <h2 class="section-header__title" data-rw="Fata Gahunda yo Kubonana na Muganga" data-en="Schedule Your Medical Visit">Fata Gahunda yo Kubonana na Muganga</h2>
+                    <p class="section-header__subtitle section-header__subtitle--left" data-rw="Uzuza iyi fishi maze tukumenyeshe itariki n'isaha yo kubonana na muganga wawe." data-en="Fill in this form and we'll confirm your appointment date and time.">Uzuza iyi fishi maze tukumenyeshe itariki n'isaha yo kubonana na muganga wawe.</p>
+                </div>
+                <div class="appointment__features">
+                    <div class="appointment__feature">
+                        <span class="appointment__feature-icon">⚡</span>
+                        <div>
+                            <strong data-rw="Byihuse" data-en="Fast & Easy">Byihuse</strong>
+                            <p data-rw="Gufata gahunda byoroshye kandi byihuse" data-en="Quick and easy appointment booking">Gufata gahunda byoroshye kandi byihuse</p>
+                        </div>
+                    </div>
+                    <div class="appointment__feature">
+                        <span class="appointment__feature-icon">🔒</span>
+                        <div>
+                            <strong data-rw="Ibanga Ryawe" data-en="Confidential">Ibanga Ryawe</strong>
+                            <p data-rw="Amakuru yawe arinzwe neza" data-en="Your information is kept secure">Amakuru yawe arinzwe neza</p>
+                        </div>
+                    </div>
+                    <div class="appointment__feature">
+                        <span class="appointment__feature-icon">📞</span>
+                        <div>
+                            <strong data-rw="Duhamagare" data-en="Call Us">Duhamagare</strong>
+                            <p>+250 788 000 000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="appointment__form-wrap">
+                <form class="appointment__form" id="appointmentForm" onsubmit="handleAppointment(event)">
+                    <div class="form-group">
+                        <label for="patientName" data-rw="Amazina Yawe" data-en="Your Full Name">Amazina Yawe</label>
+                        <input type="text" id="patientName" placeholder="" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patientPhone" data-rw="Telefoni" data-en="Phone Number">Telefoni</label>
+                            <input type="tel" id="patientPhone" placeholder="0788 000 000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientId" data-rw="Nimero y'Indangamuntu" data-en="National ID Number">Nimero y'Indangamuntu</label>
+                            <input type="text" id="patientId" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="department" data-rw="Ishami ushaka" data-en="Department">Ishami ushaka</label>
+                        <select id="department" required>
+                            <option value="" data-rw="-- Hitamo Ishami --" data-en="-- Select Department --">-- Hitamo Ishami --</option>
+                            <option value="general" data-rw="Ubuvuzi Rusange" data-en="General Medicine">Ubuvuzi Rusange</option>
+                            <option value="maternity" data-rw="Kwita ku Babyeyi" data-en="Maternity & Obstetrics">Kwita ku Babyeyi</option>
+                            <option value="pediatrics" data-rw="Ubuvuzi bw'Abana" data-en="Pediatrics">Ubuvuzi bw'Abana</option>
+                            <option value="dental" data-rw="Ubuvuzi bw'Amenyo" data-en="Dental Care">Ubuvuzi bw'Amenyo</option>
+                            <option value="lab" data-rw="Laboratwari & Ibipimo" data-en="Laboratory & Diagnostics">Laboratwari & Ibipimo</option>
+                            <option value="pharmacy" data-rw="Farumasi" data-en="Pharmacy">Farumasi</option>
+                            <option value="vaccination" data-rw="Inkingo" data-en="Vaccination">Inkingo</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appointDate" data-rw="Itariki" data-en="Date">Itariki</label>
+                            <input type="date" id="appointDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointTime" data-rw="Isaha" data-en="Time">Isaha</label>
+                            <input type="time" id="appointTime" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="patientMessage" data-rw="Ikibazo cyangwa Ibimenyetso" data-en="Symptoms or Message">Ikibazo cyangwa Ibimenyetso</label>
+                        <textarea id="patientMessage" rows="3" placeholder=""></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full" id="appointBtn">
+                        <span class="btn__icon">✅</span>
+                        <span data-rw="Ohereza Gahunda" data-en="Submit Appointment">Ohereza Gahunda</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CERTIFICATE BANNER ========== -->
+    <section class="cert-banner">
+        <div class="cert-banner__container">
+            <div class="cert-banner__content">
+                <span class="cert-banner__icon">📜</span>
+                <div>
+                    <h3 data-rw="Icyemezo cy'Amavuko (Birth Certificate)" data-en="Medical Birth Certificate">Icyemezo cy'Amavuko (Birth Certificate)</h3>
+                    <p data-rw="Kanda hano ugere ku rupapuro rwo gukora icyemezo cy'amavuko cy'umwana wavutse muri NASHO Health Center." data-en="Click here to access the medical birth certificate form for babies born at NASHO Health Center.">Kanda hano ugere ku rupapuro rwo gukora icyemezo cy'amavuko cy'umwana wavutse muri NASHO Health Center.</p>
+                </div>
+            </div>
+            <a href="certificate.html" class="btn btn--white" data-rw="Fungura Icyemezo →" data-en="Open Certificate →">Fungura Icyemezo →</a>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT & MAP SECTION ========== -->
+    <section class="contact" id="contact">
+        <div class="contact__container">
+            <div class="contact__info-side">
+                <div class="section-header section-header--left">
+                    <span class="section-header__badge" data-rw="Twandikire" data-en="Contact Us">Twandikire</span>
+                    <h2 class="section-header__title" data-rw="Aho Tuherereye & Amasaha y'Akazi" data-en="Location & Working Hours">Aho Tuherereye & Amasaha y'Akazi</h2>
+                </div>
+                <div class="contact__details">
+                    <div class="contact__detail-item">
+                        <span class="contact__detail-icon">📍</span>
+                        <div>
+                            <strong data-rw="Aderesi" data-en="Address">Aderesi</strong>
+                            <p>Nasho Sector, Kirehe District<br>Eastern Province, Rwanda</p>
+                        </div>
+                    </div>
+                    <div class="contact__detail-item">
+                        <span class="contact__detail-icon">📧</span>
+                        <div>
+                            <strong>Email</strong>
+                            <p><a href="mailto:nashohc0428@gmail.com">nashohc0428@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact__detail-item">
+                        <span class="contact__detail-icon">📞</span>
+                        <div>
+                            <strong data-rw="Telefoni" data-en="Phone">Telefoni</strong>
+                            <p><a href="tel:+250788000000">+250 788 000 000</a></p>
+                        </div>
+                    </div>
+                    <div class="contact__detail-item">
+                        <span class="contact__detail-icon">🕐</span>
+                        <div>
+                            <strong data-rw="Amasaha y'Akazi" data-en="Working Hours">Amasaha y'Akazi</strong>
+                            <p data-rw="Kuwa Mbere - Kuwa Gatanu: 7:00 - 17:00" data-en="Monday - Friday: 7:00 AM - 5:00 PM">Kuwa Mbere - Kuwa Gatanu: 7:00 - 17:00</p>
+                            <p data-rw="Kuwa Gatandatu: 8:00 - 12:00" data-en="Saturday: 8:00 AM - 12:00 PM">Kuwa Gatandatu: 8:00 - 12:00</p>
+                            <p data-rw="Ubutabazi Bwihuse: 24/7" data-en="Emergency: 24/7">Ubutabazi Bwihuse: 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact__map-side">
+                <div class="contact__map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63800.0!2d30.65!3d-2.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMjEnMDAuMCJTIDMwwrAzOScwMC4wIkU!5e0!3m2!1sen!2srw!4v1600000000000!5m2!1sen!2srw"
+                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="NASHO Health Center Location">
+                    </iframe>
+                </div>
+                <form class="contact__form" id="contactForm" onsubmit="handleContact(event)">
+                    <h3 data-rw="Twohereze Ubutumwa" data-en="Send Us a Message">Twohereze Ubutumwa</h3>
+                    <div class="form-row">
+                        <input type="text" placeholder="Amazina / Your Name" required>
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <textarea rows="3" placeholder="Ubutumwa / Your Message" required></textarea>
+                    <button type="submit" class="btn btn--primary btn--full" data-rw="Ohereza Ubutumwa" data-en="Send Message">
+                        <span data-rw="Ohereza Ubutumwa" data-en="Send Message">Ohereza Ubutumwa</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <div class="footer__logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Coat_of_arms_of_Rwanda.svg" alt="Rwanda" class="footer__logo-img">
+                        <div>
+                            <strong>NASHO Health Center</strong>
+                            <span>Kirehe District, Rwanda</span>
+                        </div>
+                    </div>
+                    <p class="footer__tagline" data-rw="Ubuzima bwawe ni intego yacu. Dukorana urukundo n'ubuhanga." data-en="Your health is our priority. We serve with compassion and expertise.">Ubuzima bwawe ni intego yacu. Dukorana urukundo n'ubuhanga.</p>
+                </div>
+                <div class="footer__links">
+                    <h4 data-rw="Aho Wajya" data-en="Quick Links">Aho Wajya</h4>
+                    <a href="#home" data-rw="Ahabanza" data-en="Home">Ahabanza</a>
+                    <a href="#services" data-rw="Serivisi" data-en="Services">Serivisi</a>
+                    <a href="#doctors" data-rw="Abaganga" data-en="Doctors">Abaganga</a>
+                    <a href="#appointment" data-rw="Fata Gahunda" data-en="Book Appointment">Fata Gahunda</a>
+                    <a href="certificate.html" data-rw="Icyemezo cy'Amavuko" data-en="Birth Certificate">Icyemezo cy'Amavuko</a>
+                </div>
+                <div class="footer__links">
+                    <h4 data-rw="Serivisi" data-en="Services">Serivisi</h4>
+                    <a href="#services" data-rw="Ubuvuzi Rusange" data-en="General Medicine">Ubuvuzi Rusange</a>
+                    <a href="#services" data-rw="Kwita ku Babyeyi" data-en="Maternity">Kwita ku Babyeyi</a>
+                    <a href="#services" data-rw="Ubuvuzi bw'Abana" data-en="Pediatrics">Ubuvuzi bw'Abana</a>
+                    <a href="#services" data-rw="Laboratwari" data-en="Laboratory">Laboratwari</a>
+                    <a href="#services" data-rw="Farumasi" data-en="Pharmacy">Farumasi</a>
+                </div>
+                <div class="footer__emergency">
+                    <h4 data-rw="Ubutabazi Bwihuse" data-en="Emergency">Ubutabazi Bwihuse</h4>
+                    <a href="tel:112" class="footer__emergency-number">📞 112</a>
+                    <a href="tel:+250788000000" class="footer__emergency-number">📞 +250 788 000 000</a>
+                    <p data-rw="Duhari 24/7 kugufasha" data-en="Available 24/7 to assist you">Duhari 24/7 kugufasha</p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© 2024 NASHO Health Center — Kirehe District, Eastern Province, Rwanda</p>
+                <p data-rw="Uburenganzira bwose burarinzwe." data-en="All rights reserved.">Uburenganzira bwose burarinzwe.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SUCCESS MODAL ========== -->
+    <div class="success-modal" id="successModal">
+        <div class="success-modal__content">
+            <div class="success-modal__icon">✅</div>
+            <h3 id="successTitle" data-rw="Gahunda Yawe Yakiriwe!" data-en="Appointment Confirmed!">Gahunda Yawe Yakiriwe!</h3>
+            <p id="successMessage" data-rw="Tuzakumenyesha vuba itariki n'isaha nyayo yo kubonana na muganga. Murakoze!" data-en="We will confirm your exact date and time shortly. Thank you!">Tuzakumenyesha vuba itariki n'isaha nyayo yo kubonana na muganga. Murakoze!</p>
+            <button class="btn btn--primary" onclick="closeSuccessModal()" data-rw="Soza" data-en="Close">Soza</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

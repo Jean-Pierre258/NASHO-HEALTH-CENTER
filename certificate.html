@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Birth Certificate - NASHO Health Center</title>
+    
+    <!-- html2pdf Library for PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #003366;
+            --border-color: #333;
+            --bg-color: #ffffff;
+        }
+
+        @page {
+            size: A4 portrait;
+            margin: 5mm;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* User Logged-in Header */
+        .user-bar {
+            width: 100%;
+            background-color: #002244;
+            color: white;
+            padding: 10px 20px;
+            display: none; 
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+
+        .user-bar button {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Controls Area */
+        .controls {
+            margin: 15px auto;
+            display: none; 
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10px;
+            width: 100%;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #002244;
+        }
+
+        .btn-upload {
+            background-color: #2e7d32;
+        }
+
+        .btn-upload:hover {
+            background-color: #1b5e20;
+        }
+
+        .btn-submit {
+            background-color: #d97706;
+        }
+
+        .btn-submit:hover {
+            background-color: #b45309;
+        }
+
+        /* Certificate Wrapper */
+        .certificate-wrapper {
+            width: 100%;
+            display: none; 
+            justify-content: center;
+            padding: 20px;
+            overflow-x: auto;
+            flex-grow: 1;
+        }
+
+        /* SCREEN A4 DISPLAY */
+        .certificate-container {
+            background-color: var(--bg-color);
+            width: 200mm;
+            height: 285mm;
+            padding: 12mm 15mm;
+            border: 6px double var(--primary-color);
+            box-shadow: 0 0 15px rgba(0,0,0,0.15);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .coat-of-arms {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            margin-bottom: 4px;
+        }
+
+        .header h3 {
+            margin: 0;
+            text-transform: uppercase;
+            font-size: 13.5px;
+            color: #222;
+            letter-spacing: 0.5px;
+            line-height: 1.25;
+        }
+
+        .header h1 {
+            margin: 6px 0 3px 0;
+            color: var(--primary-color);
+            font-size: 21px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: underline;
+        }
+
+        .header .contact-info {
+            font-style: italic;
+            font-size: 12.5px;
+            color: #444;
+            margin-top: 2px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 13.5px;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            border-bottom: 1.5px solid #aaa;
+            margin-top: 14px;
+            margin-bottom: 8px;
+            padding-bottom: 2px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 18px;
+            font-size: 13px;
+            line-height: 1.25;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .field {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            font-size: 13px;
+        }
+
+        .field-label {
+            font-weight: bold;
+            white-space: nowrap;
+            margin-right: 6px;
+            color: #111;
+        }
+
+        input[type="text"], input[type="date"], input[type="time"], input[type="number"], select {
+            flex-grow: 1;
+            min-width: 40px;
+            border: none;
+            border-bottom: 1.5px dotted #444;
+            background: transparent;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 13px;
+            padding: 1px 3px;
+            outline: none;
+            color: #000;
+        }
+
+        input[type="text"]:focus, select:focus {
+            background-color: #f0f7ff;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .input-error {
+            border-bottom: 2px solid red !important;
+            background-color: #fff0f0 !important;
+        }
+
+        .signature-inline-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+        }
+
+        .signature-block {
+            text-align: center;
+            width: 230px;
+            font-size: 13px;
+        }
+
+        .signature-space {
+            height: 40px;
+        }
+
+        /* FULL SCREEN LOGIN OVERLAY */
+        .modal-overlay {
+            display: flex;
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffffff;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .bg-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+        }
+
+        .bg-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            filter: brightness(0.95);
+        }
+
+        .modal {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 30px 35px;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .modal h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .modal input[type="text"], .modal input[type="password"] {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 12px;
+            box-sizing: border-box;
+            margin: 10px 0;
+            font-size: 14px;
+            border-radius: 4px;
+            background: #ffffff;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-secondary {
+            background-color: #777;
+        }
+
+        /* Mobile Layout Adjustments */
+        @media screen and (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+            .certificate-container {
+                width: 100%;
+                height: auto;
+                padding: 15px;
+            }
+            .field {
+                flex-wrap: wrap;
+                margin-bottom: 6px;
+            }
+            .field-label {
+                width: 100%;
+                margin-bottom: 2px;
+            }
+        }
+
+        /* PRINT SPECIFIC STYLES - EXACT 1-PAGE A4 FIT & SAME FOR REPEATING PAGES */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 4mm;
+            }
+            
+            html, body {
+                background: #ffffff !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .controls, .modal-overlay, .user-bar {
+                display: none !important;
+            }
+            
+            .certificate-wrapper {
+                display: block !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                box-sizing: border-box !important;
+            }
+            
+            .certificate-container {
+                box-shadow: none !important;
+                border: 5px double #003366 !important;
+                width: 198mm !important;
+                height: 285mm !important;
+                max-height: 285mm !important;
+                padding: 10mm 12mm !important;
+                margin: 0 auto !important;
+                box-sizing: border-box !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px 16px !important;
+            }
+
+            .full-width {
+                grid-column: span 2 !important;
+            }
+
+            .field {
+                flex-wrap: nowrap !important;
+            }
+
+            .field-label {
+                width: auto !important;
+            }
+
+            input, select {
+                border-bottom: 1.5px dotted #444 !important;
+                appearance: none;
+                -webkit-appearance: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- User Login Status Bar -->
+<div class="user-bar" id="userBar">
+    <span>Logged in as Nurse: <strong id="loggedInNurseName">---</strong></span>
+    <button onclick="logoutNurse()">Logout</button>
+</div>
+
+<div class="controls" id="controls">
+    <input type="file" id="logoUploader" accept="image/*" style="display: none;" onchange="loadUploadedLogo(event)">
+  <!--  <button class="btn btn-upload" onclick="document.getElementById('logoUploader').click()">Upload Coat/Logo</button> -->
+    <button class="btn" onclick="requestDownloadPermission()">Download / Print Certificate </button>
+    <button class="btn btn-submit" id="submitBtn" onclick="submitAndEmailCertificate()">Submit & Save To Data Manager</button>
+</div>
+
+<div class="certificate-wrapper" id="certificateWrapper">
+    <div class="certificate-container" id="certificate">
+        <div>
+            <div class="header">
+                <img class="coat-of-arms" id="coatOfArmsImg" src="https://upload.wikimedia.org/wikipedia/commons/1/17/Coat_of_arms_of_Rwanda.svg" alt="Coat of Arms of Rwanda">
+                
+                <h3>Republic of Rwanda</h3>
+                <h3>Eastern Province</h3>
+                <h3>Kirehe District</h3>
+                <h3>Nasho Health Center</h3>
+                <div class="contact-info"><b>Email: nashohc0428@gmail.com</b></div>
+                <h1>Medical Birth Certificate</h1>
+            </div>
+
+           
+            <div class="content">
+                <div class="field full-width" style="margin-bottom: 8px;">
+                    <span class="field-label">I TUYISHIME Japhet, certify that Miss, Mrs</span>
+                    <input type="text" id="motherName" placeholder="Mother's Full Name" style="font-size: 11px; font-weight: bold; color: #010b13; text-transform: uppercase;" required>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field">
+                        <span class="field-label">Mother's ID number:</span>
+                        <input type="text" id="motherId" placeholder="16-digit ID" required>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Mother's phone number:</span>
+                        <input type="text" id="motherPhone" placeholder="0788000000" required>
+                    </div>
+
+                    <div class="field full-width" >
+                        <span class="field-label" >Delivered a baby named:</span>
+                        <input type="text" id="childName" placeholder="Child's Full Name" style="font-size: 11px; font-weight: bold; color: #010b13; text-transform: uppercase;" required>
+                    </div>
+
+                    <div class="field">
+                        <span class="field-label">Sex:</span>
+                        <select id="childSex" required>
+                            <option value="">--Select--</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Date of birth:</span>
+                        <input type="date" id="dob" required>
+                    </div>
+
+                    <div class="field">
+                        <span class="field-label">Time of birth:</span>
+                        <input type="time" id="tob" required>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Weight (grams):</span>
+                        <input type="number" id="weight" placeholder="e.g. 3200" required>
+                    </div>
+
+                    <div class="field">
+                        <span class="field-label">Height (cm):</span>
+                        <input type="number" id="height" placeholder="e.g. 50" required>
+                    </div>
+
+                    <div class="field">
+    <span class="field-label">Nurse's names:</span>
+    <select id="nurseName" required disabled style="font-size: 14px; font-weight: bold; color: blue;">
+        <option value="">--Select--</option>
+        <option value="HABIMANA Etienne">HABIMANA Etienne</option>
+        <option value="TUYISHIME Japhet">TUYISHIME Japhet</option>
+        <option value="NIRERE Lita Jamila">NIRERE Lita Jamila</option>
+        <option value="MUKANDAYAMBAJE Rebecca">MUKANDAYAMBAJE Rebecca</option>
+        <option value="NJENYERI Patrick">NJENYERI Patrick</option>
+        <option value="MUKASINE Marie">MUKASINE Marie</option>
+        <option value="UWIRINGIYE Assumpta">UWIRINGIYE Assumpta</option>
+    </select>
+</div>
+
+                    <div class="field full-width">
+                        <span class="field-label">At:</span>
+                        <input type="text" value="NASHO HEALTH CENTER" readonly style="font-weight: bold;">
+                    </div>
+
+                    <div class="field full-width">
+                        <span class="field-label">Father's name:</span>
+                        <input type="text" id="fatherName" placeholder="Father's Full Name" style="font-size: 11px; font-weight: bold; color: #010b13; text-transform: uppercase;" required>
+                    </div>
+
+                    <div class="field">
+                        <span class="field-label">Father's ID number:</span>
+                        <input type="text" id="fatherId" placeholder="16-digit ID" required>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Father's phone number:</span>
+                        <input type="text" id="fatherPhone" placeholder="0788000000" required>
+                    </div>
+                </div>
+
+                <div class="section-title">Birth Area Information</div>
+
+                <div class="form-grid">
+                    <div class="field">
+                        <span class="field-label">District:</span>
+                        <input type="text" value="KIREHE" readonly>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Sector:</span>
+                        <select id="kireheSector" name="kireheSector"  style="font-size: 11px; font-weight: bold; color: #0C141F;" required>
+                            <option value="">--Select Sector--</option>
+                            <option value="Gahara">Gahara</option>
+                            <option value="Gatore">Gatore</option>
+                            <option value="Kigarama">Kigarama</option>
+                            <option value="Kigina">Kigina</option>
+                            <option value="Kirehe">Kirehe</option>
+                            <option value="Mahama">Mahama</option>
+                            <option value="Mpanga">Mpanga</option>
+                            <option value="Musaza">Musaza</option>
+                            <option value="Mushikiri">Mushikiri</option>
+                            <option value="Nasho">Nasho</option>
+                            <option value="Nyamugari">Nyamugari</option>
+                            <option value="Nyarubuye">Nyarubuye</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Cell:</span>
+                        <input type="text" id="cellName" placeholder="Cell Name" style="font-size: 11px; font-weight: bold; color: #010b13; text-transform: uppercase;" required>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Village:</span>
+                        <input type="text" id="villageName" placeholder="Village Name" style="font-size: 11px; font-weight: bold; color: #010b13; text-transform: uppercase;" required>
+                    </div>
+                </div>
+
+                <div class="section-title">System & Administrative Reference</div>
+
+                <div class="form-grid">
+                    <div class="field">
+                        <span class="field-label">Application Number:</span>
+                        <input type="text" id="appNo">
+                    </div>
+                    <div class="field">
+                        <span class="field-label">NIN:</span>
+                        <input type="text" id="ninNo">
+                    </div>
+                    <div class="field full-width">
+                        <span class="field-label">Auto-Gen Code:</span>
+                        <input type="text" id="autoGen">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inline Signature Block -->
+        <div class="signature-inline-container">
+            <div class="signature-block">
+                <div style="font-size: 16px; font-weight: bold; color: #000000;"><strong>TUYISHIME Japhet</strong></div>
+                <div  style="font-size: 16px; font-weight: bold; color:green;">Head of NASHO Health Center</div>
+                <div class="signature-space"></div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Full Screen Nurse Login Overlay -->
+<div class="modal-overlay" id="nurseLoginModal">
+    <div class="bg-image-container">
+        <img id="bgImg" src="https://lh3.googleusercontent.com/d/1Xz123NwPVg_NpBG7p5YdRISscgEVZu3D" alt="Nasho Health Center Background" onerror="this.src='image_85cd69.png';">
+    </div>
+    
+    <div class="modal">
+        <h3>Nurse Login Required</h3>
+        <p style="font-size: 13px; color: #444;">Please log in with your nurse username and password to proceed.</p>
+        
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password">
+
+        <div class="modal-buttons">
+            <button class="btn" style="width: 100%;" onclick="loginNurse()">Log In</button>
+        </div>
+    </div>
+</div>
+
+<!-- Password Modal for Download/Print -->
+<div class="modal-overlay" id="passwordModal" style="display: none; background: rgba(255,255,255,0.9);">
+    <div class="modal" style="z-index: 10;">
+        <h3>Permission Required</h3>
+        <p style="font-size: 13px; color: #555;">Enter authorization password to download/print this document.</p>
+        <p style="font-size: 11px; color: #888; font-style: italic;"><!--(Default Password: <strong>1234</strong>)--></p>
+        <input type="password" id="authPassword" placeholder="Enter Password">
+        <div class="modal-buttons">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn" onclick="verifyPassword()">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Registered Nurse Accounts
+    const nurseAccounts = {
+        "etienne": { name: "HABIMANA Etienne", pass: "9634" },
+        "japhet": { name: "TUYISHIME Japhet", pass: "5679" },
+        "jamila": { name: "NIRERE Lita Jamila", pass: "9150" },
+        "rebecca": { name: "MUKANDAYAMBAJE Rebecca", pass: "6340" },
+        "patrick": { name: "NJENYERI Patrick", pass: "4794" },
+        "marie": { name: "MUKASINE Marie", pass: "5664" },
+        "assumpta": { name: "UWIRINGIYE Assumpta", pass: "1234@" }
+    };
+
+    let loggedInNurse = null;
+
+    function loginNurse() {
+        const usernameInput = document.getElementById('loginUsername').value.trim().toLowerCase();
+        const passwordInput = document.getElementById('loginPassword').value.trim();
+
+        if (nurseAccounts[usernameInput] && nurseAccounts[usernameInput].pass === passwordInput) {
+            loggedInNurse = nurseAccounts[usernameInput].name;
+            
+            const nurseSelect = document.getElementById('nurseName');
+            nurseSelect.value = loggedInNurse;
+            
+            document.getElementById('loggedInNurseName').innerText = loggedInNurse;
+            document.getElementById('userBar').style.display = 'flex';
+            document.getElementById('controls').style.display = 'flex';
+            document.getElementById('certificateWrapper').style.display = 'flex';
+            
+            document.getElementById('nurseLoginModal').style.display = 'none';
+        } else {
+            alert("Invalid Username or Password! Please try again.");
+        }
+    }
+
+    function logoutNurse() {
+        loggedInNurse = null;
+        document.getElementById('nurseName').value = "";
+        
+        document.getElementById('userBar').style.display = 'none';
+        document.getElementById('controls').style.display = 'none';
+        document.getElementById('certificateWrapper').style.display = 'none';
+        
+        document.getElementById('loginUsername').value = "";
+        document.getElementById('loginPassword').value = "";
+        document.getElementById('nurseLoginModal').style.display = 'flex';
+    }
+
+    function loadUploadedLogo(event) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            document.getElementById('coatOfArmsImg').src = reader.result;
+        };
+        if(event.target.files[0]) {
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    }
+
+    function validateForm() {
+        const certificateContainer = document.getElementById('certificate');
+        const requiredInputs = certificateContainer.querySelectorAll('[required]');
+        let isValid = true;
+        let firstInvalidInput = null;
+
+        requiredInputs.forEach(input => {
+            if (!input.value.trim()) {
+                input.classList.add('input-error');
+                isValid = false;
+                if (!firstInvalidInput) {
+                    firstInvalidInput = input;
+                }
+            } else {
+                input.classList.remove('input-error');
+            }
+        });
+
+        if (!isValid) {
+            alert("Please fill in all required fields before submitting or printing.");
+            if (firstInvalidInput) {
+                firstInvalidInput.focus();
+            }
+        }
+
+        return isValid;
+    }
+
+    function requestDownloadPermission() {
+        if (!validateForm()) return;
+        document.getElementById('passwordModal').style.display = 'flex';
+        document.getElementById('authPassword').value = '';
+        document.getElementById('authPassword').focus();
+    }
+
+    function closeModal() {
+        document.getElementById('passwordModal').style.display = 'none';
+    }
+
+    function verifyPassword() {
+        const passwordInput = document.getElementById('authPassword').value;
+        if (passwordInput === "1234") {
+            closeModal();
+            window.print();
+        } else {
+            alert("Incorrect password! Download permission denied.");
+        }
+    }
+
+   async function submitAndEmailCertificate() {
+        if (!validateForm()) return;
+
+        const btn = document.getElementById('submitBtn');
+        const element = document.getElementById('certificate');
+        const childName = document.getElementById('childName').value;
+        const recipientEmail = "nsabimanapierre16@gmail.com";
+
+        btn.innerText = "Generating A4 PDF & Mailing...";
+        btn.disabled = true;
+
+        // Temporarily adjust element height for rendering full PDF content without clipping
+        const originalHeight = element.style.height;
+        element.style.height = 'auto';
+
+        const opt = {
+            margin:       [ 0, 0, 0, 0],
+            filename:     `${childName}_Medical_Birth_Certificate_A4.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 1, useCORS: true, scrollY: 0 },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' }
+        };
+
+        try {
+            const pdfBlob = await html2pdf().set(opt).from(element).output('blob');
+            element.style.height = originalHeight;
+
+            const pdfFile = new File([pdfBlob], `${childName}_A4_Birth_Certificate.pdf`, { type: 'application/pdf' });
+
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = `https://formsubmit.co/${recipientEmail}`;
+            form.enctype = 'multipart/form-data';
+            form.style.display = 'none';
+
+            const fields = {
+                "Mother Name": document.getElementById('motherName').value,
+                "Mother ID": document.getElementById('motherId').value,
+                "Mother Phone": document.getElementById('motherPhone').value,
+                "Child Name": childName,
+                "Sex": document.getElementById('childSex').value,
+                "Date of Birth": document.getElementById('dob').value,
+                "Time of Birth": document.getElementById('tob').value,
+                "Weight (grams)": document.getElementById('weight').value,
+                "Height (cm)": document.getElementById('height').value,
+                "Nurse Name": document.getElementById('nurseName').value,
+                "Father Name": document.getElementById('fatherName').value,
+                "Father ID": document.getElementById('fatherId').value,
+                "Father Phone": document.getElementById('fatherPhone').value,
+                "Sector": document.getElementById('kireheSector').value,
+                "Cell": document.getElementById('cellName').value,
+                "Village": document.getElementById('villageName').value,
+                "Application No": document.getElementById('appNo').value,
+                "NIN": document.getElementById('ninNo').value,
+                "Auto Gen": document.getElementById('autoGen').value,
+                "_subject": `Full A4 Birth Certificate PDF Submission: ${childName}`,
+                "_captcha": "false"
+            };
+
+            for (const [key, val] of Object.entries(fields)) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = val;
+                form.appendChild(input);
+            }
+
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.name = 'attachment';
+            
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(pdfFile);
+            fileInput.files = dataTransfer.files;
+            
+            form.appendChild(fileInput);
+            document.body.appendChild(form);
+
+            form.submit();
+
+        } catch (err) {
+            console.error("Submission Error:", err);
+            element.style.height = originalHeight;
+            alert("An error occurred while generating or submitting the A4 PDF.");
+            btn.innerText = "Submit & Email Full A4 PDF";
+            btn.disabled = false;
+        }
+    }
+</script>
+
+</body>
+</html>
