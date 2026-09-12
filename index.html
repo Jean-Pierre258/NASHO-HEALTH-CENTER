@@ -367,21 +367,21 @@
 >
                     <div class="form-group">
                         <label for="patientName" data-rw="Amazina Yawe" data-en="Your Full Name">Amazina Yawe</label>
-                        <input type="text" id="patientName" placeholder="" required>
+                        <input type="text" id="patientName" name="name" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="patientPhone" data-rw="Telefoni" data-en="Phone Number">Telefoni</label>
-                            <input type="tel" id="patientPhone" placeholder="07xx xxx xxx" required>
+                            <input type="tel" id="patientPhone" name="phone" placeholder="07xx xxx xxx" required>
                         </div>
                         <div class="form-group">
                             <label for="patientId" data-rw="Nimero y'Indangamuntu" data-en="National ID Number">Nimero y'Indangamuntu</label>
-                            <input type="text" id="patientId" placeholder="">
+                           <input type="text" id="patientId" name="patientId">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="department" data-rw="Ishami ushaka" data-en="Department">Ishami ushaka</label>
-                        <select id="department" required>
+                        <select id="department" name="department" required>
                             <option value="" data-rw="-- Hitamo Ishami --" data-en="-- Select Department --">-- Hitamo Ishami --</option>
                             <option value="general" data-rw="Ubuvuzi Rusange" data-en="General Medicine">Ubuvuzi Rusange</option>
                             <option value="maternity" data-rw="Kwita ku Babyeyi" data-en="Maternity & Obstetrics">Kwita ku Babyeyi</option>
@@ -395,16 +395,16 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="appointDate" data-rw="Itariki" data-en="Date">Itariki</label>
-                            <input type="date" id="appointDate" required>
+                           <input type="date" id="appointDate" name="date" required>
                         </div>
                         <div class="form-group">
                             <label for="appointTime" data-rw="Isaha" data-en="Time">Isaha</label>
-                            <input type="time" id="appointTime" required>
+                            <input type="time" id="appointTime" name="time" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="patientMessage" data-rw="Ikibazo cyangwa Ibimenyetso" data-en="Symptoms or Message">Ikibazo cyangwa Ibimenyetso</label>
-                        <textarea id="patientMessage" rows="3" placeholder=""></textarea>
+                        <textarea id="patientMessage" name="message" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn--primary btn--full" id="appointBtn">
                         <span class="btn__icon">✅</span>
