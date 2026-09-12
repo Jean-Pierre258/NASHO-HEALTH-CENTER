@@ -471,7 +471,45 @@
                         title="NASHO Health Center Location">
                     </iframe>
                 </div>
-                <form class="contact__form" id="contactForm" onsubmit="handleContact(event)">
+                <form class="contact__form" id="contactForm"
+      action="https://script.google.com/macros/s/AKfycbzVlDEG0luk1s6p8PTRF5lvfFDuu3ZT4h9C53igSLbqwkIV0saKh8GRJmYfskutpeOSOA/exec"
+      method="POST"
+      target="hidden_iframe"
+      onsubmit="handleContact(event)">
+    
+    <input type="hidden" name="type" value="message">
+
+    <h3 data-rw="Twohereze Ubutumwa" data-en="Send Us a Message">
+        Twohereze Ubutumwa
+    </h3>
+
+    <div class="form-row">
+        <input type="text"
+               name="name"
+               placeholder="Amazina / Your Name"
+               required>
+
+        <input type="email"
+               name="email"
+               placeholder="Email"
+               required>
+    </div>
+
+    <textarea name="message"
+              rows="3"
+              placeholder="Ubutumwa / Your Message"
+              required></textarea>
+
+    <button type="submit"
+            class="btn btn--primary btn--full"
+            data-rw="Ohereza Ubutumwa"
+            data-en="Send Message">
+        <span data-rw="Ohereza Ubutumwa"
+              data-en="Send Message">
+            Ohereza Ubutumwa
+        </span>
+    </button>
+</form>
                     <h3 data-rw="Twohereze Ubutumwa" data-en="Send Us a Message">Twohereze Ubutumwa</h3>
                     <div class="form-row">
                         <input type="text" placeholder="Amazina / Your Name" required>
