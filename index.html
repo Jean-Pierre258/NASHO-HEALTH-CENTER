@@ -357,7 +357,14 @@
                 </div>
             </div>
             <div class="appointment__form-wrap">
-                <form class="appointment__form" id="appointmentForm" onsubmit="handleAppointment(event)">
+               <form
+    class="appointment__form"
+    id="appointmentForm"
+    action="https://script.google.com/macros/s/AKfycbzVlDEG0luk1s6p8PTRF5lvfFDuu3ZT4h9C53igSLbqwkIV0saKh8GRJmYfskutpeOSOA/exec"
+    method="POST"
+    target="hidden_iframe"
+    onsubmit="handleAppointment(event)"
+>
                     <div class="form-group">
                         <label for="patientName" data-rw="Amazina Yawe" data-en="Your Full Name">Amazina Yawe</label>
                         <input type="text" id="patientName" placeholder="" required>
