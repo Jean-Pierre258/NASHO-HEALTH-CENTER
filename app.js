@@ -178,41 +178,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ── Appointment Form Handler ──
 function handleAppointment(e) {
-    e.preventDefault();
+
+    // IMPORTANT:
+    // Do NOT use e.preventDefault()
+    // The form must be submitted to Google Apps Script.
 
     const form = e.target;
     const btn = document.getElementById('appointBtn');
 
-    // Gather data
-    const data = {
-        name: document.getElementById('patientName').value,
-        phone: document.getElementById('patientPhone').value,
-        id: document.getElementById('patientId').value,
-        department: document.getElementById('department').value,
-        date: document.getElementById('appointDate').value,
-        time: document.getElementById('appointTime').value,
-        message: document.getElementById('patientMessage').value
-    };
-
-    // Simulate submission
     btn.disabled = true;
+
     const originalHTML = btn.innerHTML;
-    btn.innerHTML = '<span class="btn__icon">⏳</span><span>' + 
-        (currentLang === 'rw' ? 'Gutegereza...' : 'Processing...') + '</span>';
+
+    btn.innerHTML = '<span class="btn__icon">⏳</span><span>' +
+        (currentLang === 'rw' ? 'Ohereza...' : 'Sending...') +
+        '</span>';
+
+    // Allow normal HTML form submission
+    // to Google Apps Script through hidden iframe.
 
     setTimeout(() => {
+
         // Show success modal
         const modal = document.getElementById('successModal');
-        modal.classList.add('active');
+
+        if (modal) {
+            modal.classList.add('active');
+        }
 
         // Reset form
         form.reset();
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('appointDate').value = today;
 
+        // Put today's date back
+        const today = new Date().toISOString().split('T')[0];
+        const appointDate = document.getElementById('appointDate');
+
+        if (appointDate) {
+            appointDate.value = today;
+        }
+
+        // Restore button
         btn.disabled = false;
         btn.innerHTML = originalHTML;
+
     }, 1500);
+
+    return true;
 }
 
 // ── Close Success Modal ──
