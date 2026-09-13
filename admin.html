@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>NASHO Health Center - Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -21,9 +27,9 @@ body{
   color:#1e293b;
 }
 
-/* =========================
+/* =====================================================
    LOGIN
-========================= */
+===================================================== */
 
 #loginPage{
   min-height:100vh;
@@ -31,7 +37,13 @@ body{
   justify-content:center;
   align-items:center;
   padding:20px;
-  background:linear-gradient(135deg,#00695c,#00897b,#004d40);
+  background:
+    linear-gradient(
+      135deg,
+      #00695c,
+      #00897b,
+      #004d40
+    );
 }
 
 .login-box{
@@ -40,13 +52,15 @@ body{
   background:white;
   padding:35px;
   border-radius:18px;
-  box-shadow:0 20px 50px rgba(0,0,0,.25);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.25);
 }
 
 .login-box h1{
   text-align:center;
   color:#00695c;
   margin-bottom:8px;
+  font-size:25px;
 }
 
 .login-box p{
@@ -73,6 +87,14 @@ body{
   border:1px solid #cbd5e1;
   border-radius:8px;
   font-size:15px;
+  outline:none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  border-color:#00695c;
+  box-shadow:0 0 0 3px rgba(0,105,92,.08);
 }
 
 .login-btn{
@@ -91,20 +113,29 @@ body{
   background:#004d40;
 }
 
+.login-btn:disabled{
+  opacity:.7;
+  cursor:not-allowed;
+}
+
 #errorMessage{
   color:#dc2626;
   text-align:center;
   margin-top:15px;
 }
 
-/* =========================
+/* =====================================================
    ADMIN APP
-========================= */
+===================================================== */
 
 #adminApp{
   display:none;
   min-height:100vh;
 }
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
   height:65px;
@@ -119,6 +150,7 @@ body{
   left:0;
   right:0;
   z-index:1000;
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
 }
 
 .header h2{
@@ -138,11 +170,16 @@ body{
   padding:9px 14px;
   border-radius:7px;
   cursor:pointer;
+  font-weight:bold;
 }
 
-/* =========================
+.logout-btn:hover{
+  background:#b91c1c;
+}
+
+/* =====================================================
    SIDEBAR
-========================= */
+===================================================== */
 
 .sidebar{
   width:250px;
@@ -153,6 +190,7 @@ body{
   left:0;
   padding:20px 12px;
   overflow-y:auto;
+  z-index:999;
 }
 
 .sidebar button{
@@ -174,9 +212,9 @@ body{
   color:white;
 }
 
-/* =========================
+/* =====================================================
    CONTENT
-========================= */
+===================================================== */
 
 .content{
   margin-left:250px;
@@ -204,13 +242,15 @@ body{
   color:#64748b;
 }
 
-/* =========================
+/* =====================================================
    CARDS
-========================= */
+===================================================== */
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:
+    repeat(4,1fr);
+
   gap:18px;
   margin-bottom:25px;
 }
@@ -219,7 +259,8 @@ body{
   background:white;
   padding:22px;
   border-radius:12px;
-  box-shadow:0 3px 10px rgba(0,0,0,.08);
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.08);
 }
 
 .card h3{
@@ -234,22 +275,23 @@ body{
   color:#00695c;
 }
 
-/* =========================
+/* =====================================================
    TABLE
-========================= */
+===================================================== */
 
 .table-box{
   background:white;
   border-radius:12px;
   padding:20px;
-  box-shadow:0 3px 10px rgba(0,0,0,.08);
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.08);
   overflow-x:auto;
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:900px;
+  min-width:1000px;
 }
 
 th{
@@ -257,11 +299,13 @@ th{
   color:white;
   padding:12px;
   text-align:left;
+  white-space:nowrap;
 }
 
 td{
   padding:11px;
-  border-bottom:1px solid #e2e8f0;
+  border-bottom:
+    1px solid #e2e8f0;
   vertical-align:top;
 }
 
@@ -269,9 +313,9 @@ tr:hover{
   background:#f8fafc;
 }
 
-/* =========================
+/* =====================================================
    STATUS
-========================= */
+===================================================== */
 
 .status{
   display:inline-block;
@@ -311,9 +355,9 @@ tr:hover{
   color:#b91c1c;
 }
 
-/* =========================
+/* =====================================================
    BUTTONS
-========================= */
+===================================================== */
 
 .btn{
   border:none;
@@ -353,16 +397,36 @@ tr:hover{
   opacity:.85;
 }
 
-/* =========================
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+/* =====================================================
+   APPOINTMENT STATUS SELECT
+===================================================== */
+
+.appointment-select{
+  min-width:130px;
+  padding:8px;
+  border:
+    1px solid #cbd5e1;
+  border-radius:6px;
+  background:white;
+  cursor:pointer;
+}
+
+/* =====================================================
    MESSAGE
-========================= */
+===================================================== */
 
 .message-card{
   background:white;
   border-radius:12px;
   margin-bottom:18px;
   padding:20px;
-  box-shadow:0 3px 10px rgba(0,0,0,.08);
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.08);
 }
 
 .message-header{
@@ -379,7 +443,8 @@ tr:hover{
 
 .original-message{
   background:#f8fafc;
-  border-left:4px solid #00695c;
+  border-left:
+    4px solid #00695c;
   padding:14px;
   margin:12px 0;
   white-space:pre-wrap;
@@ -387,7 +452,8 @@ tr:hover{
 
 .previous-reply{
   background:#ecfdf5;
-  border-left:4px solid #16a34a;
+  border-left:
+    4px solid #16a34a;
   padding:14px;
   margin:12px 0;
   white-space:pre-wrap;
@@ -397,26 +463,29 @@ tr:hover{
   width:100%;
   min-height:100px;
   padding:12px;
-  border:1px solid #cbd5e1;
+  border:
+    1px solid #cbd5e1;
   border-radius:8px;
   resize:vertical;
 }
 
-/* =========================
+/* =====================================================
    STATISTICS
-========================= */
+===================================================== */
 
 .analysis-controls{
   background:white;
   padding:20px;
   border-radius:12px;
-  box-shadow:0 3px 10px rgba(0,0,0,.08);
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.08);
   margin-bottom:20px;
 }
 
 .control-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:
+    repeat(2,1fr);
   gap:15px;
 }
 
@@ -424,7 +493,8 @@ tr:hover{
   background:white;
   padding:20px;
   border-radius:12px;
-  box-shadow:0 3px 10px rgba(0,0,0,.08);
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.08);
   margin-bottom:20px;
 }
 
@@ -442,20 +512,22 @@ tr:hover{
   width:100%;
   min-height:130px;
   padding:12px;
-  border:1px solid #cbd5e1;
+  border:
+    1px solid #cbd5e1;
   border-radius:8px;
 }
 
-/* =========================
+/* =====================================================
    ANALYSIS HISTORY
-========================= */
+===================================================== */
 
 .analysis-card{
   background:white;
   padding:18px;
   border-radius:10px;
   margin-bottom:15px;
-  box-shadow:0 2px 8px rgba(0,0,0,.07);
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.07);
 }
 
 .analysis-card h3{
@@ -476,9 +548,9 @@ tr:hover{
   white-space:pre-wrap;
 }
 
-/* =========================
+/* =====================================================
    LOADING
-========================= */
+===================================================== */
 
 .loading{
   text-align:center;
@@ -494,9 +566,42 @@ tr:hover{
   border-radius:10px;
 }
 
-/* =========================
+.error-box{
+  text-align:center;
+  padding:25px;
+  color:#b91c1c;
+  background:#fee2e2;
+  border:
+    1px solid #fecaca;
+  border-radius:10px;
+}
+
+.success-box{
+  padding:15px;
+  background:#dcfce7;
+  color:#166534;
+  border-radius:8px;
+}
+
+/* =====================================================
+   DEBUG
+===================================================== */
+
+.debug-box{
+  background:#0f172a;
+  color:#e2e8f0;
+  padding:15px;
+  border-radius:8px;
+  margin-top:15px;
+  font-size:12px;
+  overflow:auto;
+  white-space:pre-wrap;
+  display:none;
+}
+
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 .menu-btn{
   display:none;
@@ -510,7 +615,8 @@ tr:hover{
 @media(max-width:1000px){
 
   .cards{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+      repeat(2,1fr);
   }
 
 }
@@ -522,18 +628,20 @@ tr:hover{
   }
 
   .sidebar{
-    transform:translateX(-100%);
+    transform:
+      translateX(-100%);
     transition:.3s;
-    z-index:999;
   }
 
   .sidebar.open{
-    transform:translateX(0);
+    transform:
+      translateX(0);
   }
 
   .content{
     margin-left:0;
-    padding:90px 15px 25px;
+    padding:
+      90px 15px 25px;
   }
 
   .cards{
@@ -553,10 +661,13 @@ tr:hover{
   }
 
 }
+
 </style>
+
 </head>
 
 <body>
+
 
 <!-- =====================================================
      LOGIN PAGE
@@ -566,15 +677,23 @@ tr:hover{
 
   <div class="login-box">
 
-    <h1>🏥 NASHO HEALTH CENTER</h1>
+    <h1>
+      🏥 NASHO HEALTH CENTER
+    </h1>
 
-    <p>Staff / Administration Login</p>
+    <p>
+      Staff / Administration Login
+    </p>
 
-    <form onsubmit="login(event)">
+    <form
+      onsubmit="login(event)"
+    >
 
       <div class="form-group">
 
-        <label>Username</label>
+        <label>
+          Username
+        </label>
 
         <input
           type="text"
@@ -585,9 +704,12 @@ tr:hover{
 
       </div>
 
+
       <div class="form-group">
 
-        <label>Password</label>
+        <label>
+          Password
+        </label>
 
         <input
           type="password"
@@ -598,6 +720,7 @@ tr:hover{
 
       </div>
 
+
       <button
         type="submit"
         class="login-btn"
@@ -606,7 +729,10 @@ tr:hover{
         🔐 Login
       </button>
 
-      <div id="errorMessage"></div>
+
+      <div
+        id="errorMessage"
+      ></div>
 
     </form>
 
@@ -621,11 +747,18 @@ tr:hover{
 
 <div id="adminApp">
 
+
   <!-- HEADER -->
 
   <header class="header">
 
-    <div style="display:flex;align-items:center;gap:12px;">
+    <div
+      style="
+        display:flex;
+        align-items:center;
+        gap:12px;
+      "
+    >
 
       <button
         class="menu-btn"
@@ -634,14 +767,20 @@ tr:hover{
         ☰
       </button>
 
-      <h2>🏥 NASHO HEALTH CENTER</h2>
+      <h2>
+        🏥 NASHO HEALTH CENTER
+      </h2>
 
     </div>
+
 
     <div class="header-right">
 
       <span>
-        👤 <span id="adminName">Admin</span>
+        👤
+        <span id="adminName">
+          Admin
+        </span>
       </span>
 
       <button
@@ -658,41 +797,79 @@ tr:hover{
 
   <!-- SIDEBAR -->
 
-  <aside class="sidebar" id="sidebar">
+  <aside
+    class="sidebar"
+    id="sidebar"
+  >
 
     <button
       class="active"
-      onclick="showSection('dashboard',this)"
+      onclick="
+        showSection(
+          'dashboard',
+          this
+        )
+      "
     >
       📊 Dashboard
     </button>
 
+
     <button
-      onclick="showSection('appointments',this)"
+      onclick="
+        showSection(
+          'appointments',
+          this
+        )
+      "
     >
       📅 Appointments
     </button>
 
+
     <button
-      onclick="showSection('messages',this)"
+      onclick="
+        showSection(
+          'messages',
+          this
+        )
+      "
     >
       ✉️ Messages
     </button>
 
+
     <button
-      onclick="showSection('statistics',this)"
+      onclick="
+        showSection(
+          'statistics',
+          this
+        )
+      "
     >
       📈 Statistics
     </button>
 
+
     <button
-      onclick="showSection('allAnalysisPage',this)"
+      onclick="
+        showSection(
+          'allAnalysisPage',
+          this
+        )
+      "
     >
       📚 Analysis History
     </button>
 
+
     <button
-      onclick="showSection('recycleBin',this)"
+      onclick="
+        showSection(
+          'recycleBin',
+          this
+        )
+      "
     >
       🗑️ Recycle Bin
     </button>
@@ -716,7 +893,9 @@ tr:hover{
 
       <div class="section-title">
 
-        <h1>Dashboard</h1>
+        <h1>
+          Dashboard
+        </h1>
 
         <p>
           NASHO Health Center administration overview
@@ -727,9 +906,12 @@ tr:hover{
 
       <div class="cards">
 
+
         <div class="card">
 
-          <h3>Total Appointments</h3>
+          <h3>
+            Total Appointments
+          </h3>
 
           <div
             class="number"
@@ -743,7 +925,9 @@ tr:hover{
 
         <div class="card">
 
-          <h3>Pending Appointments</h3>
+          <h3>
+            Pending Appointments
+          </h3>
 
           <div
             class="number"
@@ -757,7 +941,9 @@ tr:hover{
 
         <div class="card">
 
-          <h3>Total Messages</h3>
+          <h3>
+            Total Messages
+          </h3>
 
           <div
             class="number"
@@ -771,7 +957,9 @@ tr:hover{
 
         <div class="card">
 
-          <h3>New Messages</h3>
+          <h3>
+            New Messages
+          </h3>
 
           <div
             class="number"
@@ -787,14 +975,18 @@ tr:hover{
 
       <div class="table-box">
 
-        <h2 style="margin-bottom:15px;">
+        <h2
+          style="margin-bottom:15px;"
+        >
           Recent Appointments
         </h2>
 
         <div id="recentAppointments">
+
           <div class="loading">
             Loading...
           </div>
+
         </div>
 
       </div>
@@ -813,7 +1005,9 @@ tr:hover{
 
       <div class="section-title">
 
-        <h1>📅 Appointments</h1>
+        <h1>
+          📅 Appointments
+        </h1>
 
         <p>
           Manage patient appointment requests
@@ -826,10 +1020,20 @@ tr:hover{
         class="btn btn-primary"
         onclick="loadAppointments()"
       >
-        🔄 Refresh
+        🔄 Refresh Appointments
       </button>
 
+
+      <button
+        class="btn btn-secondary"
+        onclick="testAppointmentsAPI()"
+      >
+        🔍 Test API
+      </button>
+
+
       <br><br>
+
 
       <div
         class="table-box"
@@ -841,6 +1045,12 @@ tr:hover{
         </div>
 
       </div>
+
+
+      <div
+        id="appointmentDebug"
+        class="debug-box"
+      ></div>
 
     </section>
 
@@ -856,7 +1066,9 @@ tr:hover{
 
       <div class="section-title">
 
-        <h1>✉️ Messages</h1>
+        <h1>
+          ✉️ Messages
+        </h1>
 
         <p>
           Read and reply to messages from website visitors
@@ -872,9 +1084,13 @@ tr:hover{
         🔄 Refresh Messages
       </button>
 
+
       <br><br>
 
-      <div id="messagesContainer">
+
+      <div
+        id="messagesContainer"
+      >
 
         <div class="loading">
           Loading messages...
@@ -896,7 +1112,9 @@ tr:hover{
 
       <div class="section-title">
 
-        <h1>📈 Statistics & Analysis</h1>
+        <h1>
+          📈 Statistics & Analysis
+        </h1>
 
         <p>
           Analyze appointments and website messages
@@ -909,13 +1127,16 @@ tr:hover{
 
         <div class="control-grid">
 
+
           <div class="form-group">
 
             <label>
               Data to Analyze
             </label>
 
-            <select id="dataType">
+            <select
+              id="dataType"
+            >
 
               <option value="appointmentStatus">
                 Appointment Status
@@ -948,7 +1169,9 @@ tr:hover{
               Chart Type
             </label>
 
-            <select id="chartType">
+            <select
+              id="chartType"
+            >
 
               <option value="bar">
                 Bar
@@ -980,7 +1203,9 @@ tr:hover{
             <input
               type="text"
               id="analysisTitle"
-              placeholder="e.g. Monthly Appointment Analysis"
+              placeholder="
+                e.g. Monthly Appointment Analysis
+              "
             >
 
           </div>
@@ -1010,7 +1235,9 @@ tr:hover{
 
         <div class="chart-container">
 
-          <canvas id="analysisChart"></canvas>
+          <canvas
+            id="analysisChart"
+          ></canvas>
 
         </div>
 
@@ -1029,13 +1256,16 @@ tr:hover{
 
           <textarea
             id="analysisOutcome"
-            placeholder="Write your findings and recommendations here..."
+            placeholder="
+              Write your findings and recommendations here...
+            "
           ></textarea>
 
         </div>
 
 
         <br>
+
 
         <button
           class="btn btn-success"
@@ -1049,9 +1279,12 @@ tr:hover{
 
       <div class="analysis-controls">
 
-        <h2 style="margin-bottom:15px;">
+        <h2
+          style="margin-bottom:15px;"
+        >
           📚 Recent Analysis
         </h2>
+
 
         <button
           class="btn btn-primary"
@@ -1060,9 +1293,13 @@ tr:hover{
           🔄 Refresh Analysis History
         </button>
 
+
         <br><br>
 
-        <div id="analysisHistory">
+
+        <div
+          id="analysisHistory"
+        >
 
           <div class="loading">
             Loading...
@@ -1086,7 +1323,9 @@ tr:hover{
 
       <div class="section-title">
 
-        <h1>📚 Analysis History</h1>
+        <h1>
+          📚 Analysis History
+        </h1>
 
         <p>
           All saved statistics and recommendations
@@ -1102,9 +1341,13 @@ tr:hover{
         🔄 Refresh
       </button>
 
+
       <br><br>
 
-      <div id="allAnalysisContainer">
+
+      <div
+        id="allAnalysisContainer"
+      >
 
         <div class="loading">
           Loading analysis history...
@@ -1126,10 +1369,13 @@ tr:hover{
 
       <div class="section-title">
 
-        <h1>🗑️ Recycle Bin</h1>
+        <h1>
+          🗑️ Recycle Bin
+        </h1>
 
         <p>
-          Deleted messages can be restored or permanently deleted
+          Deleted messages can be restored
+          or permanently deleted
         </p>
 
       </div>
@@ -1142,9 +1388,13 @@ tr:hover{
         🔄 Refresh
       </button>
 
+
       <br><br>
 
-      <div id="recycleBinContainer">
+
+      <div
+        id="recycleBinContainer"
+      >
 
         <div class="loading">
           Loading...
@@ -1162,16 +1412,23 @@ tr:hover{
 <script>
 
 /* =====================================================
-   API
+   API CONFIGURATION
 ===================================================== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbzVlDEG0luk1s6p8PTRF5lvfFDuu3ZT4h9C53igSLbqwkIV0saKh8GRJmYfskutpeOSOA/exec";
 
 
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
 let appointments = [];
+
 let messages = [];
+
 let recycleBin = [];
+
 let analysisHistory = [];
 
 let analysisChart = null;
@@ -1190,7 +1447,9 @@ document.addEventListener(
         "nashoAdminLoggedIn"
       );
 
-    if(loggedIn === "true"){
+    if(
+      loggedIn === "true"
+    ){
 
       showAdmin();
 
@@ -1208,32 +1467,40 @@ async function login(event){
 
   event.preventDefault();
 
+
   const username =
-    document.getElementById(
-      "username"
-    ).value.trim();
+    document
+      .getElementById("username")
+      .value
+      .trim();
+
 
   const password =
-    document.getElementById(
-      "password"
-    ).value;
+    document
+      .getElementById("password")
+      .value;
+
 
   const error =
     document.getElementById(
       "errorMessage"
     );
 
+
   const button =
     document.getElementById(
       "loginButton"
     );
 
+
   error.textContent = "";
+
 
   button.disabled = true;
 
   button.textContent =
     "Logging in...";
+
 
   try{
 
@@ -1243,25 +1510,40 @@ async function login(event){
       "&username=" +
       encodeURIComponent(username) +
       "&password=" +
-      encodeURIComponent(password);
+      encodeURIComponent(password) +
+      "&_=" +
+      Date.now();
+
 
     const response =
-      await fetch(url);
+      await fetch(
+        url,
+        {
+          method:"GET",
+          cache:"no-store"
+        }
+      );
+
 
     const data =
       await response.json();
 
-    if(data.success){
+
+    if(
+      data.success
+    ){
 
       sessionStorage.setItem(
         "nashoAdminLoggedIn",
         "true"
       );
 
+
       sessionStorage.setItem(
         "nashoAdminUsername",
         username
       );
+
 
       showAdmin();
 
@@ -1275,12 +1557,16 @@ async function login(event){
 
   }catch(errorObject){
 
-    console.error(errorObject);
+    console.error(
+      errorObject
+    );
+
 
     error.textContent =
       "Server connection failed.";
 
   }
+
 
   button.disabled = false;
 
@@ -1298,20 +1584,28 @@ function showAdmin(){
 
   document.getElementById(
     "loginPage"
-  ).style.display = "none";
+  ).style.display =
+    "none";
+
 
   document.getElementById(
     "adminApp"
-  ).style.display = "block";
+  ).style.display =
+    "block";
+
 
   const username =
     sessionStorage.getItem(
       "nashoAdminUsername"
-    ) || "Admin";
+    ) ||
+    "Admin";
+
 
   document.getElementById(
     "adminName"
-  ).textContent = username;
+  ).textContent =
+    username;
+
 
   loadDashboard();
 
@@ -1344,8 +1638,12 @@ function logout(){
 function toggleSidebar(){
 
   document
-    .getElementById("sidebar")
-    .classList.toggle("open");
+    .getElementById(
+      "sidebar"
+    )
+    .classList.toggle(
+      "open"
+    );
 
 }
 
@@ -1360,71 +1658,105 @@ function showSection(
 ){
 
   document
-    .querySelectorAll(".section")
+    .querySelectorAll(
+      ".section"
+    )
     .forEach(
       section =>
-        section.classList.remove("active")
+        section.classList.remove(
+          "active"
+        )
     );
 
 
   const section =
-    document.getElementById(id);
+    document.getElementById(
+      id
+    );
+
 
   if(section){
 
-    section.classList.add("active");
+    section.classList.add(
+      "active"
+    );
 
   }
 
 
   document
-    .querySelectorAll(".sidebar button")
+    .querySelectorAll(
+      ".sidebar button"
+    )
     .forEach(
       btn =>
-        btn.classList.remove("active")
+        btn.classList.remove(
+          "active"
+        )
     );
 
 
   if(button){
 
-    button.classList.add("active");
+    button.classList.add(
+      "active"
+    );
 
   }
 
 
-  if(id === "dashboard"){
+  if(
+    id === "dashboard"
+  ){
 
     loadDashboard();
 
   }
 
-  if(id === "appointments"){
+
+  if(
+    id === "appointments"
+  ){
 
     loadAppointments();
 
   }
 
-  if(id === "messages"){
+
+  if(
+    id === "messages"
+  ){
 
     loadMessages();
 
   }
 
-  if(id === "statistics"){
+
+  if(
+    id === "statistics"
+  ){
 
     loadAppointments();
+
     loadMessages();
+
     loadAnalysisHistory();
 
   }
 
-  if(id === "allAnalysisPage"){
+
+  if(
+    id === "allAnalysisPage"
+  ){
 
     loadAllAnalysis();
 
   }
 
-  if(id === "recycleBin"){
+
+  if(
+    id === "recycleBin"
+  ){
 
     loadRecycleBin();
 
@@ -1436,8 +1768,12 @@ function showSection(
   ){
 
     document
-      .getElementById("sidebar")
-      .classList.remove("open");
+      .getElementById(
+        "sidebar"
+      )
+      .classList.remove(
+        "open"
+      );
 
   }
 
@@ -1450,12 +1786,116 @@ function showSection(
 
 async function loadDashboard(){
 
-  await Promise.all([
-    loadAppointments(),
-    loadMessages()
-  ]);
+  try{
 
-  updateDashboard();
+    await Promise.all([
+      loadAppointments(),
+      loadMessages()
+    ]);
+
+    updateDashboard();
+
+  }catch(error){
+
+    console.error(
+      "Dashboard error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   NORMALIZE API RESPONSE
+===================================================== */
+
+function normalizeArray(data){
+
+  if(
+    Array.isArray(data)
+  ){
+
+    return data;
+
+  }
+
+
+  if(!data){
+
+    return [];
+
+  }
+
+
+  if(
+    Array.isArray(
+      data.data
+    )
+  ){
+
+    return data.data;
+
+  }
+
+
+  if(
+    Array.isArray(
+      data.appointments
+    )
+  ){
+
+    return data.appointments;
+
+  }
+
+
+  if(
+    Array.isArray(
+      data.messages
+    )
+  ){
+
+    return data.messages;
+
+  }
+
+
+  if(
+    Array.isArray(
+      data.recycleBin
+    )
+  ){
+
+    return data.recycleBin;
+
+  }
+
+
+  if(
+    Array.isArray(
+      data.analysis
+    )
+  ){
+
+    return data.analysis;
+
+  }
+
+
+  if(
+    Array.isArray(
+      data.analysisHistory
+    )
+  ){
+
+    return data.analysisHistory;
+
+  }
+
+
+  return [];
 
 }
 
@@ -1466,23 +1906,164 @@ async function loadDashboard(){
 
 async function loadAppointments(){
 
+  const container =
+    document.getElementById(
+      "appointmentsContainer"
+    );
+
+
+  if(container){
+
+    container.innerHTML =
+      `
+      <div class="loading">
+        🔄 Loading appointments...
+      </div>
+      `;
+
+  }
+
+
   try{
+
+    const url =
+      API_URL +
+      "?action=getAppointments" +
+      "&_=" +
+      Date.now();
+
+
+    console.log(
+      "Loading appointments from:",
+      url
+    );
+
 
     const response =
       await fetch(
-        API_URL +
-        "?action=getAppointments"
+        url,
+        {
+          method:"GET",
+          cache:"no-store"
+        }
       );
 
-    const data =
-      await response.json();
+
+    console.log(
+      "Appointments HTTP status:",
+      response.status
+    );
+
+
+    const text =
+      await response.text();
+
+
+    console.log(
+      "Appointments raw response:",
+      text
+    );
+
+
+    let data;
+
+
+    try{
+
+      data =
+        JSON.parse(text);
+
+    }catch(jsonError){
+
+      console.error(
+        "Invalid JSON:",
+        text
+      );
+
+
+      appointments = [];
+
+
+      if(container){
+
+        container.innerHTML =
+          `
+          <div class="error-box">
+
+            ❌ Server returned invalid data.
+
+            <br><br>
+
+            Check browser console
+            with F12.
+
+          </div>
+          `;
+
+      }
+
+      updateDashboard();
+
+      return;
+
+    }
+
+
+    console.log(
+      "Appointments API data:",
+      data
+    );
+
+
+    if(
+      data &&
+      data.success === false
+    ){
+
+      appointments = [];
+
+
+      if(container){
+
+        container.innerHTML =
+          `
+          <div class="error-box">
+
+            ❌
+            ${escapeHtml(
+              data.message ||
+              "Failed to load appointments."
+            )}
+
+          </div>
+          `;
+
+      }
+
+
+      updateDashboard();
+
+      return;
+
+    }
+
 
     appointments =
-      normalizeArray(data);
+      normalizeArray(
+        data
+      );
+
+
+    console.log(
+      "Normalized appointments:",
+      appointments
+    );
+
 
     displayAppointments();
 
     updateDashboard();
+
 
   }catch(error){
 
@@ -1491,10 +2072,33 @@ async function loadAppointments(){
       error
     );
 
-    document.getElementById(
-      "appointmentsContainer"
-    ).innerHTML =
-      '<div class="empty">Failed to load appointments.</div>';
+
+    appointments = [];
+
+
+    if(container){
+
+      container.innerHTML =
+        `
+        <div class="error-box">
+
+          ❌ Failed to load appointments.
+
+          <br><br>
+
+          <small>
+            ${escapeHtml(
+              error.message
+            )}
+          </small>
+
+        </div>
+        `;
+
+    }
+
+
+    updateDashboard();
 
   }
 
@@ -1502,27 +2106,63 @@ async function loadAppointments(){
 
 
 /* =====================================================
-   NORMALIZE ARRAY
+   TEST APPOINTMENTS API
 ===================================================== */
 
-function normalizeArray(data){
+async function testAppointmentsAPI(){
 
-  if(Array.isArray(data)){
+  const debug =
+    document.getElementById(
+      "appointmentDebug"
+    );
 
-    return data;
+
+  debug.style.display =
+    "block";
+
+
+  debug.textContent =
+    "Testing API...\n\n";
+
+
+  try{
+
+    const url =
+      API_URL +
+      "?action=getAppointments" +
+      "&_=" +
+      Date.now();
+
+
+    const response =
+      await fetch(
+        url,
+        {
+          method:"GET",
+          cache:"no-store"
+        }
+      );
+
+
+    const text =
+      await response.text();
+
+
+    debug.textContent =
+      "HTTP STATUS: " +
+      response.status +
+      "\n\n" +
+      "RAW RESPONSE:\n" +
+      text;
+
+
+  }catch(error){
+
+    debug.textContent =
+      "ERROR:\n" +
+      error.message;
 
   }
-
-  if(
-    data &&
-    Array.isArray(data.data)
-  ){
-
-    return data.data;
-
-  }
-
-  return [];
 
 }
 
@@ -1538,10 +2178,29 @@ function displayAppointments(){
       "appointmentsContainer"
     );
 
-  if(!appointments.length){
+
+  if(
+    !appointments.length
+  ){
 
     container.innerHTML =
-      '<div class="empty">No appointments found.</div>';
+      `
+      <div class="empty">
+
+        📭 No appointments found.
+
+        <br><br>
+
+        <small>
+          Niba appointment iri muri Google Sheet,
+          kanda "Test API" urebe response ya server.
+        </small>
+
+      </div>
+      `;
+
+
+    displayRecentAppointments();
 
     return;
 
@@ -1556,16 +2215,53 @@ function displayAppointments(){
 
       <tr>
 
-        <th>Date Received</th>
-        <th>Patient</th>
-        <th>Phone</th>
-        <th>Patient ID</th>
-        <th>Department</th>
-        <th>Appointment Date</th>
-        <th>Time</th>
-        <th>Message</th>
-        <th>Status</th>
-        <th>Action</th>
+        <th>
+          Date Received
+        </th>
+
+        <th>
+          Patient
+        </th>
+
+        <th>
+          Phone
+        </th>
+
+        <th>
+          Patient ID
+        </th>
+
+        <th>
+          Department
+        </th>
+
+        <th>
+          Appointment Date
+        </th>
+
+        <th>
+          Time
+        </th>
+
+        <th>
+          Email
+        </th>
+
+        <th>
+          Message
+        </th>
+
+        <th>
+          Status
+        </th>
+
+        <th>
+          Reply
+        </th>
+
+        <th>
+          Action
+        </th>
 
       </tr>
 
@@ -1579,76 +2275,222 @@ function displayAppointments(){
   appointments.forEach(
     item => {
 
+      const row =
+        Number(
+          item.row
+        );
+
+
       html += `
 
       <tr>
 
-        <td>${escapeHtml(item.timestamp)}</td>
+        <td>
+          ${escapeHtml(
+            item.timestamp
+          )}
+        </td>
+
 
         <td>
           <strong>
-            ${escapeHtml(item.name)}
+            ${escapeHtml(
+              item.name
+            )}
           </strong>
         </td>
 
+
         <td>
-          ${escapeHtml(item.phone)}
+          ${escapeHtml(
+            item.phone
+          )}
         </td>
 
+
         <td>
-          ${escapeHtml(item.patientId)}
+          ${escapeHtml(
+            item.patientId
+          )}
         </td>
 
+
         <td>
-          ${escapeHtml(item.department)}
+          ${escapeHtml(
+            item.department
+          )}
         </td>
 
+
         <td>
-          ${escapeHtml(item.date)}
+          ${escapeHtml(
+            item.date
+          )}
         </td>
 
+
         <td>
-          ${escapeHtml(item.time)}
+          ${escapeHtml(
+            item.time
+          )}
         </td>
 
+
         <td>
-          ${escapeHtml(item.message)}
+          ${escapeHtml(
+            item.email
+          )}
         </td>
 
+
         <td>
-          ${appointmentStatus(item.status)}
+          ${escapeHtml(
+            item.message
+          )}
         </td>
 
+
+        <td>
+          ${appointmentStatus(
+            item.status
+          )}
+        </td>
+
+
         <td>
 
-          <select
-            onchange="updateAppointmentStatus(
-              ${item.row},
-              this.value
-            )"
-          >
+          ${
+            item.reply
+            ?
+            `
+            <div
+              class="previous-reply"
+              style="
+                min-width:200px;
+                margin:0;
+              "
+            >
 
-            <option value="Pending"
-              ${item.status==="Pending"?"selected":""}>
-              Pending
-            </option>
+              ${escapeHtml(
+                item.reply
+              )}
 
-            <option value="Confirmed"
-              ${item.status==="Confirmed"?"selected":""}>
-              Confirmed
-            </option>
+              ${
+                item.replyDate
+                ?
+                `
+                <br><br>
+                <small>
+                  ${escapeHtml(
+                    item.replyDate
+                  )}
+                </small>
+                `
+                :
+                ""
+              }
 
-            <option value="Completed"
-              ${item.status==="Completed"?"selected":""}>
-              Completed
-            </option>
+            </div>
+            `
+            :
+            `
+            <span
+              style="color:#94a3b8;"
+            >
+              No reply
+            </span>
+            `
+          }
 
-            <option value="Cancelled"
-              ${item.status==="Cancelled"?"selected":""}>
-              Cancelled
-            </option>
+        </td>
 
-          </select>
+
+        <td>
+
+          ${
+            Number.isFinite(row)
+            ?
+            `
+            <select
+              class="appointment-select"
+              onchange="
+                updateAppointmentStatus(
+                  ${row},
+                  this.value
+                )
+              "
+            >
+
+              <option
+                value="Pending"
+                ${
+                  item.status ===
+                  "Pending"
+                  ?
+                  "selected"
+                  :
+                  ""
+                }
+              >
+                Pending
+              </option>
+
+
+              <option
+                value="Confirmed"
+                ${
+                  item.status ===
+                  "Confirmed"
+                  ?
+                  "selected"
+                  :
+                  ""
+                }
+              >
+                Confirmed
+              </option>
+
+
+              <option
+                value="Completed"
+                ${
+                  item.status ===
+                  "Completed"
+                  ?
+                  "selected"
+                  :
+                  ""
+                }
+              >
+                Completed
+              </option>
+
+
+              <option
+                value="Cancelled"
+                ${
+                  item.status ===
+                  "Cancelled"
+                  ?
+                  "selected"
+                  :
+                  ""
+                }
+              >
+                Cancelled
+              </option>
+
+            </select>
+            `
+            :
+            `
+            <span
+              style="color:#dc2626;"
+            >
+              Invalid row
+            </span>
+            `
+          }
 
         </td>
 
@@ -1661,12 +2503,16 @@ function displayAppointments(){
 
 
   html += `
+
     </tbody>
+
   </table>
+
   `;
 
 
-  container.innerHTML = html;
+  container.innerHTML =
+    html;
 
 
   displayRecentAppointments();
@@ -1685,10 +2531,17 @@ function displayRecentAppointments(){
       "recentAppointments"
     );
 
-  if(!appointments.length){
+
+  if(
+    !appointments.length
+  ){
 
     container.innerHTML =
-      '<div class="empty">No appointments found.</div>';
+      `
+      <div class="empty">
+        No appointments found.
+      </div>
+      `;
 
     return;
 
@@ -1702,16 +2555,33 @@ function displayRecentAppointments(){
     <thead>
 
       <tr>
-        <th>Patient</th>
-        <th>Department</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Status</th>
+
+        <th>
+          Patient
+        </th>
+
+        <th>
+          Department
+        </th>
+
+        <th>
+          Date
+        </th>
+
+        <th>
+          Time
+        </th>
+
+        <th>
+          Status
+        </th>
+
       </tr>
 
     </thead>
 
     <tbody>
+
   `;
 
 
@@ -1725,23 +2595,37 @@ function displayRecentAppointments(){
         <tr>
 
           <td>
-            ${escapeHtml(item.name)}
+            ${escapeHtml(
+              item.name
+            )}
           </td>
 
-          <td>
-            ${escapeHtml(item.department)}
-          </td>
 
           <td>
-            ${escapeHtml(item.date)}
+            ${escapeHtml(
+              item.department
+            )}
           </td>
 
-          <td>
-            ${escapeHtml(item.time)}
-          </td>
 
           <td>
-            ${appointmentStatus(item.status)}
+            ${escapeHtml(
+              item.date
+            )}
+          </td>
+
+
+          <td>
+            ${escapeHtml(
+              item.time
+            )}
+          </td>
+
+
+          <td>
+            ${appointmentStatus(
+              item.status
+            )}
           </td>
 
         </tr>
@@ -1753,8 +2637,11 @@ function displayRecentAppointments(){
 
 
   html += `
+
     </tbody>
+
   </table>
+
   `;
 
 
@@ -1765,7 +2652,7 @@ function displayRecentAppointments(){
 
 
 /* =====================================================
-   UPDATE APPOINTMENT
+   UPDATE APPOINTMENT STATUS
 ===================================================== */
 
 async function updateAppointmentStatus(
@@ -1773,20 +2660,37 @@ async function updateAppointmentStatus(
   status
 ){
 
+  if(
+    !row ||
+    Number(row) < 2
+  ){
+
+    alert(
+      "Appointment row ntiboneye."
+    );
+
+    return;
+
+  }
+
+
   try{
 
     const body =
       new URLSearchParams();
+
 
     body.append(
       "action",
       "updateAppointment"
     );
 
+
     body.append(
       "row",
       row
     );
+
 
     body.append(
       "status",
@@ -1804,17 +2708,46 @@ async function updateAppointmentStatus(
       );
 
 
-    const data =
-      await response.json();
+    const text =
+      await response.text();
 
 
-    if(data.success){
+    console.log(
+      "Update appointment response:",
+      text
+    );
+
+
+    let data;
+
+
+    try{
+
+      data =
+        JSON.parse(text);
+
+    }catch(error){
 
       alert(
+        "Server returned invalid response."
+      );
+
+      return;
+
+    }
+
+
+    if(
+      data.success
+    ){
+
+      alert(
+        data.message ||
         "Appointment updated successfully."
       );
 
-      loadAppointments();
+
+      await loadAppointments();
 
     }else{
 
@@ -1827,7 +2760,10 @@ async function updateAppointmentStatus(
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     alert(
       "Server error while updating appointment."
@@ -1849,8 +2785,13 @@ async function loadMessages(){
       "messagesContainer"
     );
 
+
   container.innerHTML =
-    '<div class="loading">Loading messages...</div>';
+    `
+    <div class="loading">
+      🔄 Loading messages...
+    </div>
+    `;
 
 
   try{
@@ -1858,18 +2799,59 @@ async function loadMessages(){
     const response =
       await fetch(
         API_URL +
-        "?action=getMessages"
+        "?action=getMessages&_=" +
+        Date.now(),
+        {
+          method:"GET",
+          cache:"no-store"
+        }
       );
 
-    const data =
-      await response.json();
+
+    const text =
+      await response.text();
+
+
+    let data;
+
+
+    try{
+
+      data =
+        JSON.parse(text);
+
+    }catch(error){
+
+      throw new Error(
+        "Invalid JSON response."
+      );
+
+    }
+
+
+    if(
+      data &&
+      data.success === false
+    ){
+
+      throw new Error(
+        data.message ||
+        "Failed to load messages."
+      );
+
+    }
+
 
     messages =
-      normalizeArray(data);
+      normalizeArray(
+        data
+      );
+
 
     displayMessages();
 
     updateDashboard();
+
 
   }catch(error){
 
@@ -1878,8 +2860,21 @@ async function loadMessages(){
       error
     );
 
+
     container.innerHTML =
-      '<div class="empty">Failed to load messages.</div>';
+      `
+      <div class="error-box">
+
+        ❌ Failed to load messages.
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message
+        )}
+
+      </div>
+      `;
 
   }
 
@@ -1897,10 +2892,17 @@ function displayMessages(){
       "messagesContainer"
     );
 
-  if(!messages.length){
+
+  if(
+    !messages.length
+  ){
 
     container.innerHTML =
-      '<div class="empty">No messages found.</div>';
+      `
+      <div class="empty">
+        📭 No messages found.
+      </div>
+      `;
 
     return;
 
@@ -1915,33 +2917,54 @@ function displayMessages(){
 
       html += `
 
-      <div class="message-card">
+      <div
+        class="message-card"
+      >
 
-        <div class="message-header">
+        <div
+          class="message-header"
+        >
 
-          <div class="message-info">
+          <div
+            class="message-info"
+          >
 
             <strong>
-              👤 ${escapeHtml(item.name)}
+              👤
+              ${escapeHtml(
+                item.name
+              )}
             </strong>
 
             <br>
 
-            📞 ${escapeHtml(item.phone)}
+            📞
+            ${escapeHtml(
+              item.phone
+            )}
 
             <br>
 
-            ✉️ ${escapeHtml(item.email)}
+            ✉️
+            ${escapeHtml(
+              item.email
+            )}
 
             <br>
 
-            🕒 ${escapeHtml(item.timestamp)}
+            🕒
+            ${escapeHtml(
+              item.timestamp
+            )}
 
           </div>
 
+
           <div>
 
-            ${messageStatus(item.status)}
+            ${messageStatus(
+              item.status
+            )}
 
           </div>
 
@@ -1950,14 +2973,20 @@ function displayMessages(){
 
         <div>
 
-          <strong>Message ID:</strong>
+          <strong>
+            Message ID:
+          </strong>
 
-          ${escapeHtml(item.messageId)}
+          ${escapeHtml(
+            item.messageId
+          )}
 
         </div>
 
 
-        <div class="original-message">
+        <div
+          class="original-message"
+        >
 
           <strong>
             Original Message
@@ -1965,7 +2994,9 @@ function displayMessages(){
 
           <br><br>
 
-          ${escapeHtml(item.message)}
+          ${escapeHtml(
+            item.message
+          )}
 
         </div>
 
@@ -1974,7 +3005,9 @@ function displayMessages(){
           item.reply
           ?
           `
-          <div class="previous-reply">
+          <div
+            class="previous-reply"
+          >
 
             <strong>
               Previous Reply
@@ -1982,15 +3015,22 @@ function displayMessages(){
 
             <br><br>
 
-            ${escapeHtml(item.reply)}
+            ${escapeHtml(
+              item.reply
+            )}
 
             ${
               item.replyDate
               ?
-              `<br><br>
-               <small>
-                 ${escapeHtml(item.replyDate)}
-               </small>`
+              `
+              <br><br>
+
+              <small>
+                ${escapeHtml(
+                  item.replyDate
+                )}
+              </small>
+              `
               :
               ""
             }
@@ -2002,29 +3042,45 @@ function displayMessages(){
         }
 
 
-        <div class="reply-area">
+        <div
+          class="reply-area"
+        >
 
           <textarea
             id="reply-${item.row}"
-            placeholder="Write reply to ${escapeHtml(item.name)}..."
+            placeholder="
+              Write reply to
+              ${escapeHtml(
+                item.name
+              )}...
+            "
           ></textarea>
+
 
           <br>
 
+
           <button
             class="btn btn-success"
-            onclick="sendReply(
-              ${item.row},
-              '${escapeJs(item.email)}',
-              '${escapeJs(item.name)}'
-            )"
+            onclick="
+              sendReply(
+                ${Number(item.row)},
+                '${escapeJs(item.email)}',
+                '${escapeJs(item.name)}'
+              )
+            "
           >
             📤 Send Reply
           </button>
 
+
           <button
             class="btn btn-danger"
-            onclick="deleteMessage(${item.row})"
+            onclick="
+              deleteMessage(
+                ${Number(item.row)}
+              )
+            "
           >
             🗑️ Move to Recycle Bin
           </button>
@@ -2057,8 +3113,10 @@ async function sendReply(
 
   const textarea =
     document.getElementById(
-      "reply-" + row
+      "reply-" +
+      row
     );
+
 
   if(!textarea){
 
@@ -2104,30 +3162,30 @@ async function sendReply(
     const body =
       new URLSearchParams();
 
+
     body.append(
       "action",
       "replyMessage"
     );
+
 
     body.append(
       "row",
       row
     );
 
+
     body.append(
       "email",
       email
     );
+
 
     body.append(
       "name",
       name
     );
 
-    /*
-      IMPORTANT:
-      Code.gs yawe iri kwakira data.message
-    */
 
     body.append(
       "message",
@@ -2145,16 +3203,38 @@ async function sendReply(
       );
 
 
-    const data =
-      await response.json();
+    const text =
+      await response.text();
 
 
-    if(data.success){
+    let data;
+
+
+    try{
+
+      data =
+        JSON.parse(text);
+
+    }catch(error){
+
+      alert(
+        "Server returned invalid response."
+      );
+
+      return;
+
+    }
+
+
+    if(
+      data.success
+    ){
 
       alert(
         data.message ||
         "Reply yoherejwe neza."
       );
+
 
       loadMessages();
 
@@ -2169,7 +3249,10 @@ async function sendReply(
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     alert(
       "Server error while sending reply."
@@ -2204,10 +3287,12 @@ async function deleteMessage(
     const body =
       new URLSearchParams();
 
+
     body.append(
       "action",
       "deleteMessage"
     );
+
 
     body.append(
       "row",
@@ -2229,11 +3314,15 @@ async function deleteMessage(
       await response.json();
 
 
-    if(data.success){
+    if(
+      data.success
+    ){
 
       alert(
-        data.message
+        data.message ||
+        "Message moved."
       );
+
 
       loadMessages();
 
@@ -2248,7 +3337,10 @@ async function deleteMessage(
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     alert(
       "Server error."
@@ -2270,8 +3362,13 @@ async function loadRecycleBin(){
       "recycleBinContainer"
     );
 
+
   container.innerHTML =
-    '<div class="loading">Loading recycle bin...</div>';
+    `
+    <div class="loading">
+      🔄 Loading recycle bin...
+    </div>
+    `;
 
 
   try{
@@ -2279,23 +3376,61 @@ async function loadRecycleBin(){
     const response =
       await fetch(
         API_URL +
-        "?action=getRecycleBin"
+        "?action=getRecycleBin&_=" +
+        Date.now(),
+        {
+          method:"GET",
+          cache:"no-store"
+        }
       );
+
 
     const data =
       await response.json();
 
+
+    if(
+      data &&
+      data.success === false
+    ){
+
+      throw new Error(
+        data.message ||
+        "Failed to load recycle bin."
+      );
+
+    }
+
+
     recycleBin =
-      normalizeArray(data);
+      normalizeArray(
+        data
+      );
+
 
     displayRecycleBin();
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     container.innerHTML =
-      '<div class="empty">Failed to load recycle bin.</div>';
+      `
+      <div class="error-box">
+
+        ❌ Failed to load recycle bin.
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message
+        )}
+
+      </div>
+      `;
 
   }
 
@@ -2313,10 +3448,17 @@ function displayRecycleBin(){
       "recycleBinContainer"
     );
 
-  if(!recycleBin.length){
+
+  if(
+    !recycleBin.length
+  ){
 
     container.innerHTML =
-      '<div class="empty">Recycle Bin is empty.</div>';
+      `
+      <div class="empty">
+        Recycle Bin is empty.
+      </div>
+      `;
 
     return;
 
@@ -2333,18 +3475,36 @@ function displayRecycleBin(){
 
   <tr>
 
-    <th>Deleted At</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Message</th>
-    <th>Status</th>
-    <th>Action</th>
+    <th>
+      Deleted At
+    </th>
+
+    <th>
+      Name
+    </th>
+
+    <th>
+      Email
+    </th>
+
+    <th>
+      Message
+    </th>
+
+    <th>
+      Status
+    </th>
+
+    <th>
+      Action
+    </th>
 
   </tr>
 
   </thead>
 
   <tbody>
+
   `;
 
 
@@ -2356,37 +3516,56 @@ function displayRecycleBin(){
       <tr>
 
         <td>
-          ${escapeHtml(item.deletedAt)}
+          ${escapeHtml(
+            item.deletedAt
+          )}
         </td>
 
         <td>
-          ${escapeHtml(item.name)}
+          ${escapeHtml(
+            item.name
+          )}
         </td>
 
         <td>
-          ${escapeHtml(item.email)}
+          ${escapeHtml(
+            item.email
+          )}
         </td>
 
         <td>
-          ${escapeHtml(item.message)}
+          ${escapeHtml(
+            item.message
+          )}
         </td>
 
         <td>
-          ${messageStatus(item.status)}
+          ${messageStatus(
+            item.status
+          )}
         </td>
 
         <td>
 
           <button
             class="btn btn-success"
-            onclick="restoreMessage(${item.row})"
+            onclick="
+              restoreMessage(
+                ${Number(item.row)}
+              )
+            "
           >
             ♻️ Restore
           </button>
 
+
           <button
             class="btn btn-danger"
-            onclick="permanentDeleteMessage(${item.row})"
+            onclick="
+              permanentDeleteMessage(
+                ${Number(item.row)}
+              )
+            "
           >
             ❌ Delete Forever
           </button>
@@ -2442,10 +3621,12 @@ async function restoreMessage(
     const body =
       new URLSearchParams();
 
+
     body.append(
       "action",
       "restoreMessage"
     );
+
 
     body.append(
       "row",
@@ -2467,11 +3648,14 @@ async function restoreMessage(
       await response.json();
 
 
-    if(data.success){
+    if(
+      data.success
+    ){
 
       alert(
         data.message
       );
+
 
       loadRecycleBin();
 
@@ -2485,7 +3669,10 @@ async function restoreMessage(
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     alert(
       "Server error."
@@ -2520,10 +3707,12 @@ async function permanentDeleteMessage(
     const body =
       new URLSearchParams();
 
+
     body.append(
       "action",
       "permanentlyDeleteMessage"
     );
+
 
     body.append(
       "row",
@@ -2545,11 +3734,14 @@ async function permanentDeleteMessage(
       await response.json();
 
 
-    if(data.success){
+    if(
+      data.success
+    ){
 
       alert(
         data.message
       );
+
 
       loadRecycleBin();
 
@@ -2563,7 +3755,10 @@ async function permanentDeleteMessage(
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     alert(
       "Server error."
@@ -2580,10 +3775,13 @@ async function permanentDeleteMessage(
 
 function generateAnalysis(){
 
-  if(!appointments.length){
+  if(
+    !appointments.length &&
+    !messages.length
+  ){
 
     alert(
-      "Nta appointments zihari zo gusesengura."
+      "Nta data ihari yo gusesengura."
     );
 
     return;
@@ -2596,6 +3794,7 @@ function generateAnalysis(){
       "dataType"
     ).value;
 
+
   const chartType =
     document.getElementById(
       "chartType"
@@ -2603,6 +3802,7 @@ function generateAnalysis(){
 
 
   let labels = [];
+
   let values = [];
 
 
@@ -2618,13 +3818,16 @@ function generateAnalysis(){
       "Cancelled"
     ];
 
-    values = labels.map(
-      status =>
-        appointments.filter(
-          item =>
-            item.status === status
-        ).length
-    );
+
+    values =
+      labels.map(
+        status =>
+          appointments.filter(
+            item =>
+              item.status ===
+              status
+          ).length
+      );
 
   }
 
@@ -2636,6 +3839,7 @@ function generateAnalysis(){
 
     const counts = {};
 
+
     appointments.forEach(
       item => {
 
@@ -2643,17 +3847,27 @@ function generateAnalysis(){
           item.department ||
           "Unknown";
 
+
         counts[department] =
-          (counts[department] || 0) + 1;
+          (
+            counts[department] ||
+            0
+          ) + 1;
 
       }
     );
 
+
     labels =
-      Object.keys(counts);
+      Object.keys(
+        counts
+      );
+
 
     values =
-      Object.values(counts);
+      Object.values(
+        counts
+      );
 
   }
 
@@ -2665,6 +3879,7 @@ function generateAnalysis(){
 
     const counts = {};
 
+
     appointments.forEach(
       item => {
 
@@ -2672,17 +3887,27 @@ function generateAnalysis(){
           item.date ||
           "Unknown";
 
+
         counts[date] =
-          (counts[date] || 0) + 1;
+          (
+            counts[date] ||
+            0
+          ) + 1;
 
       }
     );
 
+
     labels =
-      Object.keys(counts);
+      Object.keys(
+        counts
+      );
+
 
     values =
-      Object.values(counts);
+      Object.values(
+        counts
+      );
 
   }
 
@@ -2694,6 +3919,7 @@ function generateAnalysis(){
 
     const counts = {};
 
+
     messages.forEach(
       item => {
 
@@ -2701,17 +3927,27 @@ function generateAnalysis(){
           item.status ||
           "New";
 
+
         counts[status] =
-          (counts[status] || 0) + 1;
+          (
+            counts[status] ||
+            0
+          ) + 1;
 
       }
     );
 
+
     labels =
-      Object.keys(counts);
+      Object.keys(
+        counts
+      );
+
 
     values =
-      Object.values(counts);
+      Object.values(
+        counts
+      );
 
   }
 
@@ -2723,25 +3959,40 @@ function generateAnalysis(){
 
     const counts = {};
 
+
     messages.forEach(
       item => {
 
         const date =
           String(
-            item.timestamp || "Unknown"
-          ).substring(0,10);
+            item.timestamp ||
+            "Unknown"
+          ).substring(
+            0,
+            10
+          );
+
 
         counts[date] =
-          (counts[date] || 0) + 1;
+          (
+            counts[date] ||
+            0
+          ) + 1;
 
       }
     );
 
+
     labels =
-      Object.keys(counts);
+      Object.keys(
+        counts
+      );
+
 
     values =
-      Object.values(counts);
+      Object.values(
+        counts
+      );
 
   }
 
@@ -2762,12 +4013,16 @@ function generateAnalysis(){
   clearChart();
 
 
+  const canvas =
+    document.getElementById(
+      "analysisChart"
+    );
+
+
   const ctx =
-    document
-      .getElementById(
-        "analysisChart"
-      )
-      .getContext("2d");
+    canvas.getContext(
+      "2d"
+    );
 
 
   analysisChart =
@@ -2778,21 +4033,29 @@ function generateAnalysis(){
         type:
           chartType,
 
+
         data:{
 
           labels:
             labels,
 
+
           datasets:[{
 
             label:
-              document.getElementById(
-                "analysisTitle"
-              ).value ||
-              "NASHO Health Center Analysis",
+              document
+                .getElementById(
+                  "analysisTitle"
+                )
+                .value
+                .trim()
+                ||
+                "NASHO Health Center Analysis",
+
 
             data:
               values,
+
 
             borderWidth:2
 
@@ -2800,11 +4063,13 @@ function generateAnalysis(){
 
         },
 
+
         options:{
 
           responsive:true,
 
           maintainAspectRatio:false,
+
 
           plugins:{
 
@@ -2813,6 +4078,7 @@ function generateAnalysis(){
             }
 
           },
+
 
           scales:
             chartType === "pie" ||
@@ -2842,7 +4108,9 @@ function generateAnalysis(){
 
 function clearChart(){
 
-  if(analysisChart){
+  if(
+    analysisChart
+  ){
 
     analysisChart.destroy();
 
@@ -2861,29 +4129,40 @@ function clearChart(){
 async function saveAnalysis(){
 
   const title =
-    document.getElementById(
-      "analysisTitle"
-    ).value.trim();
+    document
+      .getElementById(
+        "analysisTitle"
+      )
+      .value
+      .trim();
+
 
   const chartType =
     document.getElementById(
       "chartType"
     ).value;
 
+
   const dataType =
     document.getElementById(
       "dataType"
     ).value;
 
+
   const outcome =
-    document.getElementById(
-      "analysisOutcome"
-    ).value.trim();
+    document
+      .getElementById(
+        "analysisOutcome"
+      )
+      .value
+      .trim();
+
 
   const createdBy =
     sessionStorage.getItem(
       "nashoAdminUsername"
-    ) || "admin";
+    ) ||
+    "admin";
 
 
   if(!title){
@@ -2913,30 +4192,36 @@ async function saveAnalysis(){
     const body =
       new URLSearchParams();
 
+
     body.append(
       "action",
       "saveAnalysis"
     );
+
 
     body.append(
       "title",
       title
     );
 
+
     body.append(
       "chartType",
       chartType
     );
+
 
     body.append(
       "dataType",
       dataType
     );
 
+
     body.append(
       "outcome",
       outcome
     );
+
 
     body.append(
       "createdBy",
@@ -2958,12 +4243,15 @@ async function saveAnalysis(){
       await response.json();
 
 
-    if(data.success){
+    if(
+      data.success
+    ){
 
       alert(
         data.message ||
         "Analysis saved successfully."
       );
+
 
       loadAnalysisHistory();
 
@@ -2978,7 +4266,10 @@ async function saveAnalysis(){
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     alert(
       "Server error while saving analysis."
@@ -3000,6 +4291,7 @@ async function loadAnalysisHistory(){
       "analysisHistory"
     );
 
+
   if(!container){
 
     return;
@@ -3008,7 +4300,11 @@ async function loadAnalysisHistory(){
 
 
   container.innerHTML =
-    '<div class="loading">Loading analysis...</div>';
+    `
+    <div class="loading">
+      Loading analysis...
+    </div>
+    `;
 
 
   try{
@@ -3016,23 +4312,61 @@ async function loadAnalysisHistory(){
     const response =
       await fetch(
         API_URL +
-        "?action=getAnalysisHistory"
+        "?action=getAnalysisHistory&_=" +
+        Date.now(),
+        {
+          method:"GET",
+          cache:"no-store"
+        }
       );
+
 
     const data =
       await response.json();
 
+
+    if(
+      data &&
+      data.success === false
+    ){
+
+      throw new Error(
+        data.message ||
+        "Analysis history failed."
+      );
+
+    }
+
+
     analysisHistory =
-      normalizeArray(data);
+      normalizeArray(
+        data
+      );
+
 
     displayAnalysisHistory();
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     container.innerHTML =
-      '<div class="empty">Analysis history failed to load.</div>';
+      `
+      <div class="error-box">
+
+        ❌ Analysis history failed.
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message
+        )}
+
+      </div>
+      `;
 
   }
 
@@ -3050,10 +4384,17 @@ function displayAnalysisHistory(){
       "analysisHistory"
     );
 
-  if(!analysisHistory.length){
+
+  if(
+    !analysisHistory.length
+  ){
 
     container.innerHTML =
-      '<div class="empty">No saved analysis yet.</div>';
+      `
+      <div class="empty">
+        No saved analysis yet.
+      </div>
+      `;
 
     return;
 
@@ -3070,21 +4411,36 @@ function displayAnalysisHistory(){
 
         html += `
 
-        <div class="analysis-card">
+        <div
+          class="analysis-card"
+        >
 
           <h3>
-            ${escapeHtml(item.analysisTitle || item.title)}
+            ${escapeHtml(
+              item.analysisTitle ||
+              item.title ||
+              "Analysis"
+            )}
           </h3>
 
-          <div class="analysis-meta">
+
+          <div
+            class="analysis-meta"
+          >
 
             ID:
-            ${escapeHtml(item.analysisId || "")}
+            ${escapeHtml(
+              item.analysisId ||
+              ""
+            )}
 
             <br>
 
             Created by:
-            ${escapeHtml(item.createdBy || "")}
+            ${escapeHtml(
+              item.createdBy ||
+              ""
+            )}
 
             <br>
 
@@ -3098,16 +4454,26 @@ function displayAnalysisHistory(){
             <br>
 
             Chart:
-            ${escapeHtml(item.chartType || "")}
+            ${escapeHtml(
+              item.chartType ||
+              ""
+            )}
 
             <br>
 
             Data:
-            ${escapeHtml(item.dataAnalyzed || item.dataType || "")}
+            ${escapeHtml(
+              item.dataAnalyzed ||
+              item.dataType ||
+              ""
+            )}
 
           </div>
 
-          <div class="analysis-outcome">
+
+          <div
+            class="analysis-outcome"
+          >
 
             ${escapeHtml(
               item.outcome ||
@@ -3143,8 +4509,13 @@ async function loadAllAnalysis(){
       "allAnalysisContainer"
     );
 
+
   container.innerHTML =
-    '<div class="loading">Loading analysis history...</div>';
+    `
+    <div class="loading">
+      Loading analysis history...
+    </div>
+    `;
 
 
   try{
@@ -3152,23 +4523,61 @@ async function loadAllAnalysis(){
     const response =
       await fetch(
         API_URL +
-        "?action=getAnalysisHistory"
+        "?action=getAnalysisHistory&_=" +
+        Date.now(),
+        {
+          method:"GET",
+          cache:"no-store"
+        }
       );
+
 
     const data =
       await response.json();
 
+
+    if(
+      data &&
+      data.success === false
+    ){
+
+      throw new Error(
+        data.message ||
+        "Failed to load analysis."
+      );
+
+    }
+
+
     analysisHistory =
-      normalizeArray(data);
+      normalizeArray(
+        data
+      );
+
 
     displayAllAnalysis();
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     container.innerHTML =
-      '<div class="empty">Failed to load analysis history.</div>';
+      `
+      <div class="error-box">
+
+        ❌ Failed to load analysis history.
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message
+        )}
+
+      </div>
+      `;
 
   }
 
@@ -3186,10 +4595,17 @@ function displayAllAnalysis(){
       "allAnalysisContainer"
     );
 
-  if(!analysisHistory.length){
+
+  if(
+    !analysisHistory.length
+  ){
 
     container.innerHTML =
-      '<div class="empty">No analysis found.</div>';
+      `
+      <div class="empty">
+        No analysis found.
+      </div>
+      `;
 
     return;
 
@@ -3204,28 +4620,37 @@ function displayAllAnalysis(){
 
       html += `
 
-      <div class="analysis-card">
+      <div
+        class="analysis-card"
+      >
 
         <h3>
+
           ${escapeHtml(
             item.analysisTitle ||
             item.title ||
             "Analysis"
           )}
+
         </h3>
 
-        <div class="analysis-meta">
+
+        <div
+          class="analysis-meta"
+        >
 
           Analysis ID:
           ${escapeHtml(
-            item.analysisId || ""
+            item.analysisId ||
+            ""
           )}
 
           <br>
 
           Created By:
           ${escapeHtml(
-            item.createdBy || ""
+            item.createdBy ||
+            ""
           )}
 
           <br>
@@ -3241,7 +4666,8 @@ function displayAllAnalysis(){
 
           Chart Type:
           ${escapeHtml(
-            item.chartType || ""
+            item.chartType ||
+            ""
           )}
 
           <br>
@@ -3256,7 +4682,9 @@ function displayAllAnalysis(){
         </div>
 
 
-        <div class="analysis-outcome">
+        <div
+          class="analysis-outcome"
+        >
 
           ${escapeHtml(
             item.outcome ||
@@ -3271,7 +4699,11 @@ function displayAllAnalysis(){
 
         <button
           class="btn btn-danger"
-          onclick="removeAnalysis(${item.row})"
+          onclick="
+            removeAnalysis(
+              ${Number(item.row)}
+            )
+          "
         >
           🗑️ Remove
         </button>
@@ -3314,10 +4746,12 @@ async function removeAnalysis(
     const body =
       new URLSearchParams();
 
+
     body.append(
       "action",
       "removeAnalysis"
     );
+
 
     body.append(
       "row",
@@ -3339,12 +4773,15 @@ async function removeAnalysis(
       await response.json();
 
 
-    if(data.success){
+    if(
+      data.success
+    ){
 
       alert(
         data.message ||
         "Analysis removed."
       );
+
 
       loadAllAnalysis();
 
@@ -3359,7 +4796,10 @@ async function removeAnalysis(
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     alert(
       "Server error."
@@ -3376,54 +4816,95 @@ async function removeAnalysis(
 
 function updateDashboard(){
 
-  document.getElementById(
-    "totalAppointments"
-  ).textContent =
-    appointments.length;
+  const total =
+    document.getElementById(
+      "totalAppointments"
+    );
 
 
-  document.getElementById(
-    "pendingAppointments"
-  ).textContent =
-    appointments.filter(
-      item =>
-        item.status === "Pending"
-    ).length;
+  const pending =
+    document.getElementById(
+      "pendingAppointments"
+    );
 
 
-  document.getElementById(
-    "totalMessages"
-  ).textContent =
-    messages.length;
+  const totalMessages =
+    document.getElementById(
+      "totalMessages"
+    );
 
 
-  document.getElementById(
-    "newMessages"
-  ).textContent =
-    messages.filter(
-      item =>
-        !item.status ||
-        item.status === "New"
-    ).length;
+  const newMessages =
+    document.getElementById(
+      "newMessages"
+    );
+
+
+  if(total){
+
+    total.textContent =
+      appointments.length;
+
+  }
+
+
+  if(pending){
+
+    pending.textContent =
+      appointments.filter(
+        item =>
+          String(
+            item.status ||
+            "Pending"
+          ).toLowerCase() ===
+          "pending"
+      ).length;
+
+  }
+
+
+  if(totalMessages){
+
+    totalMessages.textContent =
+      messages.length;
+
+  }
+
+
+  if(newMessages){
+
+    newMessages.textContent =
+      messages.filter(
+        item =>
+          !item.status ||
+          item.status === "New"
+      ).length;
+
+  }
 
 }
 
 
 /* =====================================================
-   STATUS HELPERS
+   MESSAGE STATUS
 ===================================================== */
 
-function messageStatus(status){
+function messageStatus(
+  status
+){
 
   const s =
-    status || "New";
+    status ||
+    "New";
 
 
   let className =
     "status-new";
 
 
-  if(s === "Replied"){
+  if(
+    s === "Replied"
+  ){
 
     className =
       "status-replied";
@@ -3432,7 +4913,9 @@ function messageStatus(status){
 
 
   return `
-    <span class="status ${className}">
+    <span
+      class="status ${className}"
+    >
       ${escapeHtml(s)}
     </span>
   `;
@@ -3440,31 +4923,46 @@ function messageStatus(status){
 }
 
 
-function appointmentStatus(status){
+/* =====================================================
+   APPOINTMENT STATUS
+===================================================== */
+
+function appointmentStatus(
+  status
+){
 
   const s =
-    status || "Pending";
+    status ||
+    "Pending";
 
 
   let className =
     "status-pending";
 
 
-  if(s === "Confirmed"){
+  if(
+    s === "Confirmed"
+  ){
 
     className =
       "status-confirmed";
 
   }
 
-  if(s === "Completed"){
+
+  if(
+    s === "Completed"
+  ){
 
     className =
       "status-completed";
 
   }
 
-  if(s === "Cancelled"){
+
+  if(
+    s === "Cancelled"
+  ){
 
     className =
       "status-cancelled";
@@ -3473,7 +4971,9 @@ function appointmentStatus(status){
 
 
   return `
-    <span class="status ${className}">
+    <span
+      class="status ${className}"
+    >
       ${escapeHtml(s)}
     </span>
   `;
@@ -3485,7 +4985,9 @@ function appointmentStatus(status){
    ESCAPE HTML
 ===================================================== */
 
-function escapeHtml(value){
+function escapeHtml(
+  value
+){
 
   return String(
     value ?? ""
@@ -3523,7 +5025,9 @@ function escapeHtml(value){
    ESCAPE JS
 ===================================================== */
 
-function escapeJs(value){
+function escapeJs(
+  value
+){
 
   return String(
     value ?? ""
