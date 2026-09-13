@@ -8,9 +8,10 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>
-NASHO Health Center | Admin Dashboard
-</title>
+<title>NASHO Health Center | Admin Dashboard</title>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
@@ -28,6 +29,10 @@ NASHO Health Center | Admin Dashboard
 body{
     background:#f4f7fb;
     color:#172033;
+}
+
+button{
+    font-family:Arial,sans-serif;
 }
 
 /* =====================================================
@@ -314,7 +319,7 @@ th{
 }
 
 /* =====================================================
-   BUTTONS
+   ACTION BUTTONS
 ===================================================== */
 
 .action-btn{
@@ -323,6 +328,7 @@ th{
     margin:2px;
     border-radius:7px;
     cursor:pointer;
+    font-weight:bold;
 }
 
 .confirm{
@@ -342,6 +348,21 @@ th{
 
 .reply{
     background:#1769e0;
+    color:white;
+}
+
+.delete-btn{
+    background:#dc3545;
+    color:white;
+}
+
+.restore-btn{
+    background:#28a745;
+    color:white;
+}
+
+.permanent-btn{
+    background:#7b1e1e;
     color:white;
 }
 
@@ -376,10 +397,6 @@ th{
     color:#102a43;
 }
 
-/* =====================================================
-   CONTACT INFO
-===================================================== */
-
 .contact-info{
     background:#f7f9fc;
     padding:15px;
@@ -397,14 +414,6 @@ th{
     text-decoration:none;
 }
 
-.contact-row a:hover{
-    text-decoration:underline;
-}
-
-/* =====================================================
-   MESSAGE TEXT
-===================================================== */
-
 .message-text{
     background:#f7f9fc;
     padding:15px;
@@ -415,7 +424,7 @@ th{
 }
 
 /* =====================================================
-   REPLY AREA
+   REPLY
 ===================================================== */
 
 .reply-area{
@@ -442,12 +451,6 @@ th{
     resize:vertical;
     font-size:15px;
     line-height:1.5;
-    outline:none;
-}
-
-.reply-area textarea:focus{
-    border-color:#1769e0;
-    box-shadow:0 0 0 2px rgba(23,105,224,.1);
 }
 
 .send-reply{
@@ -455,19 +458,6 @@ th{
     color:white;
     margin-top:10px;
 }
-
-.send-reply:hover{
-    background:#0d55bd;
-}
-
-.send-reply:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-}
-
-/* =====================================================
-   PREVIOUS REPLY
-===================================================== */
 
 .previous-reply{
     margin-top:15px;
@@ -486,20 +476,38 @@ th{
 }
 
 /* =====================================================
-   EMPTY / ERROR
+   RECYCLE BIN
 ===================================================== */
 
-.empty{
-    padding:30px;
-    text-align:center;
-    color:#687386;
+.recycle-warning{
+    background:#fff3cd;
+    color:#856404;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
 }
 
-.error{
-    color:#c0392b;
+.deleted-box{
+    border:1px solid #e3e3e3;
+    border-left:5px solid #dc3545;
+    padding:20px;
+    border-radius:12px;
+    margin-top:15px;
+    background:#fafafa;
+}
+
+.deleted-header{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.deleted-message{
+    background:white;
     padding:15px;
-    background:#fcebea;
-    border-radius:10px;
+    margin-top:12px;
+    border-radius:8px;
+    white-space:pre-wrap;
 }
 
 /* =====================================================
@@ -531,6 +539,105 @@ th{
 }
 
 /* =====================================================
+   ANALYSIS
+===================================================== */
+
+.analysis-panel{
+    margin-top:25px;
+    padding:25px;
+    border-radius:15px;
+    background:#f7f9fc;
+    border:1px solid #e3e8ef;
+}
+
+.analysis-controls{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:15px;
+    margin-top:15px;
+}
+
+.analysis-controls label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.analysis-controls select,
+.analysis-controls input,
+.analysis-panel textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccd5df;
+    border-radius:9px;
+    background:white;
+}
+
+.analysis-panel textarea{
+    min-height:150px;
+    margin-top:10px;
+    resize:vertical;
+    line-height:1.5;
+}
+
+.chart-container{
+    position:relative;
+    width:100%;
+    height:430px;
+    margin-top:25px;
+    padding:15px;
+    background:white;
+    border-radius:12px;
+}
+
+.analysis-buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+.generate{
+    background:#1769e0;
+    color:white;
+}
+
+.save-analysis{
+    background:#28a745;
+    color:white;
+}
+
+.clear-analysis{
+    background:#6c757d;
+    color:white;
+}
+
+.analysis-result{
+    background:white;
+    border-left:5px solid #1769e0;
+    padding:18px;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+/* =====================================================
+   EMPTY / ERROR
+===================================================== */
+
+.empty{
+    padding:30px;
+    text-align:center;
+    color:#687386;
+}
+
+.error{
+    color:#c0392b;
+    padding:15px;
+    background:#fcebea;
+    border-radius:10px;
+}
+
+/* =====================================================
    MOBILE
 ===================================================== */
 
@@ -550,6 +657,10 @@ th{
 
     .stat-grid{
         grid-template-columns:1fr 1fr;
+    }
+
+    .analysis-controls{
+        grid-template-columns:1fr;
     }
 
 }
@@ -589,8 +700,13 @@ th{
         gap:10px;
     }
 
-    .message-header{
+    .message-header,
+    .deleted-header{
         flex-direction:column;
+    }
+
+    .chart-container{
+        height:300px;
     }
 
 }
@@ -599,7 +715,6 @@ th{
 
 </head>
 
-
 <body>
 
 
@@ -607,19 +722,13 @@ th{
      LOGIN
 ===================================================== -->
 
-<div
-class="login-page"
-id="loginPage">
+<div class="login-page" id="loginPage">
 
     <div class="login-box">
 
-        <h1>
-            🏥 NASHO
-        </h1>
+        <h1>🏥 NASHO</h1>
 
-        <p>
-            Health Center Admin
-        </p>
+        <p>Health Center Admin</p>
 
         <input
         class="input"
@@ -627,13 +736,11 @@ id="loginPage">
         id="username"
         placeholder="Admin username">
 
-
         <input
         class="input"
         type="password"
         id="password"
         placeholder="Password">
-
 
         <button
         class="btn btn-primary"
@@ -644,7 +751,6 @@ id="loginPage">
 
         </button>
 
-
         <div
         class="loading"
         id="loginLoading">
@@ -652,7 +758,6 @@ id="loginPage">
             Connecting to server...
 
         </div>
-
 
         <p
         id="loginMessage"
@@ -669,9 +774,7 @@ id="loginPage">
      DASHBOARD
 ===================================================== -->
 
-<div
-class="dashboard"
-id="dashboard">
+<div class="dashboard" id="dashboard">
 
 
     <!-- SIDEBAR -->
@@ -682,7 +785,6 @@ id="dashboard">
             🏥 NASHO HC
         </div>
 
-
         <button
         class="nav-btn active"
         onclick="showSection('dashboardSection',this)">
@@ -690,7 +792,6 @@ id="dashboard">
             📊 Dashboard
 
         </button>
-
 
         <button
         class="nav-btn"
@@ -700,7 +801,6 @@ id="dashboard">
 
         </button>
 
-
         <button
         class="nav-btn"
         onclick="showSection('messages',this)">
@@ -709,15 +809,21 @@ id="dashboard">
 
         </button>
 
+        <button
+        class="nav-btn"
+        onclick="showSection('recycleBin',this)">
+
+            🗑️ Recycle Bin
+
+        </button>
 
         <button
         class="nav-btn"
         onclick="showSection('statistics',this)">
 
-            📈 Statistics
+            📈 Statistics & Analysis
 
         </button>
-
 
         <button
         class="nav-btn logout"
@@ -741,16 +847,11 @@ id="dashboard">
 
             <div>
 
-                <h2>
-                    NASHO Health Center
-                </h2>
+                <h2>NASHO Health Center</h2>
 
-                <span>
-                    Admin Dashboard
-                </span>
+                <span>Admin Dashboard</span>
 
             </div>
-
 
             <strong id="today"></strong>
 
@@ -767,55 +868,35 @@ id="dashboard">
 
             <div class="cards">
 
-
                 <div class="card">
 
-                    <span>
-                        📅 Appointments
-                    </span>
+                    <span>📅 Appointments</span>
 
-                    <strong id="totalAppointments">
-                        0
-                    </strong>
+                    <strong id="totalAppointments">0</strong>
 
                 </div>
 
-
                 <div class="card">
 
-                    <span>
-                        ⏳ Pending
-                    </span>
+                    <span>⏳ Pending</span>
 
-                    <strong id="pendingAppointments">
-                        0
-                    </strong>
+                    <strong id="pendingAppointments">0</strong>
 
                 </div>
 
-
                 <div class="card">
 
-                    <span>
-                        ✅ Confirmed
-                    </span>
+                    <span>✅ Confirmed</span>
 
-                    <strong id="confirmedAppointments">
-                        0
-                    </strong>
+                    <strong id="confirmedAppointments">0</strong>
 
                 </div>
 
-
                 <div class="card">
 
-                    <span>
-                        ✉️ Messages
-                    </span>
+                    <span>✉️ Messages</span>
 
-                    <strong id="totalMessages">
-                        0
-                    </strong>
+                    <strong id="totalMessages">0</strong>
 
                 </div>
 
@@ -834,10 +915,7 @@ id="dashboard">
 
             <div class="panel">
 
-                <h2>
-                    📅 Appointments
-                </h2>
-
+                <h2>📅 Appointments</h2>
 
                 <input
                 class="search"
@@ -845,13 +923,9 @@ id="dashboard">
                 placeholder="Search name, phone, department..."
                 onkeyup="filterAppointments()">
 
-
                 <div id="appointmentsTable">
-
                     Loading appointments...
-
                 </div>
-
 
                 <button
                 class="btn refresh"
@@ -876,23 +950,56 @@ id="dashboard">
 
             <div class="panel">
 
-                <h2>
-                    ✉️ Website Messages
-                </h2>
-
+                <h2>✉️ Website Messages</h2>
 
                 <div id="messagesTable">
-
                     Loading messages...
-
                 </div>
-
 
                 <button
                 class="btn refresh"
                 onclick="loadMessages()">
 
                     🔄 Refresh Messages
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RECYCLE BIN
+        ================================================== -->
+
+        <section
+        class="section"
+        id="recycleBin">
+
+            <div class="panel">
+
+                <h2>🗑️ Recycle Bin</h2>
+
+                <div class="recycle-warning">
+
+                    ⚠️ Messages deleted from Messages are first
+                    moved here. Admin can restore them or permanently
+                    delete them.
+
+                </div>
+
+                <div id="recycleBinTable">
+
+                    Loading recycle bin...
+
+                </div>
+
+                <button
+                class="btn refresh"
+                onclick="loadRecycleBin()">
+
+                    🔄 Refresh Recycle Bin
 
                 </button>
 
@@ -911,88 +1018,236 @@ id="dashboard">
 
             <div class="panel">
 
-                <h2>
-                    📈 Statistics
-                </h2>
+                <h2>📈 Statistics & Analysis</h2>
 
+
+                <!-- BASIC STATISTICS -->
 
                 <div class="stat-grid">
 
+                    <div class="stat-box">
+
+                        <h3>Total Appointments</h3>
+
+                        <strong id="statTotal">0</strong>
+
+                    </div>
 
                     <div class="stat-box">
 
-                        <h3>
-                            Total Appointments
-                        </h3>
+                        <h3>Pending</h3>
 
-                        <strong id="statTotal">
-                            0
-                        </strong>
+                        <strong id="statPending">0</strong>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <h3>Confirmed</h3>
+
+                        <strong id="statConfirmed">0</strong>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <h3>Completed</h3>
+
+                        <strong id="statCompleted">0</strong>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <h3>Cancelled</h3>
+
+                        <strong id="statCancelled">0</strong>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <h3>Total Messages</h3>
+
+                        <strong id="statMessages">0</strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ANALYSIS
+                ================================================== -->
+
+                <div class="analysis-panel">
+
+                    <h2>🔎 Admin Data Analysis</h2>
+
+                    <p style="color:#687386;margin-top:5px;">
+
+                        Hitamo uburyo ushaka gusesengura amakuru,
+                        uhitemo chart, hanyuma wandike outcome.
+
+                    </p>
+
+
+                    <div class="analysis-controls">
+
+                        <div>
+
+                            <label>
+                                📊 Data to Analyze
+                            </label>
+
+                            <select id="analysisData">
+
+                                <option value="appointmentStatus">
+                                    Appointment Status
+                                </option>
+
+                                <option value="department">
+                                    Departments
+                                </option>
+
+                                <option value="appointmentTrend">
+                                    Appointment Trend
+                                </option>
+
+                                <option value="messageStatus">
+                                    Message Status
+                                </option>
+
+                                <option value="messageTrend">
+                                    Message Trend
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div>
+
+                            <label>
+                                📈 Chart Type
+                            </label>
+
+                            <select id="chartType">
+
+                                <option value="bar">
+                                    Bar Chart
+                                </option>
+
+                                <option value="line">
+                                    Line Chart
+                                </option>
+
+                                <option value="pie">
+                                    Pie Chart
+                                </option>
+
+                                <option value="doughnut">
+                                    Doughnut Chart
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div>
+
+                            <label>
+                                📅 Analysis Title
+                            </label>
+
+                            <input
+                            type="text"
+                            id="analysisTitle"
+                            placeholder="e.g. Monthly Appointment Analysis">
+
+                        </div>
 
                     </div>
 
 
-                    <div class="stat-box">
+                    <div class="analysis-buttons">
 
-                        <h3>
-                            Pending
-                        </h3>
+                        <button
+                        class="btn generate"
+                        onclick="generateAnalysis()">
 
-                        <strong id="statPending">
-                            0
-                        </strong>
+                            📊 Generate Chart
 
-                    </div>
+                        </button>
 
+                        <button
+                        class="btn clear-analysis"
+                        onclick="clearAnalysis()">
 
-                    <div class="stat-box">
+                            🧹 Clear
 
-                        <h3>
-                            Confirmed
-                        </h3>
-
-                        <strong id="statConfirmed">
-                            0
-                        </strong>
+                        </button>
 
                     </div>
 
 
-                    <div class="stat-box">
+                    <!-- CHART -->
 
-                        <h3>
-                            Completed
-                        </h3>
+                    <div
+                    class="chart-container">
 
-                        <strong id="statCompleted">
-                            0
-                        </strong>
+                        <canvas
+                        id="analysisChart">
 
-                    </div>
-
-
-                    <div class="stat-box">
-
-                        <h3>
-                            Cancelled
-                        </h3>
-
-                        <strong id="statCancelled">
-                            0
-                        </strong>
+                        </canvas>
 
                     </div>
 
 
-                    <div class="stat-box">
+                    <!-- OUTCOME -->
 
-                        <h3>
-                            Total Messages
-                        </h3>
+                    <div style="margin-top:25px;">
 
-                        <strong id="statMessages">
-                            0
-                        </strong>
+                        <label
+                        style="font-weight:bold;">
+
+                            📝 Outcome / Findings / Recommendation
+
+                        </label>
+
+                        <textarea
+                        id="analysisOutcome"
+                        placeholder="Andika ibyo wabonye muri analysis hano...
+
+Urugero:
+- Appointments ziyongereye muri uku kwezi.
+- Department ya OPD niyo ifite appointments nyinshi.
+- Pending appointments ziracyari nyinshi.
+- Recommendation: gukurikirana pending appointments buri munsi.">
+                        </textarea>
+
+                    </div>
+
+
+                    <div class="analysis-buttons">
+
+                        <button
+                        class="btn save-analysis"
+                        onclick="saveAnalysis()">
+
+                            💾 Save Analysis & Outcome
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                    class="analysis-result"
+                    id="analysisResult"
+                    style="display:none;">
 
                     </div>
 
@@ -1020,12 +1275,16 @@ const WEB_APP_URL =
 
 
 // =====================================================
-// VARIABLES
+// GLOBAL VARIABLES
 // =====================================================
 
 window.allAppointments = [];
 
 window.allMessages = [];
+
+window.allDeletedMessages = [];
+
+let analysisChart = null;
 
 
 // =====================================================
@@ -1039,23 +1298,18 @@ function login(){
         .value
         .trim();
 
-
     const password =
         document.getElementById("password")
         .value;
 
-
     const message =
         document.getElementById("loginMessage");
-
 
     const button =
         document.getElementById("loginButton");
 
-
     const loading =
         document.getElementById("loginLoading");
-
 
     if(!username || !password){
 
@@ -1063,16 +1317,13 @@ function login(){
             "Shyiramo username na password.";
 
         return;
-
     }
-
 
     button.disabled = true;
 
     loading.style.display = "block";
 
     message.innerText = "";
-
 
     const url =
         WEB_APP_URL +
@@ -1081,7 +1332,6 @@ function login(){
         encodeURIComponent(username) +
         "&password=" +
         encodeURIComponent(password);
-
 
     fetch(url)
 
@@ -1100,16 +1350,13 @@ function login(){
                 "true"
             );
 
-
             document.getElementById(
                 "loginPage"
             ).style.display = "none";
 
-
             document.getElementById(
                 "dashboard"
             ).style.display = "block";
-
 
             loadAppointments();
 
@@ -1148,7 +1395,7 @@ function login(){
 
 
 // =====================================================
-// ENTER TO LOGIN
+// ENTER LOGIN
 // =====================================================
 
 document
@@ -1177,16 +1424,13 @@ function logout(){
         "nashoAdminLoggedIn"
     );
 
-
     document.getElementById(
         "dashboard"
     ).style.display = "none";
 
-
     document.getElementById(
         "loginPage"
     ).style.display = "flex";
-
 
     document.getElementById(
         "password"
@@ -1199,51 +1443,51 @@ function logout(){
 // NAVIGATION
 // =====================================================
 
-function showSection(
-    id,
-    button
-){
+function showSection(id,button){
 
     document
     .querySelectorAll(".section")
     .forEach(function(section){
 
-        section.classList.remove(
-            "active"
-        );
+        section.classList.remove("active");
 
     });
-
 
     document
     .getElementById(id)
     .classList.add("active");
 
-
     document
     .querySelectorAll(".nav-btn")
     .forEach(function(btn){
 
-        btn.classList.remove(
-            "active"
-        );
+        btn.classList.remove("active");
 
     });
 
-
     button.classList.add("active");
 
-
     if(id === "appointments"){
-
         loadAppointments();
-
     }
 
-
     if(id === "messages"){
-
         loadMessages();
+    }
+
+    if(id === "recycleBin"){
+        loadRecycleBin();
+    }
+
+    if(id === "statistics"){
+
+        updateDashboard(
+            window.allAppointments
+        );
+
+        updateMessageCount(
+            window.allMessages
+        );
 
     }
 
@@ -1274,7 +1518,6 @@ function loadAppointments(){
     ).innerHTML =
         "Loading appointments...";
 
-
     fetch(
         WEB_APP_URL +
         "?action=getAppointments"
@@ -1288,10 +1531,6 @@ function loadAppointments(){
 
     .then(function(data){
 
-        /*
-         * Code.gs returns ARRAY directly.
-         */
-
         if(!Array.isArray(data)){
 
             window.allAppointments = [];
@@ -1304,19 +1543,11 @@ function loadAppointments(){
 
         }
 
+        window.allAppointments = data;
 
-        window.allAppointments =
-            data;
+        displayAppointments(data);
 
-
-        displayAppointments(
-            window.allAppointments
-        );
-
-
-        updateDashboard(
-            window.allAppointments
-        );
+        updateDashboard(data);
 
     })
 
@@ -1329,9 +1560,7 @@ function loadAppointments(){
         ).innerHTML =
 
         "<div class='error'>" +
-
         "Failed to load appointments." +
-
         "</div>";
 
     });
@@ -1350,7 +1579,6 @@ function displayAppointments(data){
             "appointmentsTable"
         );
 
-
     if(!data || data.length === 0){
 
         box.innerHTML =
@@ -1362,7 +1590,6 @@ function displayAppointments(data){
 
     }
 
-
     let html = `
 
     <table>
@@ -1372,25 +1599,15 @@ function displayAppointments(data){
             <tr>
 
                 <th>Timestamp</th>
-
                 <th>Name</th>
-
                 <th>Phone</th>
-
                 <th>Email</th>
-
                 <th>Patient ID</th>
-
                 <th>Department</th>
-
                 <th>Date</th>
-
                 <th>Time</th>
-
                 <th>Message</th>
-
                 <th>Status</th>
-
                 <th>Actions</th>
 
             </tr>
@@ -1401,40 +1618,27 @@ function displayAppointments(data){
 
     `;
 
-
     data.forEach(function(item,index){
 
         const status =
-            item.status ||
-            "Pending";
+            item.status || "Pending";
 
-
-        let statusClass =
-            "pending";
-
+        let statusClass = "pending";
 
         if(status === "Confirmed")
-            statusClass =
-                "confirmed";
-
+            statusClass = "confirmed";
 
         if(status === "Completed")
-            statusClass =
-                "completed";
-
+            statusClass = "completed";
 
         if(status === "Cancelled")
-            statusClass =
-                "cancelled";
-
+            statusClass = "cancelled";
 
         html += `
 
         <tr>
 
-            <td>
-                ${escapeHTML(item.timestamp)}
-            </td>
+            <td>${escapeHTML(item.timestamp)}</td>
 
             <td>
                 <strong>
@@ -1447,11 +1651,14 @@ function displayAppointments(data){
             </td>
 
             <td>
-                ${item.email
-                    ? `<a href="mailto:${escapeHTML(item.email)}">
-                        ${escapeHTML(item.email)}
-                       </a>`
-                    : ""
+                ${
+                    item.email
+                    ?
+                    `<a href="mailto:${escapeHTML(item.email)}">
+                    ${escapeHTML(item.email)}
+                    </a>`
+                    :
+                    ""
                 }
             </td>
 
@@ -1477,11 +1684,8 @@ function displayAppointments(data){
 
             <td>
 
-                <span
-                class="status ${statusClass}">
-
+                <span class="status ${statusClass}">
                     ${escapeHTML(status)}
-
                 </span>
 
             </td>
@@ -1496,7 +1700,6 @@ function displayAppointments(data){
 
                 </button>
 
-
                 <button
                 class="action-btn complete"
                 onclick="updateAppointment(${index},'Completed')">
@@ -1504,7 +1707,6 @@ function displayAppointments(data){
                     ✔
 
                 </button>
-
 
                 <button
                 class="action-btn cancel"
@@ -1522,18 +1724,12 @@ function displayAppointments(data){
 
     });
 
-
     html += `
-
         </tbody>
-
     </table>
-
     `;
 
-
-    box.innerHTML =
-        html;
+    box.innerHTML = html;
 
 }
 
@@ -1551,23 +1747,19 @@ function filterAppointments(){
         .value
         .toLowerCase();
 
-
     const filtered =
         window.allAppointments.filter(
             function(item){
 
                 return JSON
-                    .stringify(item)
-                    .toLowerCase()
-                    .includes(search);
+                .stringify(item)
+                .toLowerCase()
+                .includes(search);
 
             }
         );
 
-
-    displayAppointments(
-        filtered
-    );
+    displayAppointments(filtered);
 
 }
 
@@ -1576,54 +1768,38 @@ function filterAppointments(){
 // UPDATE APPOINTMENT
 // =====================================================
 
-function updateAppointment(
-    index,
-    status
-){
+function updateAppointment(index,status){
 
     const appointment =
         window.allAppointments[index];
 
-
-    if(!appointment){
-
+    if(!appointment)
         return;
-
-    }
-
 
     if(!confirm(
         "Hindura status ibe " +
         status +
         "?"
-    )){
-
+    ))
         return;
-
-    }
-
 
     const params =
         new URLSearchParams();
-
 
     params.append(
         "action",
         "updateAppointment"
     );
 
-
     params.append(
         "row",
         appointment.row
     );
 
-
     params.append(
         "status",
         status
     );
-
 
     fetch(
         WEB_APP_URL,
@@ -1686,10 +1862,8 @@ function loadMessages(){
             "messagesTable"
         );
 
-
     box.innerHTML =
         "Loading messages...";
-
 
     fetch(
         WEB_APP_URL +
@@ -1704,21 +1878,6 @@ function loadMessages(){
 
     .then(function(data){
 
-        /*
-         * IMPORTANT:
-         *
-         * Code.gs returns:
-         *
-         * [
-         *   {...},
-         *   {...}
-         * ]
-         *
-         * NOT:
-         *
-         * {messages:[...]}
-         */
-
         if(!Array.isArray(data)){
 
             window.allMessages = [];
@@ -1731,19 +1890,11 @@ function loadMessages(){
 
         }
 
+        window.allMessages = data;
 
-        window.allMessages =
-            data;
+        displayMessages(data);
 
-
-        displayMessages(
-            window.allMessages
-        );
-
-
-        updateMessageCount(
-            window.allMessages
-        );
+        updateMessageCount(data);
 
     })
 
@@ -1772,7 +1923,6 @@ function displayMessages(data){
             "messagesTable"
         );
 
-
     if(!data || data.length === 0){
 
         box.innerHTML =
@@ -1784,29 +1934,21 @@ function displayMessages(data){
 
     }
 
-
     let html = "";
-
 
     data.forEach(function(item,index){
 
         const status =
-            item.status ||
-            "New";
-
+            item.status || "New";
 
         const statusClass =
             status === "Replied"
             ? "replied"
             : "new-status";
 
-
         html += `
 
         <div class="message-box">
-
-
-            <!-- HEADER -->
 
             <div class="message-header">
 
@@ -1816,8 +1958,7 @@ function displayMessages(data){
 
                         👤
                         ${escapeHTML(
-                            item.name ||
-                            "Unknown"
+                            item.name || "Unknown"
                         )}
 
                     </strong>
@@ -1828,17 +1969,14 @@ function displayMessages(data){
 
                         🆔
                         ${escapeHTML(
-                            item.messageId ||
-                            ""
+                            item.messageId || ""
                         )}
 
                     </small>
 
                 </div>
 
-
-                <span
-                class="status ${statusClass}">
+                <span class="status ${statusClass}">
 
                     ${escapeHTML(status)}
 
@@ -1846,107 +1984,66 @@ function displayMessages(data){
 
             </div>
 
-
-            <!-- DATE -->
-
             <small>
 
                 📅 Received:
-                ${escapeHTML(
-                    item.timestamp ||
-                    ""
-                )}
+                ${escapeHTML(item.timestamp || "")}
 
             </small>
 
-
-            <!-- CONTACT INFORMATION -->
-
             <div class="contact-info">
-
 
                 <div class="contact-row">
 
-                    👤
-                    <strong>
-                        Name:
-                    </strong>
+                    👤 <strong>Name:</strong>
 
-                    ${escapeHTML(
-                        item.name ||
-                        ""
-                    )}
+                    ${escapeHTML(item.name || "")}
 
                 </div>
 
-
                 <div class="contact-row">
 
-                    📞
-                    <strong>
-                        Telephone:
-                    </strong>
+                    📞 <strong>Telephone:</strong>
 
                     ${
                         item.phone
-
                         ?
-
                         `<a href="tel:${escapeHTML(item.phone)}">
-                            ${escapeHTML(item.phone)}
-                         </a>`
-
+                        ${escapeHTML(item.phone)}
+                        </a>`
                         :
-
                         "<span>Nta telephone</span>"
                     }
 
                 </div>
 
-
                 <div class="contact-row">
 
-                    📧
-                    <strong>
-                        Email:
-                    </strong>
+                    📧 <strong>Email:</strong>
 
                     ${
                         item.email
-
                         ?
-
                         `<a href="mailto:${escapeHTML(item.email)}">
-                            ${escapeHTML(item.email)}
-                         </a>`
-
+                        ${escapeHTML(item.email)}
+                        </a>`
                         :
-
                         "<span>Nta email</span>"
                     }
 
                 </div>
 
-
                 <div class="contact-row">
 
-                    🆔
-                    <strong>
-                        Message ID:
-                    </strong>
+                    🆔 <strong>Message ID:</strong>
 
                     ${escapeHTML(
-                        item.messageId ||
-                        ""
+                        item.messageId || ""
                     )}
 
                 </div>
 
-
             </div>
-
-
-            <!-- ORIGINAL MESSAGE -->
 
             <div class="message-text">
 
@@ -1957,33 +2054,22 @@ function displayMessages(data){
                 <br><br>
 
                 ${escapeHTML(
-                    item.message ||
-                    ""
+                    item.message || ""
                 )}
 
             </div>
 
-
-            <!-- PREVIOUS REPLY -->
-
             ${
                 item.reply
-
                 ?
-
                 `
-
                 <div class="previous-reply">
 
                     <div class="previous-reply-title">
-
                         ✅ Reply Already Sent
-
                     </div>
 
-                    ${escapeHTML(
-                        item.reply
-                    )}
+                    ${escapeHTML(item.reply)}
 
                     <br><br>
 
@@ -1991,38 +2077,26 @@ function displayMessages(data){
 
                         📅 Reply Date:
                         ${escapeHTML(
-                            item.replyDate ||
-                            ""
+                            item.replyDate || ""
                         )}
 
                     </small>
 
                 </div>
-
                 `
-
                 :
-
                 ""
-
             }
-
-
-            <!-- REPLY AREA -->
 
             <div class="reply-area">
 
                 <label>
-
                     ✍️ Write Reply
-
                 </label>
-
 
                 <textarea
                 id="replyText-${index}"
                 placeholder="Andika igisubizo cyawe hano..."></textarea>
-
 
                 <button
                 class="btn send-reply"
@@ -2035,6 +2109,17 @@ function displayMessages(data){
 
             </div>
 
+            <div style="margin-top:15px;">
+
+                <button
+                class="action-btn delete-btn"
+                onclick="deleteMessage(${index})">
+
+                    🗑️ Move to Recycle Bin
+
+                </button>
+
+            </div>
 
         </div>
 
@@ -2042,9 +2127,7 @@ function displayMessages(data){
 
     });
 
-
-    box.innerHTML =
-        html;
+    box.innerHTML = html;
 
 }
 
@@ -2058,17 +2141,13 @@ function sendReply(index){
     const item =
         window.allMessages[index];
 
-
     if(!item){
 
-        alert(
-            "Message ntabwo ibonetse."
-        );
+        alert("Message ntabwo ibonetse.");
 
         return;
 
     }
-
 
     if(!item.email){
 
@@ -2080,33 +2159,18 @@ function sendReply(index){
 
     }
 
-
     const textarea =
         document.getElementById(
             "replyText-" + index
         );
-
 
     const button =
         document.getElementById(
             "sendReply-" + index
         );
 
-
-    if(!textarea){
-
-        alert(
-            "Reply box ntabwo ibonetse."
-        );
-
-        return;
-
-    }
-
-
     const reply =
         textarea.value.trim();
-
 
     if(!reply){
 
@@ -2120,74 +2184,45 @@ function sendReply(index){
 
     }
 
-
-    const confirmSend =
-        confirm(
-
-            "Ohereza reply kuri:\n\n" +
-
-            item.email +
-
-            "\n\n" +
-
-            "Urashaka gukomeza?"
-
-        );
-
-
-    if(!confirmSend){
-
+    if(!confirm(
+        "Ohereza reply kuri:\n\n" +
+        item.email +
+        "\n\nUrashaka gukomeza?"
+    ))
         return;
-
-    }
-
 
     const params =
         new URLSearchParams();
-
 
     params.append(
         "action",
         "replyMessage"
     );
 
-
-    /*
-     * IMPORTANT:
-     * Send the actual Google Sheet row.
-     */
-
     params.append(
         "row",
         item.row
     );
-
 
     params.append(
         "email",
         item.email
     );
 
-
     params.append(
         "name",
         item.name
     );
-
 
     params.append(
         "message",
         reply
     );
 
-
-    button.disabled =
-        true;
-
+    button.disabled = true;
 
     button.innerText =
         "⏳ Sending...";
-
 
     fetch(
         WEB_APP_URL,
@@ -2212,7 +2247,6 @@ function sendReply(index){
                 item.email
             );
 
-
             loadMessages();
 
         }
@@ -2224,10 +2258,7 @@ function sendReply(index){
                 "Reply failed."
             );
 
-
-            button.disabled =
-                false;
-
+            button.disabled = false;
 
             button.innerText =
                 "📤 Send Reply";
@@ -2240,18 +2271,456 @@ function sendReply(index){
 
         console.error(error);
 
-
         alert(
             "❌ Ntibyashobotse kohereza reply."
         );
 
-
-        button.disabled =
-            false;
-
+        button.disabled = false;
 
         button.innerText =
             "📤 Send Reply";
+
+    });
+
+}
+
+
+// =====================================================
+// DELETE MESSAGE → RECYCLE BIN
+// =====================================================
+
+function deleteMessage(index){
+
+    const item =
+        window.allMessages[index];
+
+    if(!item){
+
+        alert("Message ntabwo ibonetse.");
+
+        return;
+
+    }
+
+    if(!confirm(
+        "Urashaka kwimurira uyu message muri Recycle Bin?\n\n" +
+        "Message ntizahita isibwa burundu."
+    )){
+
+        return;
+
+    }
+
+    const params =
+        new URLSearchParams();
+
+    params.append(
+        "action",
+        "deleteMessage"
+    );
+
+    params.append(
+        "row",
+        item.row
+    );
+
+    fetch(
+        WEB_APP_URL,
+        {
+            method:"POST",
+            body:params
+        }
+    )
+
+    .then(function(response){
+
+        return response.json();
+
+    })
+
+    .then(function(result){
+
+        if(result.success){
+
+            alert(
+                "🗑️ Message yashyizwe muri Recycle Bin."
+            );
+
+            loadMessages();
+
+        }
+
+        else{
+
+            alert(
+                result.message ||
+                "Delete failed."
+            );
+
+        }
+
+    })
+
+    .catch(function(error){
+
+        console.error(error);
+
+        alert(
+            "Ntibyashobotse gusiba message."
+        );
+
+    });
+
+}
+
+
+// =====================================================
+// LOAD RECYCLE BIN
+// =====================================================
+
+function loadRecycleBin(){
+
+    const box =
+        document.getElementById(
+            "recycleBinTable"
+        );
+
+    box.innerHTML =
+        "Loading recycle bin...";
+
+    fetch(
+        WEB_APP_URL +
+        "?action=getRecycleBin"
+    )
+
+    .then(function(response){
+
+        return response.json();
+
+    })
+
+    .then(function(data){
+
+        if(!Array.isArray(data)){
+
+            window.allDeletedMessages = [];
+
+            displayRecycleBin([]);
+
+            return;
+
+        }
+
+        window.allDeletedMessages =
+            data;
+
+        displayRecycleBin(data);
+
+    })
+
+    .catch(function(error){
+
+        console.error(error);
+
+        box.innerHTML =
+            "<div class='error'>" +
+            "Failed to load recycle bin." +
+            "</div>";
+
+    });
+
+}
+
+
+// =====================================================
+// DISPLAY RECYCLE BIN
+// =====================================================
+
+function displayRecycleBin(data){
+
+    const box =
+        document.getElementById(
+            "recycleBinTable"
+        );
+
+    if(!data || data.length === 0){
+
+        box.innerHTML =
+            "<div class='empty'>" +
+            "🗑️ Recycle Bin irimo ubusa." +
+            "</div>";
+
+        return;
+
+    }
+
+    let html = "";
+
+    data.forEach(function(item,index){
+
+        html += `
+
+        <div class="deleted-box">
+
+            <div class="deleted-header">
+
+                <div>
+
+                    <strong>
+                        👤
+                        ${escapeHTML(
+                            item.name || ""
+                        )}
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        🗑️ Deleted:
+                        ${escapeHTML(
+                            item.deletedDate || ""
+                        )}
+                    </small>
+
+                </div>
+
+                <span class="status cancelled">
+                    Deleted
+                </span>
+
+            </div>
+
+            <div class="contact-info">
+
+                <div class="contact-row">
+
+                    📞
+                    <strong>Phone:</strong>
+
+                    ${escapeHTML(
+                        item.phone || ""
+                    )}
+
+                </div>
+
+                <div class="contact-row">
+
+                    📧
+                    <strong>Email:</strong>
+
+                    ${escapeHTML(
+                        item.email || ""
+                    )}
+
+                </div>
+
+                <div class="contact-row">
+
+                    🆔
+                    <strong>Message ID:</strong>
+
+                    ${escapeHTML(
+                        item.messageId || ""
+                    )}
+
+                </div>
+
+            </div>
+
+            <div class="deleted-message">
+
+                ${escapeHTML(
+                    item.message || ""
+                )}
+
+            </div>
+
+            <div style="margin-top:15px;">
+
+                <button
+                class="action-btn restore-btn"
+                onclick="restoreMessage(${index})">
+
+                    ♻️ Restore
+
+                </button>
+
+                <button
+                class="action-btn permanent-btn"
+                onclick="permanentDeleteMessage(${index})">
+
+                    🗑️ Delete Permanently
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    box.innerHTML = html;
+
+}
+
+
+// =====================================================
+// RESTORE MESSAGE
+// =====================================================
+
+function restoreMessage(index){
+
+    const item =
+        window.allDeletedMessages[index];
+
+    if(!item)
+        return;
+
+    if(!confirm(
+        "Subiza uyu message muri Messages?"
+    ))
+        return;
+
+    const params =
+        new URLSearchParams();
+
+    params.append(
+        "action",
+        "restoreMessage"
+    );
+
+    params.append(
+        "row",
+        item.row
+    );
+
+    fetch(
+        WEB_APP_URL,
+        {
+            method:"POST",
+            body:params
+        }
+    )
+
+    .then(function(response){
+
+        return response.json();
+
+    })
+
+    .then(function(result){
+
+        if(result.success){
+
+            alert(
+                "♻️ Message yasubijwe muri Messages."
+            );
+
+            loadRecycleBin();
+
+        }
+
+        else{
+
+            alert(
+                result.message ||
+                "Restore failed."
+            );
+
+        }
+
+    })
+
+    .catch(function(error){
+
+        console.error(error);
+
+        alert(
+            "Restore failed."
+        );
+
+    });
+
+}
+
+
+// =====================================================
+// PERMANENT DELETE
+// =====================================================
+
+function permanentDeleteMessage(index){
+
+    const item =
+        window.allDeletedMessages[index];
+
+    if(!item)
+        return;
+
+    if(!confirm(
+        "⚠️ IKI GIKORWA NTIKISUBIRWA!\n\n" +
+        "Urashaka gusiba burundu uyu message?"
+    ))
+        return;
+
+    const params =
+        new URLSearchParams();
+
+    params.append(
+        "action",
+        "permanentDeleteMessage"
+    );
+
+    params.append(
+        "row",
+        item.row
+    );
+
+    fetch(
+        WEB_APP_URL,
+        {
+            method:"POST",
+            body:params
+        }
+    )
+
+    .then(function(response){
+
+        return response.json();
+
+    })
+
+    .then(function(result){
+
+        if(result.success){
+
+            alert(
+                "🗑️ Message yasibwe burundu."
+            );
+
+            loadRecycleBin();
+
+        }
+
+        else{
+
+            alert(
+                result.message ||
+                "Permanent delete failed."
+            );
+
+        }
+
+    })
+
+    .catch(function(error){
+
+        console.error(error);
+
+        alert(
+            "Permanent delete failed."
+        );
 
     });
 
@@ -2269,10 +2738,8 @@ function updateDashboard(data){
         ? data
         : [];
 
-
     const total =
         data.length;
-
 
     const pending =
         data.filter(function(x){
@@ -2284,14 +2751,12 @@ function updateDashboard(data){
 
         }).length;
 
-
     const confirmed =
         data.filter(function(x){
 
             return x.status === "Confirmed";
 
         }).length;
-
 
     const completed =
         data.filter(function(x){
@@ -2300,7 +2765,6 @@ function updateDashboard(data){
 
         }).length;
 
-
     const cancelled =
         data.filter(function(x){
 
@@ -2308,53 +2772,37 @@ function updateDashboard(data){
 
         }).length;
 
-
     document.getElementById(
         "totalAppointments"
-    ).innerText =
-        total;
-
+    ).innerText = total;
 
     document.getElementById(
         "pendingAppointments"
-    ).innerText =
-        pending;
-
+    ).innerText = pending;
 
     document.getElementById(
         "confirmedAppointments"
-    ).innerText =
-        confirmed;
-
+    ).innerText = confirmed;
 
     document.getElementById(
         "statTotal"
-    ).innerText =
-        total;
-
+    ).innerText = total;
 
     document.getElementById(
         "statPending"
-    ).innerText =
-        pending;
-
+    ).innerText = pending;
 
     document.getElementById(
         "statConfirmed"
-    ).innerText =
-        confirmed;
-
+    ).innerText = confirmed;
 
     document.getElementById(
         "statCompleted"
-    ).innerText =
-        completed;
-
+    ).innerText = completed;
 
     document.getElementById(
         "statCancelled"
-    ).innerText =
-        cancelled;
+    ).innerText = cancelled;
 
 }
 
@@ -2370,21 +2818,520 @@ function updateMessageCount(data){
         ? data
         : [];
 
-
     const total =
         data.length;
 
-
     document.getElementById(
         "totalMessages"
-    ).innerText =
-        total;
-
+    ).innerText = total;
 
     document.getElementById(
         "statMessages"
-    ).innerText =
-        total;
+    ).innerText = total;
+
+}
+
+
+// =====================================================
+// GENERATE ANALYSIS
+// =====================================================
+
+function generateAnalysis(){
+
+    const dataType =
+        document.getElementById(
+            "analysisData"
+        ).value;
+
+    const chartType =
+        document.getElementById(
+            "chartType"
+        ).value;
+
+    let labels = [];
+
+    let values = [];
+
+    let title = "";
+
+
+    // -------------------------------------------------
+    // APPOINTMENT STATUS
+    // -------------------------------------------------
+
+    if(dataType === "appointmentStatus"){
+
+        labels = [
+            "Pending",
+            "Confirmed",
+            "Completed",
+            "Cancelled"
+        ];
+
+        values = [
+
+            window.allAppointments.filter(
+                x => (x.status || "Pending") === "Pending"
+            ).length,
+
+            window.allAppointments.filter(
+                x => x.status === "Confirmed"
+            ).length,
+
+            window.allAppointments.filter(
+                x => x.status === "Completed"
+            ).length,
+
+            window.allAppointments.filter(
+                x => x.status === "Cancelled"
+            ).length
+
+        ];
+
+        title =
+            "Appointment Status Analysis";
+
+    }
+
+
+    // -------------------------------------------------
+    // DEPARTMENTS
+    // -------------------------------------------------
+
+    if(dataType === "department"){
+
+        const counter = {};
+
+        window.allAppointments.forEach(
+            function(item){
+
+                const dept =
+                    item.department ||
+                    "Unknown";
+
+                counter[dept] =
+                    (counter[dept] || 0) + 1;
+
+            }
+        );
+
+        labels =
+            Object.keys(counter);
+
+        values =
+            Object.values(counter);
+
+        title =
+            "Appointments by Department";
+
+    }
+
+
+    // -------------------------------------------------
+    // APPOINTMENT TREND
+    // -------------------------------------------------
+
+    if(dataType === "appointmentTrend"){
+
+        const counter = {};
+
+        window.allAppointments.forEach(
+            function(item){
+
+                const date =
+                    item.date ||
+                    item.timestamp ||
+                    "Unknown";
+
+                const key =
+                    String(date).substring(0,10);
+
+                counter[key] =
+                    (counter[key] || 0) + 1;
+
+            }
+        );
+
+        const sorted =
+            Object.keys(counter).sort();
+
+        labels = sorted;
+
+        values =
+            sorted.map(
+                key => counter[key]
+            );
+
+        title =
+            "Appointment Trend";
+
+    }
+
+
+    // -------------------------------------------------
+    // MESSAGE STATUS
+    // -------------------------------------------------
+
+    if(dataType === "messageStatus"){
+
+        const counter = {};
+
+        window.allMessages.forEach(
+            function(item){
+
+                const status =
+                    item.status ||
+                    "New";
+
+                counter[status] =
+                    (counter[status] || 0) + 1;
+
+            }
+        );
+
+        labels =
+            Object.keys(counter);
+
+        values =
+            Object.values(counter);
+
+        title =
+            "Message Status Analysis";
+
+    }
+
+
+    // -------------------------------------------------
+    // MESSAGE TREND
+    // -------------------------------------------------
+
+    if(dataType === "messageTrend"){
+
+        const counter = {};
+
+        window.allMessages.forEach(
+            function(item){
+
+                const date =
+                    item.timestamp ||
+                    "Unknown";
+
+                const key =
+                    String(date).substring(0,10);
+
+                counter[key] =
+                    (counter[key] || 0) + 1;
+
+            }
+        );
+
+        const sorted =
+            Object.keys(counter).sort();
+
+        labels = sorted;
+
+        values =
+            sorted.map(
+                key => counter[key]
+            );
+
+        title =
+            "Message Trend";
+
+    }
+
+
+    if(labels.length === 0){
+
+        alert(
+            "Nta data ihagije yo gukora analysis."
+        );
+
+        return;
+
+    }
+
+
+    const customTitle =
+        document.getElementById(
+            "analysisTitle"
+        ).value.trim();
+
+    if(customTitle){
+
+        title = customTitle;
+
+    }
+
+
+    const canvas =
+        document.getElementById(
+            "analysisChart"
+        );
+
+    if(analysisChart){
+
+        analysisChart.destroy();
+
+    }
+
+
+    analysisChart =
+        new Chart(
+            canvas,
+            {
+
+                type:chartType,
+
+                data:{
+
+                    labels:labels,
+
+                    datasets:[{
+
+                        label:title,
+
+                        data:values,
+
+                        borderWidth:2,
+
+                        tension:.3
+
+                    }]
+
+                },
+
+                options:{
+
+                    responsive:true,
+
+                    maintainAspectRatio:false,
+
+                    plugins:{
+
+                        legend:{
+                            display:true
+                        },
+
+                        title:{
+
+                            display:true,
+
+                            text:title
+
+                        }
+
+                    },
+
+                    scales:
+
+                        (
+                            chartType === "pie" ||
+                            chartType === "doughnut"
+                        )
+
+                        ?
+
+                        {}
+
+                        :
+
+                        {
+
+                            y:{
+
+                                beginAtZero:true,
+
+                                ticks:{
+                                    precision:0
+                                }
+
+                            }
+
+                        }
+
+                }
+
+            }
+        );
+
+
+    const result =
+        document.getElementById(
+            "analysisResult"
+        );
+
+    result.style.display = "block";
+
+    result.innerHTML =
+
+        "<strong>📊 Analysis Generated</strong><br><br>" +
+
+        "Chart: " +
+        escapeHTML(chartType) +
+        "<br>" +
+
+        "Analysis: " +
+        escapeHTML(title) +
+        "<br>" +
+
+        "Data points: " +
+        labels.length;
+
+}
+
+
+// =====================================================
+// CLEAR ANALYSIS
+// =====================================================
+
+function clearAnalysis(){
+
+    if(analysisChart){
+
+        analysisChart.destroy();
+
+        analysisChart = null;
+
+    }
+
+    document.getElementById(
+        "analysisTitle"
+    ).value = "";
+
+    document.getElementById(
+        "analysisOutcome"
+    ).value = "";
+
+    document.getElementById(
+        "analysisResult"
+    ).style.display = "none";
+
+}
+
+
+// =====================================================
+// SAVE ANALYSIS + OUTCOME
+// =====================================================
+
+function saveAnalysis(){
+
+    const title =
+        document.getElementById(
+            "analysisTitle"
+        ).value.trim();
+
+    const chartType =
+        document.getElementById(
+            "chartType"
+        ).value;
+
+    const dataType =
+        document.getElementById(
+            "analysisData"
+        ).value;
+
+    const outcome =
+        document.getElementById(
+            "analysisOutcome"
+        ).value.trim();
+
+
+    if(!title){
+
+        alert(
+            "Andika Analysis Title."
+        );
+
+        return;
+
+    }
+
+
+    if(!outcome){
+
+        alert(
+            "Andika Outcome / Findings / Recommendation."
+        );
+
+        return;
+
+    }
+
+
+    const params =
+        new URLSearchParams();
+
+    params.append(
+        "action",
+        "saveAnalysis"
+    );
+
+    params.append(
+        "title",
+        title
+    );
+
+    params.append(
+        "chartType",
+        chartType
+    );
+
+    params.append(
+        "dataType",
+        dataType
+    );
+
+    params.append(
+        "outcome",
+        outcome
+    );
+
+
+    fetch(
+        WEB_APP_URL,
+        {
+            method:"POST",
+            body:params
+        }
+    )
+
+    .then(function(response){
+
+        return response.json();
+
+    })
+
+    .then(function(result){
+
+        if(result.success){
+
+            alert(
+                "✅ Analysis na Outcome bibitswe neza."
+            );
+
+        }
+
+        else{
+
+            alert(
+                result.message ||
+                "Analysis ntibitswe."
+            );
+
+        }
+
+    })
+
+    .catch(function(error){
+
+        console.error(error);
+
+        alert(
+            "Ntibyashobotse kubika analysis."
+        );
+
+    });
 
 }
 
@@ -2401,30 +3348,11 @@ function escapeHTML(value){
         : value
     )
 
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-
-    .replace(
-        /</g,
-        "&lt;"
-    )
-
-    .replace(
-        />/g,
-        "&gt;"
-    )
-
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-
-    .replace(
-        /'/g,
-        "&#039;"
-    );
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
@@ -2442,20 +3370,15 @@ window.addEventListener(
                 "nashoAdminLoggedIn"
             );
 
-
         if(loggedIn === "true"){
 
             document.getElementById(
                 "loginPage"
-            ).style.display =
-                "none";
-
+            ).style.display = "none";
 
             document.getElementById(
                 "dashboard"
-            ).style.display =
-                "block";
-
+            ).style.display = "block";
 
             loadAppointments();
 
