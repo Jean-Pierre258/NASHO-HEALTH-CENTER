@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="rw">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NASHO Health Center | Admin Dashboard</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+NASHO Health Center | Admin Dashboard
+</title>
 
 <style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -20,7 +30,9 @@ body{
     color:#172033;
 }
 
-/* LOGIN */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 .login-page{
     min-height:100vh;
@@ -85,12 +97,18 @@ body{
     color:#1769e0;
 }
 
-/* DASHBOARD */
+/* =====================================================
+   DASHBOARD
+===================================================== */
 
 .dashboard{
     display:none;
     min-height:100vh;
 }
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
 .sidebar{
     position:fixed;
@@ -101,6 +119,7 @@ body{
     background:#102a43;
     color:white;
     padding:25px 15px;
+    z-index:1000;
 }
 
 .logo{
@@ -136,6 +155,14 @@ body{
     background:#c0392b;
 }
 
+.logout:hover{
+    background:#a93226;
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
 .main{
     margin-left:250px;
     padding:30px;
@@ -150,6 +177,18 @@ body{
     justify-content:space-between;
     align-items:center;
 }
+
+.topbar h2{
+    color:#102a43;
+}
+
+.topbar span{
+    color:#687386;
+}
+
+/* =====================================================
+   CARDS
+===================================================== */
 
 .cards{
     display:grid;
@@ -175,6 +214,10 @@ body{
     margin-top:10px;
 }
 
+/* =====================================================
+   SECTION
+===================================================== */
+
 .section{
     display:none;
 }
@@ -190,6 +233,14 @@ body{
     overflow-x:auto;
 }
 
+.panel h2{
+    margin-bottom:15px;
+}
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
 .search{
     width:100%;
     padding:13px;
@@ -198,10 +249,14 @@ body{
     margin:15px 0;
 }
 
+/* =====================================================
+   TABLE
+===================================================== */
+
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:900px;
+    min-width:1000px;
 }
 
 th,
@@ -215,6 +270,10 @@ td{
 th{
     background:#f7f9fc;
 }
+
+/* =====================================================
+   STATUS
+===================================================== */
 
 .status{
     padding:6px 10px;
@@ -254,6 +313,10 @@ th{
     color:#155724;
 }
 
+/* =====================================================
+   BUTTONS
+===================================================== */
+
 .action-btn{
     border:0;
     padding:7px 10px;
@@ -288,27 +351,143 @@ th{
     margin-top:15px;
 }
 
+/* =====================================================
+   MESSAGE
+===================================================== */
+
 .message-box{
     border:1px solid #e4e8ee;
-    border-radius:12px;
-    padding:18px;
+    border-radius:14px;
+    padding:20px;
     margin-top:15px;
+    background:white;
 }
 
 .message-header{
     display:flex;
     justify-content:space-between;
+    align-items:flex-start;
     gap:15px;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
+
+.message-header strong{
+    font-size:18px;
+    color:#102a43;
+}
+
+/* =====================================================
+   CONTACT INFO
+===================================================== */
+
+.contact-info{
+    background:#f7f9fc;
+    padding:15px;
+    border-radius:10px;
+    margin-top:12px;
+}
+
+.contact-row{
+    margin:7px 0;
+    line-height:1.5;
+}
+
+.contact-row a{
+    color:#1769e0;
+    text-decoration:none;
+}
+
+.contact-row a:hover{
+    text-decoration:underline;
+}
+
+/* =====================================================
+   MESSAGE TEXT
+===================================================== */
 
 .message-text{
     background:#f7f9fc;
     padding:15px;
     border-radius:10px;
-    margin-top:10px;
+    margin-top:12px;
     white-space:pre-wrap;
+    line-height:1.6;
 }
+
+/* =====================================================
+   REPLY AREA
+===================================================== */
+
+.reply-area{
+    margin-top:18px;
+    padding:18px;
+    background:#eef7ff;
+    border:1px solid #d8e9f8;
+    border-radius:12px;
+}
+
+.reply-area label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+    color:#102a43;
+}
+
+.reply-area textarea{
+    width:100%;
+    min-height:120px;
+    padding:13px;
+    border:1px solid #ccd5df;
+    border-radius:9px;
+    resize:vertical;
+    font-size:15px;
+    line-height:1.5;
+    outline:none;
+}
+
+.reply-area textarea:focus{
+    border-color:#1769e0;
+    box-shadow:0 0 0 2px rgba(23,105,224,.1);
+}
+
+.send-reply{
+    background:#1769e0;
+    color:white;
+    margin-top:10px;
+}
+
+.send-reply:hover{
+    background:#0d55bd;
+}
+
+.send-reply:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* =====================================================
+   PREVIOUS REPLY
+===================================================== */
+
+.previous-reply{
+    margin-top:15px;
+    background:#eaf7ed;
+    border-left:4px solid #28a745;
+    padding:15px;
+    border-radius:8px;
+    white-space:pre-wrap;
+    line-height:1.6;
+}
+
+.previous-reply-title{
+    font-weight:bold;
+    color:#155724;
+    margin-bottom:8px;
+}
+
+/* =====================================================
+   EMPTY / ERROR
+===================================================== */
 
 .empty{
     padding:30px;
@@ -322,6 +501,10 @@ th{
     background:#fcebea;
     border-radius:10px;
 }
+
+/* =====================================================
+   STATISTICS
+===================================================== */
 
 .stat-grid{
     display:grid;
@@ -346,6 +529,10 @@ th{
     font-size:32px;
     margin-top:8px;
 }
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:900px){
 
@@ -402,10 +589,16 @@ th{
         gap:10px;
     }
 
+    .message-header{
+        flex-direction:column;
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
@@ -414,47 +607,58 @@ th{
      LOGIN
 ===================================================== -->
 
-<div class="login-page" id="loginPage">
+<div
+class="login-page"
+id="loginPage">
 
     <div class="login-box">
 
-        <h1>🏥 NASHO</h1>
+        <h1>
+            🏥 NASHO
+        </h1>
 
-        <p>Health Center Admin</p>
-
-        <input
-            class="input"
-            type="text"
-            id="username"
-            placeholder="Admin username"
-        >
+        <p>
+            Health Center Admin
+        </p>
 
         <input
-            class="input"
-            type="password"
-            id="password"
-            placeholder="Password"
-        >
+        class="input"
+        type="text"
+        id="username"
+        placeholder="Admin username">
+
+
+        <input
+        class="input"
+        type="password"
+        id="password"
+        placeholder="Password">
+
 
         <button
-            class="btn btn-primary"
-            id="loginButton"
-            onclick="login()"
-        >
+        class="btn btn-primary"
+        id="loginButton"
+        onclick="login()">
+
             🔐 Login
+
         </button>
 
+
         <div
-            class="loading"
-            id="loginLoading"
-        >
+        class="loading"
+        id="loginLoading">
+
             Connecting to server...
+
         </div>
 
+
         <p
-            id="loginMessage"
-            style="margin-top:15px;color:#c0392b;"
-        ></p>
+        id="loginMessage"
+        style="margin-top:15px;color:#c0392b;">
+
+        </p>
 
     </div>
 
@@ -465,7 +669,12 @@ th{
      DASHBOARD
 ===================================================== -->
 
-<div class="dashboard" id="dashboard">
+<div
+class="dashboard"
+id="dashboard">
+
+
+    <!-- SIDEBAR -->
 
     <aside class="sidebar">
 
@@ -475,46 +684,53 @@ th{
 
 
         <button
-            class="nav-btn active"
-            onclick="showSection('dashboardSection',this)"
-        >
+        class="nav-btn active"
+        onclick="showSection('dashboardSection',this)">
+
             📊 Dashboard
+
         </button>
 
 
         <button
-            class="nav-btn"
-            onclick="showSection('appointments',this)"
-        >
+        class="nav-btn"
+        onclick="showSection('appointments',this)">
+
             📅 Appointments
+
         </button>
 
 
         <button
-            class="nav-btn"
-            onclick="showSection('messages',this)"
-        >
+        class="nav-btn"
+        onclick="showSection('messages',this)">
+
             ✉️ Messages
+
         </button>
 
 
         <button
-            class="nav-btn"
-            onclick="showSection('statistics',this)"
-        >
+        class="nav-btn"
+        onclick="showSection('statistics',this)">
+
             📈 Statistics
+
         </button>
 
 
         <button
-            class="nav-btn logout"
-            onclick="logout()"
-        >
+        class="nav-btn logout"
+        onclick="logout()">
+
             🚪 Logout
+
         </button>
 
     </aside>
 
+
+    <!-- MAIN -->
 
     <main class="main">
 
@@ -535,19 +751,19 @@ th{
 
             </div>
 
+
             <strong id="today"></strong>
 
         </div>
 
 
         <!-- =================================================
-             DASHBOARD SECTION
+             DASHBOARD
         ================================================== -->
 
         <section
-            class="section active"
-            id="dashboardSection"
-        >
+        class="section active"
+        id="dashboardSection">
 
             <div class="cards">
 
@@ -603,7 +819,6 @@ th{
 
                 </div>
 
-
             </div>
 
         </section>
@@ -614,9 +829,8 @@ th{
         ================================================== -->
 
         <section
-            class="section"
-            id="appointments"
-        >
+        class="section"
+        id="appointments">
 
             <div class="panel">
 
@@ -626,11 +840,10 @@ th{
 
 
                 <input
-                    class="search"
-                    id="appointmentSearch"
-                    placeholder="Search name, phone, department..."
-                    onkeyup="filterAppointments()"
-                >
+                class="search"
+                id="appointmentSearch"
+                placeholder="Search name, phone, department..."
+                onkeyup="filterAppointments()">
 
 
                 <div id="appointmentsTable">
@@ -641,10 +854,11 @@ th{
 
 
                 <button
-                    class="btn refresh"
-                    onclick="loadAppointments()"
-                >
+                class="btn refresh"
+                onclick="loadAppointments()">
+
                     🔄 Refresh Appointments
+
                 </button>
 
             </div>
@@ -657,9 +871,8 @@ th{
         ================================================== -->
 
         <section
-            class="section"
-            id="messages"
-        >
+        class="section"
+        id="messages">
 
             <div class="panel">
 
@@ -676,10 +889,11 @@ th{
 
 
                 <button
-                    class="btn refresh"
-                    onclick="loadMessages()"
-                >
+                class="btn refresh"
+                onclick="loadMessages()">
+
                     🔄 Refresh Messages
+
                 </button>
 
             </div>
@@ -692,9 +906,8 @@ th{
         ================================================== -->
 
         <section
-            class="section"
-            id="statistics"
-        >
+        class="section"
+        id="statistics">
 
             <div class="panel">
 
@@ -783,7 +996,6 @@ th{
 
                     </div>
 
-
                 </div>
 
             </div>
@@ -812,6 +1024,7 @@ const WEB_APP_URL =
 // =====================================================
 
 window.allAppointments = [];
+
 window.allMessages = [];
 
 
@@ -826,15 +1039,19 @@ function login(){
         .value
         .trim();
 
+
     const password =
         document.getElementById("password")
         .value;
 
+
     const message =
         document.getElementById("loginMessage");
 
+
     const button =
         document.getElementById("loginButton");
+
 
     const loading =
         document.getElementById("loginLoading");
@@ -868,78 +1085,86 @@ function login(){
 
     fetch(url)
 
-        .then(function(response){
+    .then(function(response){
 
-            if(!response.ok){
+        return response.json();
 
-                throw new Error(
-                    "Server error: " +
-                    response.status
-                );
+    })
 
-            }
+    .then(function(result){
 
-            return response.json();
+        if(result.success){
 
-        })
-
-        .then(function(result){
-
-            if(result.success){
-
-                sessionStorage.setItem(
-                    "nashoAdminLoggedIn",
-                    "true"
-                );
+            sessionStorage.setItem(
+                "nashoAdminLoggedIn",
+                "true"
+            );
 
 
-                document.getElementById(
-                    "loginPage"
-                ).style.display = "none";
+            document.getElementById(
+                "loginPage"
+            ).style.display = "none";
 
 
-                document.getElementById(
-                    "dashboard"
-                ).style.display = "block";
+            document.getElementById(
+                "dashboard"
+            ).style.display = "block";
 
 
-                message.innerText = "";
+            loadAppointments();
 
+            loadMessages();
 
-                loadAppointments();
+        }
 
-                loadMessages();
-
-            }
-
-            else{
-
-                message.innerText =
-                    result.message ||
-                    "Username cyangwa password ntabwo ari byo.";
-
-            }
-
-        })
-
-        .catch(function(error){
-
-            console.error(error);
+        else{
 
             message.innerText =
-                "Login failed. Reba Apps Script deployment na Internet connection.";
+                result.message ||
+                "Username cyangwa password ntabwo ari byo.";
 
-        })
+        }
 
-        .finally(function(){
+    })
 
-            button.disabled = false;
+    .catch(function(error){
 
-            loading.style.display = "none";
+        console.error(error);
 
-        });
+        message.innerText =
+            "Login failed. Reba Apps Script deployment.";
+
+    })
+
+    .finally(function(){
+
+        button.disabled = false;
+
+        loading.style.display = "none";
+
+    });
 
 }
+
+
+// =====================================================
+// ENTER TO LOGIN
+// =====================================================
+
+document
+.getElementById("password")
+.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            login();
+
+        }
+
+    }
+);
 
 
 // =====================================================
@@ -974,29 +1199,36 @@ function logout(){
 // NAVIGATION
 // =====================================================
 
-function showSection(id,button){
+function showSection(
+    id,
+    button
+){
 
     document
-        .querySelectorAll(".section")
-        .forEach(function(section){
+    .querySelectorAll(".section")
+    .forEach(function(section){
 
-            section.classList.remove("active");
+        section.classList.remove(
+            "active"
+        );
 
-        });
-
-
-    document
-        .getElementById(id)
-        .classList.add("active");
+    });
 
 
     document
-        .querySelectorAll(".nav-btn")
-        .forEach(function(btn){
+    .getElementById(id)
+    .classList.add("active");
 
-            btn.classList.remove("active");
 
-        });
+    document
+    .querySelectorAll(".nav-btn")
+    .forEach(function(btn){
+
+        btn.classList.remove(
+            "active"
+        );
+
+    });
 
 
     button.classList.add("active");
@@ -1022,10 +1254,13 @@ function showSection(id,button){
 // TODAY
 // =====================================================
 
-document.getElementById("today").innerText =
-    new Date().toLocaleDateString(
-        "rw-RW"
-    );
+document.getElementById(
+    "today"
+).innerText =
+
+new Date().toLocaleDateString(
+    "rw-RW"
+);
 
 
 // =====================================================
@@ -1047,24 +1282,17 @@ function loadAppointments(){
 
     .then(function(response){
 
-        if(!response.ok){
-
-            throw new Error(
-                "Server error"
-            );
-
-        }
-
         return response.json();
 
     })
 
     .then(function(data){
 
-        if(
-            !data ||
-            !data.appointments
-        ){
+        /*
+         * Code.gs returns ARRAY directly.
+         */
+
+        if(!Array.isArray(data)){
 
             window.allAppointments = [];
 
@@ -1078,7 +1306,7 @@ function loadAppointments(){
 
 
         window.allAppointments =
-            data.appointments;
+            data;
 
 
         displayAppointments(
@@ -1099,10 +1327,12 @@ function loadAppointments(){
         document.getElementById(
             "appointmentsTable"
         ).innerHTML =
-            "<div class='error'>" +
-            "Failed to load appointments. " +
-            "Reba Apps Script deployment." +
-            "</div>";
+
+        "<div class='error'>" +
+
+        "Failed to load appointments." +
+
+        "</div>";
 
     });
 
@@ -1115,11 +1345,15 @@ function loadAppointments(){
 
 function displayAppointments(data){
 
-    if(!data || data.length === 0){
-
+    const box =
         document.getElementById(
             "appointmentsTable"
-        ).innerHTML =
+        );
+
+
+    if(!data || data.length === 0){
+
+        box.innerHTML =
             "<div class='empty'>" +
             "Nta appointment iraboneka." +
             "</div>";
@@ -1142,6 +1376,8 @@ function displayAppointments(data){
                 <th>Name</th>
 
                 <th>Phone</th>
+
+                <th>Email</th>
 
                 <th>Patient ID</th>
 
@@ -1197,40 +1433,52 @@ function displayAppointments(data){
         <tr>
 
             <td>
-                ${escapeHTML(item.timestamp || "")}
+                ${escapeHTML(item.timestamp)}
             </td>
 
             <td>
-                ${escapeHTML(item.name || "")}
+                <strong>
+                    ${escapeHTML(item.name)}
+                </strong>
             </td>
 
             <td>
-                ${escapeHTML(item.phone || "")}
+                ${escapeHTML(item.phone)}
             </td>
 
             <td>
-                ${escapeHTML(item.patientId || "")}
+                ${item.email
+                    ? `<a href="mailto:${escapeHTML(item.email)}">
+                        ${escapeHTML(item.email)}
+                       </a>`
+                    : ""
+                }
             </td>
 
             <td>
-                ${escapeHTML(item.department || "")}
+                ${escapeHTML(item.patientId)}
             </td>
 
             <td>
-                ${escapeHTML(item.date || "")}
+                ${escapeHTML(item.department)}
             </td>
 
             <td>
-                ${escapeHTML(item.time || "")}
+                ${escapeHTML(item.date)}
             </td>
 
             <td>
-                ${escapeHTML(item.message || "")}
+                ${escapeHTML(item.time)}
+            </td>
+
+            <td>
+                ${escapeHTML(item.message)}
             </td>
 
             <td>
 
-                <span class="status ${statusClass}">
+                <span
+                class="status ${statusClass}">
 
                     ${escapeHTML(status)}
 
@@ -1241,31 +1489,30 @@ function displayAppointments(data){
             <td>
 
                 <button
-                    class="action-btn confirm"
-                    onclick="updateAppointment(${index},'Confirmed')"
-                    title="Confirm"
-                >
+                class="action-btn confirm"
+                onclick="updateAppointment(${index},'Confirmed')">
+
                     ✓
+
                 </button>
 
 
                 <button
-                    class="action-btn complete"
-                    onclick="updateAppointment(${index},'Completed')"
-                    title="Complete"
-                >
+                class="action-btn complete"
+                onclick="updateAppointment(${index},'Completed')">
+
                     ✔
+
                 </button>
 
 
                 <button
-                    class="action-btn cancel"
-                    onclick="updateAppointment(${index},'Cancelled')"
-                    title="Cancel"
-                >
-                    ✕
-                </button>
+                class="action-btn cancel"
+                onclick="updateAppointment(${index},'Cancelled')">
 
+                    ✕
+
+                </button>
 
             </td>
 
@@ -1285,9 +1532,8 @@ function displayAppointments(data){
     `;
 
 
-    document.getElementById(
-        "appointmentsTable"
-    ).innerHTML = html;
+    box.innerHTML =
+        html;
 
 }
 
@@ -1310,7 +1556,8 @@ function filterAppointments(){
         window.allAppointments.filter(
             function(item){
 
-                return JSON.stringify(item)
+                return JSON
+                    .stringify(item)
                     .toLowerCase()
                     .includes(search);
 
@@ -1318,7 +1565,9 @@ function filterAppointments(){
         );
 
 
-    displayAppointments(filtered);
+    displayAppointments(
+        filtered
+    );
 
 }
 
@@ -1398,7 +1647,6 @@ function updateAppointment(
                 "Appointment updated successfully."
             );
 
-
             loadAppointments();
 
         }
@@ -1433,9 +1681,13 @@ function updateAppointment(
 
 function loadMessages(){
 
-    document.getElementById(
-        "messagesTable"
-    ).innerHTML =
+    const box =
+        document.getElementById(
+            "messagesTable"
+        );
+
+
+    box.innerHTML =
         "Loading messages...";
 
 
@@ -1446,24 +1698,28 @@ function loadMessages(){
 
     .then(function(response){
 
-        if(!response.ok){
-
-            throw new Error(
-                "Server error"
-            );
-
-        }
-
         return response.json();
 
     })
 
     .then(function(data){
 
-        if(
-            !data ||
-            !data.messages
-        ){
+        /*
+         * IMPORTANT:
+         *
+         * Code.gs returns:
+         *
+         * [
+         *   {...},
+         *   {...}
+         * ]
+         *
+         * NOT:
+         *
+         * {messages:[...]}
+         */
+
+        if(!Array.isArray(data)){
 
             window.allMessages = [];
 
@@ -1477,7 +1733,7 @@ function loadMessages(){
 
 
         window.allMessages =
-            data.messages;
+            data;
 
 
         displayMessages(
@@ -1495,9 +1751,7 @@ function loadMessages(){
 
         console.error(error);
 
-        document.getElementById(
-            "messagesTable"
-        ).innerHTML =
+        box.innerHTML =
             "<div class='error'>" +
             "Failed to load messages." +
             "</div>";
@@ -1513,11 +1767,15 @@ function loadMessages(){
 
 function displayMessages(data){
 
-    if(!data || data.length === 0){
-
+    const box =
         document.getElementById(
             "messagesTable"
-        ).innerHTML =
+        );
+
+
+    if(!data || data.length === 0){
+
+        box.innerHTML =
             "<div class='empty'>" +
             "Nta message iraboneka." +
             "</div>";
@@ -1532,68 +1790,251 @@ function displayMessages(data){
 
     data.forEach(function(item,index){
 
-        let statusClass =
-            "new-status";
+        const status =
+            item.status ||
+            "New";
 
 
-        if(item.status === "Replied"){
-
-            statusClass =
-                "replied";
-
-        }
+        const statusClass =
+            status === "Replied"
+            ? "replied"
+            : "new-status";
 
 
         html += `
 
         <div class="message-box">
 
+
+            <!-- HEADER -->
+
             <div class="message-header">
 
                 <div>
 
                     <strong>
-                        ${escapeHTML(item.name || "Unknown")}
+
+                        👤
+                        ${escapeHTML(
+                            item.name ||
+                            "Unknown"
+                        )}
+
                     </strong>
 
                     <br>
 
                     <small>
-                        ${escapeHTML(item.email || "")}
+
+                        🆔
+                        ${escapeHTML(
+                            item.messageId ||
+                            ""
+                        )}
+
                     </small>
 
                 </div>
 
 
-                <span class="status ${statusClass}">
+                <span
+                class="status ${statusClass}">
 
-                    ${escapeHTML(item.status || "New")}
+                    ${escapeHTML(status)}
 
                 </span>
 
             </div>
 
 
+            <!-- DATE -->
+
             <small>
 
-                ${escapeHTML(item.timestamp || "")}
+                📅 Received:
+                ${escapeHTML(
+                    item.timestamp ||
+                    ""
+                )}
 
             </small>
 
 
-            <div class="message-text">
+            <!-- CONTACT INFORMATION -->
 
-                ${escapeHTML(item.message || "")}
+            <div class="contact-info">
+
+
+                <div class="contact-row">
+
+                    👤
+                    <strong>
+                        Name:
+                    </strong>
+
+                    ${escapeHTML(
+                        item.name ||
+                        ""
+                    )}
+
+                </div>
+
+
+                <div class="contact-row">
+
+                    📞
+                    <strong>
+                        Telephone:
+                    </strong>
+
+                    ${
+                        item.phone
+
+                        ?
+
+                        `<a href="tel:${escapeHTML(item.phone)}">
+                            ${escapeHTML(item.phone)}
+                         </a>`
+
+                        :
+
+                        "<span>Nta telephone</span>"
+                    }
+
+                </div>
+
+
+                <div class="contact-row">
+
+                    📧
+                    <strong>
+                        Email:
+                    </strong>
+
+                    ${
+                        item.email
+
+                        ?
+
+                        `<a href="mailto:${escapeHTML(item.email)}">
+                            ${escapeHTML(item.email)}
+                         </a>`
+
+                        :
+
+                        "<span>Nta email</span>"
+                    }
+
+                </div>
+
+
+                <div class="contact-row">
+
+                    🆔
+                    <strong>
+                        Message ID:
+                    </strong>
+
+                    ${escapeHTML(
+                        item.messageId ||
+                        ""
+                    )}
+
+                </div>
+
 
             </div>
 
 
-            <button
-                class="action-btn reply"
-                onclick="replyMessage(${index})"
-            >
-                💬 Reply
-            </button>
+            <!-- ORIGINAL MESSAGE -->
+
+            <div class="message-text">
+
+                <strong>
+                    💬 Original Message
+                </strong>
+
+                <br><br>
+
+                ${escapeHTML(
+                    item.message ||
+                    ""
+                )}
+
+            </div>
+
+
+            <!-- PREVIOUS REPLY -->
+
+            ${
+                item.reply
+
+                ?
+
+                `
+
+                <div class="previous-reply">
+
+                    <div class="previous-reply-title">
+
+                        ✅ Reply Already Sent
+
+                    </div>
+
+                    ${escapeHTML(
+                        item.reply
+                    )}
+
+                    <br><br>
+
+                    <small>
+
+                        📅 Reply Date:
+                        ${escapeHTML(
+                            item.replyDate ||
+                            ""
+                        )}
+
+                    </small>
+
+                </div>
+
+                `
+
+                :
+
+                ""
+
+            }
+
+
+            <!-- REPLY AREA -->
+
+            <div class="reply-area">
+
+                <label>
+
+                    ✍️ Write Reply
+
+                </label>
+
+
+                <textarea
+                id="replyText-${index}"
+                placeholder="Andika igisubizo cyawe hano..."></textarea>
+
+
+                <button
+                class="btn send-reply"
+                id="sendReply-${index}"
+                onclick="sendReply(${index})">
+
+                    📤 Send Reply
+
+                </button>
+
+            </div>
+
 
         </div>
 
@@ -1602,24 +2043,27 @@ function displayMessages(data){
     });
 
 
-    document.getElementById(
-        "messagesTable"
-    ).innerHTML = html;
+    box.innerHTML =
+        html;
 
 }
 
 
 // =====================================================
-// REPLY TO MESSAGE
+// SEND REPLY
 // =====================================================
 
-function replyMessage(index){
+function sendReply(index){
 
     const item =
         window.allMessages[index];
 
 
     if(!item){
+
+        alert(
+            "Message ntabwo ibonetse."
+        );
 
         return;
 
@@ -1637,13 +2081,61 @@ function replyMessage(index){
     }
 
 
-    const message =
-        prompt(
-            "Andika igisubizo cyawe:"
+    const textarea =
+        document.getElementById(
+            "replyText-" + index
         );
 
 
-    if(!message){
+    const button =
+        document.getElementById(
+            "sendReply-" + index
+        );
+
+
+    if(!textarea){
+
+        alert(
+            "Reply box ntabwo ibonetse."
+        );
+
+        return;
+
+    }
+
+
+    const reply =
+        textarea.value.trim();
+
+
+    if(!reply){
+
+        alert(
+            "Andika igisubizo mbere yo kohereza."
+        );
+
+        textarea.focus();
+
+        return;
+
+    }
+
+
+    const confirmSend =
+        confirm(
+
+            "Ohereza reply kuri:\n\n" +
+
+            item.email +
+
+            "\n\n" +
+
+            "Urashaka gukomeza?"
+
+        );
+
+
+    if(!confirmSend){
 
         return;
 
@@ -1657,6 +2149,17 @@ function replyMessage(index){
     params.append(
         "action",
         "replyMessage"
+    );
+
+
+    /*
+     * IMPORTANT:
+     * Send the actual Google Sheet row.
+     */
+
+    params.append(
+        "row",
+        item.row
     );
 
 
@@ -1674,8 +2177,16 @@ function replyMessage(index){
 
     params.append(
         "message",
-        message
+        reply
     );
+
+
+    button.disabled =
+        true;
+
+
+    button.innerText =
+        "⏳ Sending...";
 
 
     fetch(
@@ -1697,7 +2208,8 @@ function replyMessage(index){
         if(result.success){
 
             alert(
-                "Reply sent successfully."
+                "✅ Reply yoherejwe neza kuri:\n" +
+                item.email
             );
 
 
@@ -1712,6 +2224,14 @@ function replyMessage(index){
                 "Reply failed."
             );
 
+
+            button.disabled =
+                false;
+
+
+            button.innerText =
+                "📤 Send Reply";
+
         }
 
     })
@@ -1720,9 +2240,18 @@ function replyMessage(index){
 
         console.error(error);
 
+
         alert(
-            "Could not send reply."
+            "❌ Ntibyashobotse kohereza reply."
         );
+
+
+        button.disabled =
+            false;
+
+
+        button.innerText =
+            "📤 Send Reply";
 
     });
 
@@ -1734,6 +2263,12 @@ function replyMessage(index){
 // =====================================================
 
 function updateDashboard(data){
+
+    data =
+        Array.isArray(data)
+        ? data
+        : [];
+
 
     const total =
         data.length;
@@ -1776,42 +2311,50 @@ function updateDashboard(data){
 
     document.getElementById(
         "totalAppointments"
-    ).innerText = total;
+    ).innerText =
+        total;
 
 
     document.getElementById(
         "pendingAppointments"
-    ).innerText = pending;
+    ).innerText =
+        pending;
 
 
     document.getElementById(
         "confirmedAppointments"
-    ).innerText = confirmed;
+    ).innerText =
+        confirmed;
 
 
     document.getElementById(
         "statTotal"
-    ).innerText = total;
+    ).innerText =
+        total;
 
 
     document.getElementById(
         "statPending"
-    ).innerText = pending;
+    ).innerText =
+        pending;
 
 
     document.getElementById(
         "statConfirmed"
-    ).innerText = confirmed;
+    ).innerText =
+        confirmed;
 
 
     document.getElementById(
         "statCompleted"
-    ).innerText = completed;
+    ).innerText =
+        completed;
 
 
     document.getElementById(
         "statCancelled"
-    ).innerText = cancelled;
+    ).innerText =
+        cancelled;
 
 }
 
@@ -1822,18 +2365,26 @@ function updateDashboard(data){
 
 function updateMessageCount(data){
 
+    data =
+        Array.isArray(data)
+        ? data
+        : [];
+
+
     const total =
         data.length;
 
 
     document.getElementById(
         "totalMessages"
-    ).innerText = total;
+    ).innerText =
+        total;
 
 
     document.getElementById(
         "statMessages"
-    ).innerText = total;
+    ).innerText =
+        total;
 
 }
 
@@ -1844,23 +2395,42 @@ function updateMessageCount(data){
 
 function escapeHTML(value){
 
-    return String(value)
+    return String(
+        value == null
+        ? ""
+        : value
+    )
 
-        .replace(/&/g,"&amp;")
+    .replace(
+        /&/g,
+        "&amp;"
+    )
 
-        .replace(/</g,"&lt;")
+    .replace(
+        /</g,
+        "&lt;"
+    )
 
-        .replace(/>/g,"&gt;")
+    .replace(
+        />/g,
+        "&gt;"
+    )
 
-        .replace(/"/g,"&quot;")
+    .replace(
+        /"/g,
+        "&quot;"
+    )
 
-        .replace(/'/g,"&#039;");
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
 
 
 // =====================================================
-// AUTO LOGIN CHECK
+// AUTO LOGIN
 // =====================================================
 
 window.addEventListener(
@@ -1877,12 +2447,14 @@ window.addEventListener(
 
             document.getElementById(
                 "loginPage"
-            ).style.display = "none";
+            ).style.display =
+                "none";
 
 
             document.getElementById(
                 "dashboard"
-            ).style.display = "block";
+            ).style.display =
+                "block";
 
 
             loadAppointments();
