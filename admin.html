@@ -3,45 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>NASHO HEALTH CENTER | Admin Dashboard</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
     background:#f4f7fb;
-    color:#1f2937;
+    color:#172033;
 }
 
-/* =====================================================
-   LOGIN
-===================================================== */
+.hidden{
+    display:none!important;
+}
 
-#loginPage{
+button{
+    border:0;
+    cursor:pointer;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #d7dee9;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#1769aa;
+}
+
+textarea{
+    resize:vertical;
+    min-height:100px;
+}
+
+/* ================= LOGIN ================= */
+
+.login-page{
     min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:linear-gradient(135deg,#00695c,#00897b,#26a69a);
     padding:20px;
+    background:linear-gradient(135deg,#075985,#0f766e);
 }
 
 .login-box{
     width:100%;
-    max-width:420px;
+    max-width:430px;
     background:white;
     padding:35px;
     border-radius:18px;
-    box-shadow:0 20px 50px rgba(0,0,0,.2);
+    box-shadow:0 15px 45px rgba(0,0,0,.2);
 }
 
 .login-logo{
@@ -50,204 +75,179 @@ body{
 }
 
 .login-logo .icon{
-    font-size:60px;
+    font-size:55px;
 }
 
 .login-logo h1{
-    color:#00695c;
-    margin-top:8px;
+    color:#075985;
+    margin:8px 0;
     font-size:25px;
 }
 
 .login-logo p{
-    color:#687386;
-    margin-top:5px;
+    color:#667085;
 }
 
-.input-group{
-    margin-bottom:18px;
+.form-group{
+    margin-bottom:16px;
 }
 
-.input-group label{
+.form-group label{
     display:block;
-    font-weight:bold;
     margin-bottom:7px;
-}
-
-.input-group input{
-    width:100%;
-    padding:13px;
-    border:1px solid #d5dbe3;
-    border-radius:8px;
-    font-size:15px;
-}
-
-.input-group input:focus{
-    outline:none;
-    border-color:#00897b;
+    font-weight:bold;
+    font-size:14px;
 }
 
 .login-btn{
     width:100%;
-    padding:14px;
-    border:none;
-    border-radius:8px;
-    background:#00695c;
+    background:#075985;
     color:white;
+    padding:13px;
+    border-radius:8px;
     font-size:16px;
     font-weight:bold;
-    cursor:pointer;
 }
 
 .login-btn:hover{
-    background:#004d40;
+    background:#064e72;
 }
 
-.login-error{
-    color:#c62828;
-    background:#ffebee;
+.login-message{
+    margin-top:15px;
     padding:10px;
-    border-radius:7px;
-    margin-bottom:15px;
-    display:none;
+    border-radius:8px;
+    text-align:center;
 }
 
+/* ================= ADMIN ================= */
 
-/* =====================================================
-   ADMIN LAYOUT
-===================================================== */
-
-#adminPage{
-    display:none;
+.admin-layout{
     min-height:100vh;
+    display:flex;
 }
 
 .sidebar{
+    width:260px;
+    background:#082f49;
+    color:white;
     position:fixed;
     left:0;
     top:0;
     bottom:0;
-    width:250px;
-    background:#004d40;
-    color:white;
-    padding:20px 15px;
     overflow-y:auto;
-    z-index:100;
+    z-index:1000;
 }
 
-.logo{
+.sidebar-header{
+    padding:25px 18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
     text-align:center;
-    padding:10px 5px 25px;
-    border-bottom:1px solid rgba(255,255,255,.15);
 }
 
-.logo .logo-icon{
-    font-size:45px;
+.sidebar-header .logo{
+    font-size:42px;
 }
 
-.logo h2{
+.sidebar-header h2{
+    font-size:18px;
     margin-top:5px;
-    font-size:19px;
 }
 
-.logo p{
+.sidebar-header p{
     font-size:12px;
-    opacity:.8;
-    margin-top:4px;
+    opacity:.75;
+    margin-top:5px;
 }
 
-.menu{
-    margin-top:20px;
+.nav{
+    padding:15px 10px;
 }
 
-.menu button{
+.nav button{
     width:100%;
-    border:none;
-    background:transparent;
-    color:white;
     text-align:left;
+    background:transparent;
+    color:#dbeafe;
     padding:13px 15px;
-    margin-bottom:6px;
+    margin-bottom:5px;
     border-radius:8px;
-    cursor:pointer;
-    font-size:15px;
+    font-size:14px;
 }
 
-.menu button:hover,
-.menu button.active{
-    background:#00796b;
+.nav button:hover,
+.nav button.active{
+    background:#0c4a6e;
+    color:white;
 }
 
 .logout-btn{
-    margin-top:20px !important;
-    background:#c62828 !important;
+    margin-top:20px!important;
+    background:#991b1b!important;
+    color:white!important;
 }
 
 .main{
-    margin-left:250px;
+    margin-left:260px;
+    width:calc(100% - 260px);
     min-height:100vh;
 }
 
 .topbar{
+    height:70px;
     background:white;
-    min-height:70px;
+    border-bottom:1px solid #e5e7eb;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:15px 25px;
-    border-bottom:1px solid #e5e7eb;
+    padding:0 25px;
     position:sticky;
     top:0;
-    z-index:50;
+    z-index:900;
 }
 
-.topbar h1{
-    font-size:23px;
-    color:#00695c;
+.menu-btn{
+    display:none;
+    background:#075985;
+    color:white;
+    padding:9px 12px;
+    border-radius:7px;
 }
 
 .admin-user{
-    background:#e8f5e9;
-    padding:9px 14px;
-    border-radius:20px;
-    color:#00695c;
     font-weight:bold;
+    color:#075985;
 }
 
 .content{
     padding:25px;
 }
 
+/* ================= SECTIONS ================= */
 
-/* =====================================================
-   SECTIONS
-===================================================== */
-
-.section{
+.page-section{
     display:none;
 }
 
-.section.active{
+.page-section.active{
     display:block;
 }
 
-.section-title{
+.page-title{
     margin-bottom:20px;
 }
 
-.section-title h2{
-    color:#00695c;
+.page-title h1{
+    font-size:28px;
+    color:#0f172a;
 }
 
-.section-title p{
-    color:#687386;
+.page-title p{
+    color:#64748b;
     margin-top:5px;
 }
 
-
-/* =====================================================
-   CARDS
-===================================================== */
+/* ================= CARDS ================= */
 
 .cards{
     display:grid;
@@ -258,657 +258,327 @@ body{
 
 .card{
     background:white;
-    border-radius:13px;
-    padding:22px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    padding:20px;
+    border-radius:12px;
+    border:1px solid #e5e7eb;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
 }
 
 .card-icon{
-    font-size:30px;
-    margin-bottom:10px;
+    font-size:28px;
 }
 
 .card h3{
-    font-size:29px;
-    color:#00695c;
+    color:#64748b;
+    font-size:14px;
+    margin:10px 0 5px;
 }
 
-.card p{
-    color:#687386;
-    margin-top:5px;
+.card-number{
+    font-size:30px;
+    font-weight:bold;
+    color:#075985;
 }
 
+/* ================= PANEL ================= */
 
-/* =====================================================
-   PANELS
-===================================================== */
-
-.panel,
-.analysis-panel{
+.panel{
     background:white;
-    border-radius:13px;
-    padding:22px;
-    margin-bottom:25px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    border-radius:12px;
+    border:1px solid #e5e7eb;
+    margin-bottom:22px;
+    overflow:hidden;
 }
 
-.panel h2,
-.analysis-panel h2{
-    color:#00695c;
-    margin-bottom:15px;
+.panel-header{
+    padding:17px 20px;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
 }
 
+.panel-header h2{
+    font-size:18px;
+}
 
-/* =====================================================
-   TABLE
-===================================================== */
+.panel-body{
+    padding:20px;
+}
 
-.table-container{
-    width:100%;
+/* ================= BUTTONS ================= */
+
+.btn{
+    padding:9px 14px;
+    border-radius:7px;
+    font-weight:bold;
+    font-size:13px;
+}
+
+.btn-primary{
+    background:#075985;
+    color:white;
+}
+
+.btn-success{
+    background:#15803d;
+    color:white;
+}
+
+.btn-warning{
+    background:#d97706;
+    color:white;
+}
+
+.btn-danger{
+    background:#b91c1c;
+    color:white;
+}
+
+.btn-secondary{
+    background:#64748b;
+    color:white;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrapper{
     overflow-x:auto;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:900px;
+    min-width:850px;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #e5e7eb;
+    text-align:left;
+    vertical-align:top;
+    font-size:13px;
 }
 
 th{
-    background:#00695c;
-    color:white;
-    padding:12px;
-    text-align:left;
-    font-size:14px;
+    background:#f8fafc;
+    color:#334155;
 }
 
-td{
-    padding:12px;
-    border-bottom:1px solid #e5e7eb;
-    font-size:14px;
-    vertical-align:top;
+tr:hover td{
+    background:#f8fafc;
 }
 
-tr:hover{
-    background:#f7faf9;
-}
-
-
-/* =====================================================
-   STATUS
-===================================================== */
+/* ================= STATUS ================= */
 
 .status{
     display:inline-block;
     padding:5px 9px;
-    border-radius:15px;
-    font-size:12px;
+    border-radius:20px;
+    font-size:11px;
     font-weight:bold;
 }
 
 .status-pending{
-    background:#fff3cd;
-    color:#856404;
+    background:#fef3c7;
+    color:#92400e;
 }
 
-.status-confirmed{
-    background:#d1ecf1;
-    color:#0c5460;
+.status-approved{
+    background:#dcfce7;
+    color:#166534;
 }
 
 .status-completed{
-    background:#d4edda;
-    color:#155724;
+    background:#dbeafe;
+    color:#1e40af;
 }
 
 .status-cancelled{
-    background:#f8d7da;
-    color:#721c24;
+    background:#fee2e2;
+    color:#991b1b;
 }
 
-.status-new{
-    background:#fff3cd;
-    color:#856404;
+.status-unread{
+    background:#fee2e2;
+    color:#991b1b;
 }
 
-.status-replied{
-    background:#d4edda;
-    color:#155724;
+.status-read{
+    background:#dcfce7;
+    color:#166534;
 }
 
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.btn{
-    border:none;
-    padding:8px 12px;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:bold;
-    margin:2px;
-}
-
-.btn:hover{
-    opacity:.85;
-}
-
-.btn-confirm{
-    background:#2e7d32;
-    color:white;
-}
-
-.btn-complete{
-    background:#1565c0;
-    color:white;
-}
-
-.btn-cancel{
-    background:#c62828;
-    color:white;
-}
-
-.btn-reply{
-    background:#00695c;
-    color:white;
-}
-
-.btn-delete{
-    background:#ef6c00;
-    color:white;
-}
-
-.btn-restore{
-    background:#2e7d32;
-    color:white;
-}
-
-.btn-danger{
-    background:#b71c1c;
-    color:white;
-}
-
-.btn-analysis{
-    background:#00695c;
-    color:white;
-    padding:11px 16px;
-}
-
-.btn-back{
-    background:#546e7a;
-    color:white;
-    padding:11px 16px;
-}
-
-.btn-remove-analysis{
-    background:#c62828;
-    color:white;
-}
-
-.btn-view-analysis{
-    background:#1565c0;
-    color:white;
-}
-
-.btn.refresh{
-    background:#455a64;
-    color:white;
-    margin-top:15px;
-}
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
+/* ================= MESSAGE ================= */
 
 .message-box{
     background:#f8fafc;
-    border:1px solid #e5e7eb;
-    border-radius:10px;
-    padding:15px;
-    margin-bottom:15px;
-}
-
-.message-header{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-.message-name{
-    font-weight:bold;
-    color:#00695c;
-    font-size:17px;
-}
-
-.message-meta{
-    color:#687386;
-    font-size:13px;
-    margin-top:5px;
-}
-
-.original-message{
-    background:white;
-    border-left:4px solid #00897b;
-    padding:12px;
-    margin-top:12px;
-    white-space:pre-wrap;
-}
-
-.previous-reply{
-    background:#e8f5e9;
-    border-left:4px solid #2e7d32;
-    padding:12px;
-    margin-top:12px;
-    white-space:pre-wrap;
-}
-
-.reply-area{
-    width:100%;
-    min-height:90px;
-    resize:vertical;
-    border:1px solid #d5dbe3;
-    border-radius:8px;
-    padding:12px;
-    margin-top:12px;
-    font-family:Arial;
-}
-
-.reply-area:focus{
-    outline:none;
-    border-color:#00897b;
-}
-
-
-/* =====================================================
-   ANALYSIS
-===================================================== */
-
-.analysis-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
-}
-
-.analysis-field{
-    margin-bottom:15px;
-}
-
-.analysis-field label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:7px;
-}
-
-.analysis-field input,
-.analysis-field select,
-.analysis-field textarea{
-    width:100%;
-    padding:11px;
-    border:1px solid #d5dbe3;
-    border-radius:8px;
-    font-size:14px;
-}
-
-.analysis-field textarea{
-    min-height:130px;
-    resize:vertical;
-}
-
-.analysis-field input:focus,
-.analysis-field select:focus,
-.analysis-field textarea:focus{
-    outline:none;
-    border-color:#00897b;
-}
-
-.generate-btn{
-    background:#00695c;
-    color:white;
-    padding:12px 18px;
-}
-
-.clear-btn{
-    background:#78909c;
-    color:white;
-    padding:12px 18px;
-}
-
-.save-btn{
-    background:#1565c0;
-    color:white;
-    padding:12px 18px;
-}
-
-.chart-wrapper{
-    position:relative;
-    width:100%;
-    height:420px;
-    margin-top:20px;
-}
-
-#analysisChart{
-    width:100% !important;
-    height:100% !important;
-}
-
-
-/* =====================================================
-   ANALYSIS HISTORY
-===================================================== */
-
-.history-card{
-    border:1px solid #e1e5ea;
-    border-radius:10px;
-    padding:17px;
-    margin-bottom:14px;
-    background:#fafdfc;
-}
-
-.history-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.history-title{
-    color:#00695c;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.history-id{
-    color:#777;
-    font-size:12px;
-    margin-top:4px;
-}
-
-.history-meta{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-    margin-top:15px;
-}
-
-.history-meta div{
-    background:white;
-    padding:10px;
-    border-radius:7px;
-    border:1px solid #edf0f2;
-}
-
-.history-meta small{
-    display:block;
-    color:#687386;
-    margin-bottom:4px;
-}
-
-.history-outcome{
-    margin-top:14px;
-    background:#e8f5e9;
-    border-left:4px solid #00695c;
-    padding:13px;
-    white-space:pre-wrap;
-}
-
-.history-actions{
-    margin-top:15px;
-    padding-top:12px;
-    border-top:1px solid #e5e7eb;
-}
-
-.history-empty{
-    padding:25px;
-    text-align:center;
-    color:#687386;
-}
-
-
-/* =====================================================
-   ALL ANALYSIS PAGE
-===================================================== */
-
-#allAnalysisPage{
-    display:none;
-}
-
-#allAnalysisPage.active-page{
-    display:block;
-}
-
-.all-analysis-header{
-    background:white;
-    padding:22px;
-    border-radius:13px;
-    margin-bottom:20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
-}
-
-.all-analysis-header h2{
-    color:#00695c;
-    margin-bottom:6px;
-}
-
-.all-analysis-header p{
-    color:#687386;
-}
-
-.all-analysis-actions{
-    margin-top:15px;
-}
-
-.analysis-count{
-    display:inline-block;
-    background:#e8f5e9;
-    color:#00695c;
-    font-weight:bold;
-    padding:7px 12px;
-    border-radius:20px;
-    margin-left:5px;
-}
-
-.all-analysis-card{
-    background:white;
-    border-radius:13px;
-    padding:20px;
-    margin-bottom:18px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
-    border-left:5px solid #00695c;
-}
-
-.all-analysis-card:hover{
-    box-shadow:0 7px 22px rgba(0,0,0,.10);
-}
-
-.analysis-card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.analysis-card-title{
-    font-size:20px;
-    font-weight:bold;
-    color:#00695c;
-}
-
-.analysis-card-id{
-    font-size:12px;
-    color:#777;
-    margin-top:5px;
-}
-
-.analysis-details{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-top:18px;
-}
-
-.analysis-detail{
-    background:#f8fafc;
-    border:1px solid #e5e7eb;
-    border-radius:8px;
-    padding:12px;
-}
-
-.analysis-detail small{
-    display:block;
-    color:#687386;
-    margin-bottom:5px;
-}
-
-.analysis-detail strong{
-    color:#1f2937;
-    word-break:break-word;
-}
-
-.analysis-outcome{
-    margin-top:18px;
-    background:#e8f5e9;
-    border-left:4px solid #00695c;
-    border-radius:6px;
-    padding:15px;
-    white-space:pre-wrap;
-}
-
-.analysis-outcome-title{
-    font-weight:bold;
-    color:#00695c;
-    margin-bottom:8px;
-}
-
-.analysis-card-actions{
-    margin-top:16px;
-    padding-top:13px;
-    border-top:1px solid #e5e7eb;
-    display:flex;
-    justify-content:flex-end;
-    flex-wrap:wrap;
-    gap:5px;
-}
-
-
-/* =====================================================
-   RECYCLE BIN
-===================================================== */
-
-.recycle-card{
-    background:#fff8f0;
-    border:1px solid #ffe0b2;
+    border:1px solid #e2e8f0;
     border-radius:10px;
     padding:15px;
     margin-bottom:12px;
 }
 
-.recycle-card h3{
-    color:#e65100;
-}
-
-.recycle-meta{
-    color:#687386;
-    font-size:13px;
-    margin:5px 0 10px;
-}
-
-.recycle-message{
-    background:white;
-    padding:12px;
-    border-radius:7px;
-    white-space:pre-wrap;
+.message-header{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
     margin-bottom:10px;
 }
 
+.message-name{
+    font-weight:bold;
+    color:#075985;
+}
 
-/* =====================================================
-   NOTIFICATION
-===================================================== */
+.message-meta{
+    font-size:12px;
+    color:#64748b;
+    line-height:1.7;
+}
 
-.notification{
+.original-message{
+    background:white;
+    border-left:4px solid #075985;
+    padding:12px;
+    margin:12px 0;
+    white-space:pre-wrap;
+}
+
+.reply-area{
+    margin-top:12px;
+}
+
+.message-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+}
+
+/* ================= SEARCH ================= */
+
+.search-row{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+/* ================= CHART ================= */
+
+.chart-container{
+    width:100%;
+    min-height:350px;
+    position:relative;
+}
+
+.chart-container canvas{
+    max-height:450px;
+}
+
+/* ================= ANALYSIS ================= */
+
+.analysis-form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.analysis-full{
+    grid-column:1/-1;
+}
+
+.analysis-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+    flex-wrap:wrap;
+}
+
+.analysis-history-item{
+    border:1px solid #e2e8f0;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:12px;
+    background:#f8fafc;
+}
+
+.analysis-history-item h3{
+    color:#075985;
+    margin-bottom:7px;
+}
+
+.analysis-history-item p{
+    font-size:13px;
+    margin:4px 0;
+    color:#475569;
+}
+
+.outcome-box{
+    background:white;
+    border-left:4px solid #15803d;
+    padding:12px;
+    margin-top:10px;
+    white-space:pre-wrap;
+}
+
+/* ================= NOTIFICATION ================= */
+
+#notification{
     position:fixed;
     right:20px;
-    bottom:20px;
-    max-width:400px;
-    padding:14px 18px;
-    border-radius:9px;
+    top:85px;
+    z-index:3000;
+    max-width:380px;
+}
+
+.notice{
+    padding:13px 17px;
+    border-radius:8px;
     color:white;
-    font-weight:bold;
-    display:none;
-    z-index:1000;
-    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    margin-bottom:8px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
 }
 
-.notification.success{
-    background:#2e7d32;
+.notice.success{
+    background:#15803d;
 }
 
-.notification.error{
-    background:#c62828;
+.notice.error{
+    background:#b91c1c;
 }
 
+.notice.info{
+    background:#075985;
+}
 
-/* =====================================================
-   LOADING
-===================================================== */
+/* ================= LOADING ================= */
 
 .loading{
     text-align:center;
-    padding:30px;
-    color:#687386;
+    padding:35px;
+    color:#64748b;
 }
 
-.spinner{
-    display:inline-block;
-    width:25px;
-    height:25px;
-    border:3px solid #ddd;
-    border-top-color:#00695c;
-    border-radius:50%;
-    animation:spin 1s linear infinite;
+.empty{
+    text-align:center;
+    padding:40px 20px;
+    color:#64748b;
 }
 
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-.mobile-menu{
-    display:none;
-    border:none;
-    background:#00695c;
-    color:white;
-    padding:9px 12px;
-    border-radius:7px;
-    cursor:pointer;
-    font-size:20px;
-}
+/* ================= MOBILE ================= */
 
 @media(max-width:1000px){
 
     .cards{
         grid-template-columns:repeat(2,1fr);
     }
-
-    .history-meta,
-    .analysis-details{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-}
-
-@media(max-width:750px){
 
     .sidebar{
         transform:translateX(-100%);
@@ -921,30 +591,25 @@ tr:hover{
 
     .main{
         margin-left:0;
+        width:100%;
     }
 
-    .mobile-menu{
+    .menu-btn{
         display:block;
     }
 
-    .topbar{
-        gap:10px;
+    .analysis-form{
+        grid-template-columns:1fr;
     }
 
-    .topbar h1{
-        font-size:18px;
+    .analysis-full{
+        grid-column:auto;
     }
+}
+
+@media(max-width:600px){
 
     .cards{
-        grid-template-columns:1fr;
-    }
-
-    .analysis-grid{
-        grid-template-columns:1fr;
-    }
-
-    .history-meta,
-    .analysis-details{
         grid-template-columns:1fr;
     }
 
@@ -952,724 +617,646 @@ tr:hover{
         padding:15px;
     }
 
-    .chart-wrapper{
-        height:320px;
+    .topbar{
+        padding:0 15px;
     }
 
-}
+    .admin-user{
+        font-size:12px;
+    }
 
+    .page-title h1{
+        font-size:23px;
+    }
+
+    .panel-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .search-row{
+        grid-template-columns:1fr;
+    }
+
+    .login-box{
+        padding:25px 20px;
+    }
+}
 </style>
 </head>
 
-
 <body>
 
-
 <!-- =====================================================
-     LOGIN PAGE
+LOGIN
 ===================================================== -->
 
-<div id="loginPage">
+<div id="loginPage" class="login-page">
 
     <div class="login-box">
 
         <div class="login-logo">
-
             <div class="icon">🏥</div>
-
             <h1>NASHO HEALTH CENTER</h1>
-
-            <p>Staff / Admin Portal</p>
-
+            <p>Staff / Administration Portal</p>
         </div>
 
-        <div id="loginError" class="login-error"></div>
+        <form id="loginForm">
 
-        <form onsubmit="login(event)">
-
-            <div class="input-group">
-
+            <div class="form-group">
                 <label>Username</label>
-
                 <input
                     type="text"
                     id="username"
                     placeholder="Enter username"
-                    autocomplete="username"
                     required
-                >
-
+                    autocomplete="username">
             </div>
 
-            <div class="input-group">
-
+            <div class="form-group">
                 <label>Password</label>
-
                 <input
                     type="password"
                     id="password"
                     placeholder="Enter password"
-                    autocomplete="current-password"
                     required
-                >
-
+                    autocomplete="current-password">
             </div>
 
             <button
                 type="submit"
                 class="login-btn"
-                id="loginButton">
-
+                id="loginBtn">
                 🔐 Login
-
             </button>
 
         </form>
+
+        <div id="loginMessage"></div>
 
     </div>
 
 </div>
 
 
-
 <!-- =====================================================
-     ADMIN PAGE
+ADMIN LAYOUT
 ===================================================== -->
 
-<div id="adminPage">
-
+<div id="adminPage" class="admin-layout hidden">
 
     <!-- SIDEBAR -->
 
     <aside class="sidebar" id="sidebar">
 
-        <div class="logo">
-
-            <div class="logo-icon">🏥</div>
-
+        <div class="sidebar-header">
+            <div class="logo">🏥</div>
             <h2>NASHO HEALTH CENTER</h2>
-
-            <p>ADMINISTRATION PORTAL</p>
-
+            <p>Administration Panel</p>
         </div>
 
-
-        <div class="menu">
+        <nav class="nav">
 
             <button
                 class="active"
                 onclick="showSection('dashboard',this)">
-
-                🏠 Dashboard
-
+                📊 Dashboard
             </button>
-
 
             <button
                 onclick="showSection('appointments',this)">
-
                 📅 Appointments
-
             </button>
-
 
             <button
                 onclick="showSection('messages',this)">
-
                 ✉️ Messages
-
+                <span id="messageBadge"></span>
             </button>
-
 
             <button
                 onclick="showSection('statistics',this)">
-
-                📈 Statistics & Analysis
-
+                📈 Statistics
             </button>
-
 
             <button
-                onclick="showSection('recycle',this)">
-
-                ♻️ Recycle Bin
-
+                onclick="showSection('recycleBin',this)">
+                🗑️ Recycle Bin
             </button>
 
+            <button
+                onclick="showSection('allAnalysisPage',this)">
+                📋 Analysis History
+            </button>
 
             <button
                 class="logout-btn"
                 onclick="logout()">
-
                 🚪 Logout
-
             </button>
 
-        </div>
+        </nav>
 
     </aside>
-
 
 
     <!-- MAIN -->
 
     <main class="main">
 
-
-        <!-- TOP BAR -->
-
         <header class="topbar">
 
-            <div style="display:flex;align-items:center;gap:12px;">
+            <button
+                class="menu-btn"
+                onclick="toggleSidebar()">
+                ☰
+            </button>
 
-                <button
-                    class="mobile-menu"
-                    onclick="toggleSidebar()">
-
-                    ☰
-
-                </button>
-
-                <h1 id="pageTitle">
-                    Dashboard
-                </h1>
-
+            <div>
+                <strong>Admin Dashboard</strong>
             </div>
 
-
             <div class="admin-user">
-
-                👤 <span id="loggedAdmin">
-                    Admin
-                </span>
-
+                👤 <span id="loggedUser">Admin</span>
             </div>
 
         </header>
 
 
-
-        <!-- CONTENT -->
-
         <div class="content">
 
-
             <!-- =================================================
-                 DASHBOARD
-            ================================================== -->
+            DASHBOARD
+            ================================================= -->
 
-            <section
-                id="dashboard"
-                class="section active">
+            <section id="dashboard" class="page-section active">
 
-                <div class="section-title">
-
-                    <h2>🏠 Dashboard</h2>
-
-                    <p>
-                        Welcome to NASHO Health Center Administration Portal.
-                    </p>
-
+                <div class="page-title">
+                    <h1>📊 Dashboard</h1>
+                    <p>Overview of NASHO Health Center online services.</p>
                 </div>
-
 
                 <div class="cards">
 
                     <div class="card">
-
                         <div class="card-icon">📅</div>
-
-                        <h3 id="totalAppointments">0</h3>
-
-                        <p>Total Appointments</p>
-
-                    </div>
-
-
-                    <div class="card">
-
-                        <div class="card-icon">⏳</div>
-
-                        <h3 id="pendingAppointments">0</h3>
-
-                        <p>Pending Appointments</p>
-
-                    </div>
-
-
-                    <div class="card">
-
-                        <div class="card-icon">✉️</div>
-
-                        <h3 id="totalMessages">0</h3>
-
-                        <p>Total Messages</p>
-
-                    </div>
-
-
-                    <div class="card">
-
-                        <div class="card-icon">🆕</div>
-
-                        <h3 id="newMessages">0</h3>
-
-                        <p>New Messages</p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="panel">
-
-                    <h2>📊 Quick Overview</h2>
-
-                    <p style="color:#687386;">
-                        Use the menu to manage appointments,
-                        messages and perform data analysis.
-                    </p>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 APPOINTMENTS
-            ================================================== -->
-
-            <section
-                id="appointments"
-                class="section">
-
-                <div class="section-title">
-
-                    <h2>📅 Appointments</h2>
-
-                    <p>
-                        Manage patient appointment requests.
-                    </p>
-
-                </div>
-
-
-                <div class="panel">
-
-                    <div class="table-container">
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>Date Received</th>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Patient ID</th>
-                                    <th>Department</th>
-                                    <th>Appointment Date</th>
-                                    <th>Time</th>
-                                    <th>Email</th>
-                                    <th>Message</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-
-                                </tr>
-
-                            </thead>
-
-                            <tbody id="appointmentsTable">
-
-                                <tr>
-
-                                    <td
-                                        colspan="11"
-                                        class="loading">
-
-                                        Loading appointments...
-
-                                    </td>
-
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-
-                    <button
-                        class="btn refresh"
-                        onclick="loadAppointments()">
-
-                        🔄 Refresh Appointments
-
-                    </button>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 MESSAGES
-            ================================================== -->
-
-            <section
-                id="messages"
-                class="section">
-
-                <div class="section-title">
-
-                    <h2>✉️ Messages</h2>
-
-                    <p>
-                        View messages from website visitors
-                        and reply by email.
-                    </p>
-
-                </div>
-
-
-                <div id="messagesContainer">
-
-                    <div class="loading">
-                        Loading messages...
-                    </div>
-
-                </div>
-
-
-                <button
-                    class="btn refresh"
-                    onclick="loadMessages()">
-
-                    🔄 Refresh Messages
-
-                </button>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 STATISTICS & ANALYSIS
-            ================================================== -->
-
-            <section
-                id="statistics"
-                class="section">
-
-                <div class="section-title">
-
-                    <h2>📈 Statistics & Analysis</h2>
-
-                    <p>
-                        Analyze appointments and messages
-                        using charts and record your findings.
-                    </p>
-
-                </div>
-
-
-                <!-- ANALYSIS CONTROL -->
-
-                <div class="analysis-panel">
-
-                    <h2>📊 Create New Analysis</h2>
-
-
-                    <div class="analysis-grid">
-
-                        <div class="analysis-field">
-
-                            <label>Data to Analyze</label>
-
-                            <select id="dataType">
-
-                                <option value="appointmentStatus">
-                                    Appointment Status
-                                </option>
-
-                                <option value="departments">
-                                    Departments
-                                </option>
-
-                                <option value="appointmentTrend">
-                                    Appointment Trend
-                                </option>
-
-                                <option value="messageStatus">
-                                    Message Status
-                                </option>
-
-                                <option value="messageTrend">
-                                    Message Trend
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="analysis-field">
-
-                            <label>Chart Type</label>
-
-                            <select id="chartType">
-
-                                <option value="bar">Bar</option>
-
-                                <option value="line">Line</option>
-
-                                <option value="pie">Pie</option>
-
-                                <option value="doughnut">Doughnut</option>
-
-                            </select>
-
-                        </div>
-
-
+                        <h3>Total Appointments</h3>
                         <div
-                            class="analysis-field"
-                            style="grid-column:1/-1;">
+                            class="card-number"
+                            id="totalAppointments">
+                            0
+                        </div>
+                    </div>
 
-                            <label>Analysis Title</label>
+                    <div class="card">
+                        <div class="card-icon">⏳</div>
+                        <h3>Pending Appointments</h3>
+                        <div
+                            class="card-number"
+                            id="pendingAppointments">
+                            0
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">✉️</div>
+                        <h3>Total Messages</h3>
+                        <div
+                            class="card-number"
+                            id="totalMessages">
+                            0
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">📩</div>
+                        <h3>Unread Messages</h3>
+                        <div
+                            class="card-number"
+                            id="unreadMessages">
+                            0
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h2>System Information</h2>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <p>
+                            <strong>Facility:</strong>
+                            NASHO HEALTH CENTER
+                        </p>
+
+                        <p style="margin-top:8px">
+                            <strong>System:</strong>
+                            NASHO Health Center Online Administration
+                        </p>
+
+                        <p style="margin-top:8px">
+                            <strong>Status:</strong>
+                            <span class="status status-approved">
+                                ONLINE
+                            </span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+            APPOINTMENTS
+            ================================================= -->
+
+            <section id="appointments" class="page-section">
+
+                <div class="page-title">
+                    <h1>📅 Appointments</h1>
+                    <p>Manage patient appointment requests.</p>
+                </div>
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h2>Appointment Requests</h2>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="loadAppointments()">
+                            🔄 Refresh
+                        </button>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="search-row">
 
                             <input
                                 type="text"
-                                id="analysisTitle"
-                                placeholder="Example: Monthly Appointment Analysis"
-                            >
+                                id="appointmentSearch"
+                                placeholder="Search name, phone, department..."
+                                oninput="filterAppointments()">
 
+                            <button
+                                class="btn btn-secondary"
+                                onclick="clearAppointmentSearch()">
+                                Clear
+                            </button>
+
+                        </div>
+
+                        <div
+                            id="appointmentsContainer"
+                            class="loading">
+                            Loading appointments...
                         </div>
 
                     </div>
 
+                </div>
 
-                    <button
-                        class="btn generate-btn"
-                        onclick="generateAnalysis()">
-
-                        📊 Generate Chart
-
-                    </button>
+            </section>
 
 
-                    <button
-                        class="btn clear-btn"
-                        onclick="clearAnalysis()">
+            <!-- =================================================
+            MESSAGES
+            ================================================= -->
 
-                        🧹 Clear
+            <section id="messages" class="page-section">
 
-                    </button>
+                <div class="page-title">
+                    <h1>✉️ Messages</h1>
+                    <p>View and reply to messages received from website visitors.</p>
+                </div>
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h2>
+                            Received Messages
+                            <span id="messagesCountTitle"></span>
+                        </h2>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="loadMessages()">
+                            🔄 Refresh Messages
+                        </button>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="search-row">
+
+                            <input
+                                type="text"
+                                id="messageSearch"
+                                placeholder="Search name, phone, email or message..."
+                                oninput="filterMessages()">
+
+                            <button
+                                class="btn btn-secondary"
+                                onclick="clearMessageSearch()">
+                                Clear
+                            </button>
+
+                        </div>
+
+                        <div
+                            id="messagesContainer"
+                            class="loading">
+                            Loading messages...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
 
 
-                    <div class="chart-wrapper">
+            <!-- =================================================
+            STATISTICS
+            ================================================= -->
 
-                        <canvas id="analysisChart"></canvas>
+            <section id="statistics" class="page-section">
+
+                <div class="page-title">
+                    <h1>📈 Statistics & Analysis</h1>
+                    <p>Analyze appointments and messages.</p>
+                </div>
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h2>Generate Analysis</h2>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="analysis-form">
+
+                            <div>
+                                <label>
+                                    <strong>Data to Analyze</strong>
+                                </label>
+
+                                <select id="analysisDataType">
+
+                                    <option value="appointmentStatus">
+                                        Appointment Status
+                                    </option>
+
+                                    <option value="departments">
+                                        Departments
+                                    </option>
+
+                                    <option value="appointmentTrend">
+                                        Appointment Trend
+                                    </option>
+
+                                    <option value="messageStatus">
+                                        Message Status
+                                    </option>
+
+                                    <option value="messageTrend">
+                                        Message Trend
+                                    </option>
+
+                                </select>
+                            </div>
+
+
+                            <div>
+                                <label>
+                                    <strong>Chart Type</strong>
+                                </label>
+
+                                <select id="chartType">
+
+                                    <option value="bar">
+                                        Bar
+                                    </option>
+
+                                    <option value="line">
+                                        Line
+                                    </option>
+
+                                    <option value="pie">
+                                        Pie
+                                    </option>
+
+                                    <option value="doughnut">
+                                        Doughnut
+                                    </option>
+
+                                </select>
+                            </div>
+
+
+                            <div class="analysis-full">
+
+                                <label>
+                                    <strong>Analysis Title</strong>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="analysisTitle"
+                                    placeholder="Example: Monthly Appointment Analysis">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="analysis-buttons">
+
+                            <button
+                                class="btn btn-primary"
+                                onclick="generateAnalysis()">
+                                📊 Generate Chart
+                            </button>
+
+                            <button
+                                class="btn btn-secondary"
+                                onclick="clearAnalysis()">
+                                Clear
+                            </button>
+
+                        </div>
 
                     </div>
 
                 </div>
 
 
+                <div class="panel">
 
-                <!-- OUTCOME -->
+                    <div class="panel-header">
+                        <h2>Chart</h2>
+                    </div>
 
-                <div class="analysis-panel">
+                    <div class="panel-body">
 
-                    <h2>
-                        📝 Outcome / Findings / Recommendation
-                    </h2>
+                        <div class="chart-container">
 
-                    <div class="analysis-field">
+                            <canvas id="analysisChart"></canvas>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h2>Outcome / Findings / Recommendation</h2>
+                    </div>
+
+                    <div class="panel-body">
 
                         <textarea
                             id="analysisOutcome"
-                            placeholder="Write the findings, outcome and recommendation of this analysis..."></textarea>
+                            placeholder="Write the findings, interpretation and recommendation here..."></textarea>
 
-                    </div>
+                        <div class="analysis-buttons">
 
+                            <button
+                                class="btn btn-success"
+                                onclick="saveAnalysis()">
+                                💾 Save Analysis & Outcome
+                            </button>
 
-                    <button
-                        class="btn save-btn"
-                        onclick="saveAnalysis()">
-
-                        💾 Save Analysis & Outcome
-
-                    </button>
-
-                </div>
-
-
-
-                <!-- =================================================
-                     ANALYSIS HISTORY
-                ================================================== -->
-
-                <div class="analysis-panel">
-
-                    <h2>📚 Analysis History</h2>
-
-                    <p style="color:#687386;margin-bottom:18px;">
-
-                        Hano ubona analysis zakozwe vuba.
-                        Kubona analysis zose, kanda
-                        <strong>All Analysis</strong>.
-
-                    </p>
-
-
-                    <button
-                        class="btn btn-analysis"
-                        onclick="openAllAnalysis()">
-
-                        📚 All Analysis
-
-                    </button>
-
-
-                    <div
-                        id="analysisHistory"
-                        style="margin-top:20px;">
-
-                        <div class="loading">
-                            Loading analysis history...
                         </div>
 
                     </div>
 
+                </div>
 
-                    <button
-                        class="btn refresh"
-                        onclick="loadAnalysisHistory()">
 
-                        🔄 Refresh Analysis History
+                <div class="panel">
 
-                    </button>
+                    <div class="panel-header">
+
+                        <h2>Recent Analysis History</h2>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="loadAnalysisHistory()">
+                            🔄 Refresh
+                        </button>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div id="analysisHistory">
+                            <div class="loading">
+                                Loading analysis history...
+                            </div>
+                        </div>
+
+                    </div>
 
                 </div>
 
             </section>
 
 
-
             <!-- =================================================
-                 ALL ANALYSIS PAGE
-            ================================================== -->
+            RECYCLE BIN
+            ================================================= -->
 
-            <section
-                id="allAnalysisPage"
-                class="section">
+            <section id="recycleBin" class="page-section">
 
-                <div class="all-analysis-header">
+                <div class="page-title">
+                    <h1>🗑️ Recycle Bin</h1>
+                    <p>Deleted messages can be restored or permanently deleted.</p>
+                </div>
 
-                    <h2>📚 All Analysis</h2>
+                <div class="panel">
 
-                    <p>
-                        Hano ni ho ubona analysis zose zakozwe
-                        muri NASHO Health Center.
-                    </p>
+                    <div class="panel-header">
 
-
-                    <div class="all-analysis-actions">
+                        <h2>Deleted Messages</h2>
 
                         <button
-                            class="btn btn-back"
-                            onclick="backToAnalysis()">
-
-                            ← Back to Analysis
-
+                            class="btn btn-primary"
+                            onclick="loadRecycleBin()">
+                            🔄 Refresh
                         </button>
 
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div id="recycleBinContainer">
+                            <div class="loading">
+                                Loading recycle bin...
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+            ALL ANALYSIS
+            ================================================= -->
+
+            <section id="allAnalysisPage" class="page-section">
+
+                <div class="page-title">
+                    <h1>📋 Analysis History</h1>
+                    <p>All saved statistical analyses and recommendations.</p>
+                </div>
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h2>Saved Analyses</h2>
 
                         <button
-                            class="btn refresh"
+                            class="btn btn-primary"
                             onclick="loadAllAnalysis()">
-
-                            🔄 Refresh All Analysis
-
+                            🔄 Refresh
                         </button>
 
-
-                        <span class="analysis-count">
-
-                            Total:
-                            <span id="allAnalysisCount">
-                                0
-                            </span>
-
-                        </span>
-
                     </div>
 
-                </div>
+                    <div class="panel-body">
 
-
-                <div id="allAnalysisContainer">
-
-                    <div class="loading">
-
-                        <span class="spinner"></span>
-
-                        <br>
-
-                        Loading all analysis...
+                        <div id="allAnalysisContainer">
+                            <div class="loading">
+                                Loading analysis...
+                            </div>
+                        </div>
 
                     </div>
 
                 </div>
 
             </section>
-
-
-
-            <!-- =================================================
-                 RECYCLE BIN
-            ================================================== -->
-
-            <section
-                id="recycle"
-                class="section">
-
-                <div class="section-title">
-
-                    <h2>♻️ Recycle Bin</h2>
-
-                    <p>
-                        Deleted website messages can be restored
-                        or permanently deleted here.
-                    </p>
-
-                </div>
-
-
-                <div id="recycleContainer">
-
-                    <div class="loading">
-                        Loading Recycle Bin...
-                    </div>
-
-                </div>
-
-
-                <button
-                    class="btn refresh"
-                    onclick="loadRecycleBin()">
-
-                    🔄 Refresh Recycle Bin
-
-                </button>
-
-            </section>
-
 
         </div>
 
@@ -1678,46 +1265,150 @@ tr:hover{
 </div>
 
 
-
-<!-- =====================================================
-     NOTIFICATION
-===================================================== -->
-
-<div
-    id="notification"
-    class="notification">
-</div>
-
+<div id="notification"></div>
 
 
 <script>
 
-
-// =====================================================
-// CONFIGURATION
-// =====================================================
+/* ============================================================
+CONFIGURATION
+============================================================ */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbzVlDEG0luk1s6p8PTRF5lvfFDuu3ZT4h9C53igSLbqwkIV0saKh8GRJmYfskutpeOSOA/exec";
 
 
-let appointmentsData = [];
+/* ============================================================
+GLOBAL DATA
+============================================================ */
 
-let messagesData = [];
-
-let analysisData = [];
+let appointments = [];
+let messages = [];
+let recycleMessages = [];
+let analysisHistory = [];
 
 let analysisChart = null;
 
 
+/* ============================================================
+HELPERS
+============================================================ */
 
-// =====================================================
-// LOGIN
-// =====================================================
+function showNotification(message,type="info"){
 
-function login(event){
+    const box =
+        document.getElementById("notification");
 
-    event.preventDefault();
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "notice " + type;
+
+    div.textContent =
+        message;
+
+    box.appendChild(div);
+
+    setTimeout(()=>{
+        div.remove();
+    },4000);
+}
+
+
+function escapeHtml(value){
+
+    if(value === null || value === undefined){
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+function normalizeResponse(data){
+
+    if(Array.isArray(data)){
+        return data;
+    }
+
+    if(data && Array.isArray(data.data)){
+        return data.data;
+    }
+
+    if(data && Array.isArray(data.messages)){
+        return data.messages;
+    }
+
+    if(data && Array.isArray(data.appointments)){
+        return data.appointments;
+    }
+
+    if(data && Array.isArray(data.rows)){
+        return data.rows;
+    }
+
+    return [];
+}
+
+
+function getValue(obj,keys){
+
+    for(const key of keys){
+
+        if(
+            obj &&
+            obj[key] !== undefined &&
+            obj[key] !== null
+        ){
+            return obj[key];
+        }
+
+    }
+
+    return "";
+}
+
+
+function formatDate(value){
+
+    if(!value){
+        return "";
+    }
+
+    try{
+
+        const d = new Date(value);
+
+        if(isNaN(d.getTime())){
+            return String(value);
+        }
+
+        return d.toLocaleString();
+
+    }catch(e){
+
+        return String(value);
+
+    }
+
+}
+
+
+/* ============================================================
+LOGIN
+============================================================ */
+
+document
+.getElementById("loginForm")
+.addEventListener("submit",async function(e){
+
+    e.preventDefault();
 
     const username =
         document.getElementById("username").value.trim();
@@ -1725,33 +1416,38 @@ function login(event){
     const password =
         document.getElementById("password").value;
 
-    const button =
-        document.getElementById("loginButton");
+    const btn =
+        document.getElementById("loginBtn");
 
-    const errorBox =
-        document.getElementById("loginError");
+    const msg =
+        document.getElementById("loginMessage");
 
-    errorBox.style.display = "none";
+    btn.disabled = true;
+    btn.textContent = "⏳ Logging in...";
 
-    button.disabled = true;
+    msg.innerHTML = "";
 
-    button.textContent = "⏳ Logging in...";
+    try{
 
-    const url =
-        API_URL +
-        "?action=login" +
-        "&username=" +
-        encodeURIComponent(username) +
-        "&password=" +
-        encodeURIComponent(password);
+        const url =
+            API_URL +
+            "?action=login" +
+            "&username=" +
+            encodeURIComponent(username) +
+            "&password=" +
+            encodeURIComponent(password);
 
-    fetch(url)
+        const response =
+            await fetch(url);
 
-    .then(response => response.json())
+        const data =
+            await response.json();
 
-    .then(data => {
-
-        if(data.success){
+        if(
+            data.success === true ||
+            data.status === "success" ||
+            data.loggedIn === true
+        ){
 
             sessionStorage.setItem(
                 "nashoAdminLoggedIn",
@@ -1763,66 +1459,74 @@ function login(event){
                 username
             );
 
-            showAdminPage(username);
+            showAdmin();
 
-        }
-        else{
+        }else{
 
-            errorBox.textContent =
+            msg.className =
+                "login-message";
+
+            msg.style.background =
+                "#fee2e2";
+
+            msg.style.color =
+                "#991b1b";
+
+            msg.textContent =
                 data.message ||
-                "Login failed.";
-
-            errorBox.style.display = "block";
+                "Invalid username or password.";
 
         }
 
-    })
+    }catch(error){
 
-    .catch(error => {
+        msg.className =
+            "login-message";
+
+        msg.style.background =
+            "#fee2e2";
+
+        msg.style.color =
+            "#991b1b";
+
+        msg.textContent =
+            "Unable to connect to the server.";
 
         console.error(error);
 
-        errorBox.textContent =
-            "Unable to connect to server.";
+    }finally{
 
-        errorBox.style.display = "block";
+        btn.disabled = false;
+        btn.textContent = "🔐 Login";
 
-    })
+    }
 
-    .finally(() => {
-
-        button.disabled = false;
-
-        button.textContent = "🔐 Login";
-
-    });
-
-}
+});
 
 
+function showAdmin(){
 
-// =====================================================
-// SHOW ADMIN PAGE
-// =====================================================
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
 
-function showAdminPage(username){
+    document
+        .getElementById("adminPage")
+        .classList.remove("hidden");
 
-    document.getElementById("loginPage").style.display = "none";
+    const username =
+        sessionStorage.getItem(
+            "nashoAdminUsername"
+        ) || "Admin";
 
-    document.getElementById("adminPage").style.display = "block";
-
-    document.getElementById("loggedAdmin").textContent =
-        username || "Admin";
+    document
+        .getElementById("loggedUser")
+        .textContent = username;
 
     loadDashboard();
 
 }
 
-
-
-// =====================================================
-// LOGOUT
-// =====================================================
 
 function logout(){
 
@@ -1839,196 +1543,83 @@ function logout(){
 }
 
 
+/* ============================================================
+AUTO LOGIN
+============================================================ */
 
-// =====================================================
-// PAGE LOAD
-// =====================================================
+document.addEventListener("DOMContentLoaded",function(){
 
-window.addEventListener(
-    "load",
-    function(){
+    const logged =
+        sessionStorage.getItem(
+            "nashoAdminLoggedIn"
+        );
 
-        const loggedIn =
-            sessionStorage.getItem(
-                "nashoAdminLoggedIn"
-            );
-
-        const username =
-            sessionStorage.getItem(
-                "nashoAdminUsername"
-            );
-
-        if(loggedIn === "true"){
-
-            showAdminPage(
-                username || "Admin"
-            );
-
-        }
-
+    if(logged === "true"){
+        showAdmin();
     }
-);
+
+});
 
 
-
-// =====================================================
-// SECTION NAVIGATION
-// =====================================================
+/* ============================================================
+NAVIGATION
+============================================================ */
 
 function showSection(id,button){
 
     document
-        .querySelectorAll(".section")
-        .forEach(section => {
-
+        .querySelectorAll(".page-section")
+        .forEach(section=>{
             section.classList.remove("active");
-
-            section.classList.remove("active-page");
-
         });
 
-
-    const selected =
+    const section =
         document.getElementById(id);
 
-
-    if(selected){
-
-        selected.classList.add("active");
-
-        if(id === "allAnalysisPage"){
-
-            selected.classList.add("active-page");
-
-        }
-
+    if(section){
+        section.classList.add("active");
     }
-
 
     document
-        .querySelectorAll(".menu button")
-        .forEach(btn => {
-
+        .querySelectorAll(".nav button")
+        .forEach(btn=>{
             btn.classList.remove("active");
-
         });
 
-
     if(button){
-
         button.classList.add("active");
-
     }
-
-
-    const titles = {
-
-        dashboard:
-            "Dashboard",
-
-        appointments:
-            "Appointments",
-
-        messages:
-            "Messages",
-
-        statistics:
-            "Statistics & Analysis",
-
-        allAnalysisPage:
-            "All Analysis",
-
-        recycle:
-            "Recycle Bin"
-
-    };
-
-
-    document.getElementById("pageTitle").textContent =
-        titles[id] || "Admin";
-
 
     if(id === "dashboard"){
-
         loadDashboard();
-
     }
-
 
     if(id === "appointments"){
-
         loadAppointments();
-
     }
-
 
     if(id === "messages"){
-
         loadMessages();
-
     }
-
 
     if(id === "statistics"){
 
         loadAppointments();
-
         loadMessages();
-
         loadAnalysisHistory();
 
     }
 
+    if(id === "recycleBin"){
+        loadRecycleBin();
+    }
 
     if(id === "allAnalysisPage"){
-
         loadAllAnalysis();
-
     }
 
-
-    if(id === "recycle"){
-
-        loadRecycleBin();
-
-    }
-
-
-    document
-        .getElementById("sidebar")
-        .classList.remove("open");
-
 }
 
-
-
-// =====================================================
-// OPEN ALL ANALYSIS
-// =====================================================
-
-function openAllAnalysis(){
-
-    showSection("allAnalysisPage",null);
-
-}
-
-
-
-// =====================================================
-// BACK TO ANALYSIS
-// =====================================================
-
-function backToAnalysis(){
-
-    showSection("statistics",null);
-
-}
-
-
-
-// =====================================================
-// MOBILE SIDEBAR
-// =====================================================
 
 function toggleSidebar(){
 
@@ -2039,430 +1630,521 @@ function toggleSidebar(){
 }
 
 
+/* ============================================================
+DASHBOARD
+============================================================ */
 
-// =====================================================
-// DASHBOARD
-// =====================================================
+async function loadDashboard(){
 
-function loadDashboard(){
+    try{
 
-    Promise.all([
+        await Promise.all([
+            loadAppointments(),
+            loadMessages()
+        ]);
 
-        fetch(
-            API_URL +
-            "?action=getAppointments"
-        ).then(r => r.json()),
-
-        fetch(
-            API_URL +
-            "?action=getMessages"
-        ).then(r => r.json())
-
-    ])
-
-    .then(results => {
-
-        const appointments =
-            Array.isArray(results[0])
-                ? results[0]
-                : [];
-
-        const messages =
-            Array.isArray(results[1])
-                ? results[1]
-                : [];
-
-        appointmentsData = appointments;
-
-        messagesData = messages;
-
-        document.getElementById(
-            "totalAppointments"
-        ).textContent =
-            appointments.length;
-
-        document.getElementById(
-            "pendingAppointments"
-        ).textContent =
-            appointments.filter(
-                a =>
-                    String(a.status)
-                    .toLowerCase() === "pending"
-            ).length;
-
-        document.getElementById(
-            "totalMessages"
-        ).textContent =
-            messages.length;
-
-        document.getElementById(
-            "newMessages"
-        ).textContent =
-            messages.filter(
-                m =>
-                    String(m.status)
-                    .toLowerCase() === "new"
-            ).length;
-
-    })
-
-    .catch(error => {
+    }catch(error){
 
         console.error(error);
-
-    });
-
-}
-
-
-
-// =====================================================
-// LOAD APPOINTMENTS
-// =====================================================
-
-function loadAppointments(){
-
-    const tbody =
-        document.getElementById(
-            "appointmentsTable"
-        );
-
-    tbody.innerHTML = `
-
-        <tr>
-
-            <td colspan="11" class="loading">
-
-                <span class="spinner"></span>
-
-                <br>
-
-                Loading appointments...
-
-            </td>
-
-        </tr>
-
-    `;
-
-    fetch(
-        API_URL +
-        "?action=getAppointments"
-    )
-
-    .then(response => response.json())
-
-    .then(data => {
-
-        appointmentsData =
-            Array.isArray(data)
-                ? data
-                : [];
-
-        displayAppointments(
-            appointmentsData
-        );
-
-        updateDashboardCards();
-
-    })
-
-    .catch(error => {
-
-        console.error(error);
-
-        tbody.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="11"
-                    style="text-align:center;color:#c62828;">
-
-                    Failed to load appointments.
-
-                </td>
-
-            </tr>
-
-        `;
-
-    });
-
-}
-
-
-
-// =====================================================
-// DISPLAY APPOINTMENTS
-// =====================================================
-
-function displayAppointments(data){
-
-    const tbody =
-        document.getElementById(
-            "appointmentsTable"
-        );
-
-    if(!data.length){
-
-        tbody.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="11"
-                    style="text-align:center;padding:30px;">
-
-                    No appointments found.
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
 
     }
 
-    tbody.innerHTML =
-        data.map(
-            appointment => `
+}
+
+
+/* ============================================================
+APPOINTMENTS
+============================================================ */
+
+async function loadAppointments(){
+
+    const container =
+        document.getElementById(
+            "appointmentsContainer"
+        );
+
+    if(container){
+
+        container.innerHTML =
+            `<div class="loading">
+                ⏳ Loading appointments...
+             </div>`;
+
+    }
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "?action=getAppointments"
+            );
+
+        const data =
+            await response.json();
+
+        appointments =
+            normalizeResponse(data);
+
+        displayAppointments(
+            appointments
+        );
+
+        updateDashboardCounts();
+
+    }catch(error){
+
+        console.error(error);
+
+        if(container){
+
+            container.innerHTML =
+                `<div class="empty">
+                    ❌ Failed to load appointments.<br>
+                    ${escapeHtml(error.message)}
+                 </div>`;
+
+        }
+
+        showNotification(
+            "Failed to load appointments.",
+            "error"
+        );
+
+    }
+
+}
+
+
+function displayAppointments(data){
+
+    const container =
+        document.getElementById(
+            "appointmentsContainer"
+        );
+
+    if(!container){
+        return;
+    }
+
+    if(!data.length){
+
+        container.innerHTML =
+            `<div class="empty">
+                📅 No appointments found.
+             </div>`;
+
+        return;
+    }
+
+    let html = `
+    <div class="table-wrapper">
+    <table>
+
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Date Submitted</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Patient ID</th>
+        <th>Department</th>
+        <th>Appointment Date</th>
+        <th>Time</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    `;
+
+    data.forEach((item,index)=>{
+
+        const timestamp =
+            getValue(item,[
+                "Timestamp",
+                "timestamp"
+            ]);
+
+        const name =
+            getValue(item,[
+                "Name",
+                "name"
+            ]);
+
+        const phone =
+            getValue(item,[
+                "Phone",
+                "phone"
+            ]);
+
+        const patientId =
+            getValue(item,[
+                "Patient ID",
+                "patientId",
+                "PatientID"
+            ]);
+
+        const department =
+            getValue(item,[
+                "Department",
+                "department"
+            ]);
+
+        const date =
+            getValue(item,[
+                "Date",
+                "date"
+            ]);
+
+        const time =
+            getValue(item,[
+                "Time",
+                "time"
+            ]);
+
+        const message =
+            getValue(item,[
+                "Message",
+                "message"
+            ]);
+
+        const status =
+            getValue(item,[
+                "Status",
+                "status"
+            ]) || "Pending";
+
+        html += `
 
         <tr>
 
+            <td>${index+1}</td>
+
             <td>
-                ${escapeHtml(appointment.timestamp || "")}
+                ${escapeHtml(
+                    formatDate(timestamp)
+                )}
             </td>
 
             <td>
                 <strong>
-                    ${escapeHtml(appointment.name || "")}
+                    ${escapeHtml(name)}
                 </strong>
             </td>
 
             <td>
-                ${escapeHtml(appointment.phone || "")}
+                ${escapeHtml(phone)}
             </td>
 
             <td>
-                ${escapeHtml(appointment.patientId || "")}
+                ${escapeHtml(patientId)}
             </td>
 
             <td>
-                ${escapeHtml(appointment.department || "")}
+                ${escapeHtml(department)}
             </td>
 
             <td>
-                ${escapeHtml(appointment.date || "")}
+                ${escapeHtml(date)}
             </td>
 
             <td>
-                ${escapeHtml(appointment.time || "")}
+                ${escapeHtml(time)}
             </td>
 
             <td>
-                ${escapeHtml(appointment.email || "")}
+                ${escapeHtml(message)}
             </td>
 
             <td>
-                ${escapeHtml(appointment.message || "")}
-            </td>
-
-            <td>
-                ${statusBadge(appointment.status)}
+                ${statusBadge(status)}
             </td>
 
             <td>
 
-                <button
-                    class="btn btn-confirm"
-                    onclick="updateAppointment(
-                        ${appointment.row},
-                        'Confirmed'
+                <select
+                    onchange="updateAppointment(
+                        ${index},
+                        this.value
                     )">
 
-                    ✓ Confirm
+                    <option value="">
+                        Change
+                    </option>
 
-                </button>
+                    <option value="Pending">
+                        Pending
+                    </option>
 
-                <button
-                    class="btn btn-complete"
-                    onclick="updateAppointment(
-                        ${appointment.row},
-                        'Completed'
-                    )">
+                    <option value="Approved">
+                        Approved
+                    </option>
 
-                    ✓ Complete
+                    <option value="Completed">
+                        Completed
+                    </option>
 
-                </button>
+                    <option value="Cancelled">
+                        Cancelled
+                    </option>
 
-                <button
-                    class="btn btn-cancel"
-                    onclick="updateAppointment(
-                        ${appointment.row},
-                        'Cancelled'
-                    )">
-
-                    ✕ Cancel
-
-                </button>
+                </select>
 
             </td>
 
         </tr>
 
-    `).join("");
+        `;
+
+    });
+
+    html += `
+    </tbody>
+    </table>
+    </div>
+    `;
+
+    container.innerHTML = html;
 
 }
 
 
+function statusBadge(status){
 
-// =====================================================
-// UPDATE APPOINTMENT
-// =====================================================
+    const s =
+        String(status || "")
+        .toLowerCase();
 
-function updateAppointment(row,status){
+    let cls =
+        "status-pending";
 
-    if(!confirm(
-        "Are you sure you want to change this appointment to " +
-        status +
-        "?"
-    )){
+    if(s.includes("approved")){
+        cls = "status-approved";
+    }
+
+    if(s.includes("completed")){
+        cls = "status-completed";
+    }
+
+    if(s.includes("cancel")){
+        cls = "status-cancelled";
+    }
+
+    if(s.includes("read")){
+        cls = "status-read";
+    }
+
+    if(s.includes("unread")){
+        cls = "status-unread";
+    }
+
+    return `
+        <span class="status ${cls}">
+            ${escapeHtml(status || "Pending")}
+        </span>
+    `;
+
+}
+
+
+async function updateAppointment(index,status){
+
+    if(!status){
+        return;
+    }
+
+    const item =
+        appointments[index];
+
+    if(!item){
+        return;
+    }
+
+    const row =
+        index + 2;
+
+    try{
+
+        const form =
+            new URLSearchParams();
+
+        form.append(
+            "action",
+            "updateAppointment"
+        );
+
+        form.append(
+            "row",
+            row
+        );
+
+        form.append(
+            "status",
+            status
+        );
+
+        await fetch(API_URL,{
+            method:"POST",
+            body:form
+        });
+
+        showNotification(
+            "Appointment status updated.",
+            "success"
+        );
+
+        loadAppointments();
+
+    }catch(error){
+
+        console.error(error);
+
+        showNotification(
+            "Failed to update appointment.",
+            "error"
+        );
+
+    }
+
+}
+
+
+function filterAppointments(){
+
+    const query =
+        document
+        .getElementById("appointmentSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    if(!query){
+
+        displayAppointments(
+            appointments
+        );
 
         return;
 
     }
 
-    const body =
-        new URLSearchParams();
+    const filtered =
+        appointments.filter(item=>{
 
-    body.append("action","updateAppointment");
+            return JSON.stringify(item)
+                .toLowerCase()
+                .includes(query);
 
-    body.append("row",row);
+        });
 
-    body.append("status",status);
-
-    fetch(
-        API_URL,
-        {
-            method:"POST",
-            body:body
-        }
-    )
-
-    .then(r => r.json())
-
-    .then(data => {
-
-        if(data.success){
-
-            showNotification(
-                data.message ||
-                "Appointment updated.",
-                "success"
-            );
-
-            loadAppointments();
-
-        }
-        else{
-
-            showNotification(
-                data.message ||
-                "Update failed.",
-                "error"
-            );
-
-        }
-
-    })
-
-    .catch(error => {
-
-        console.error(error);
-
-        showNotification(
-            "Server error.",
-            "error"
-        );
-
-    });
+    displayAppointments(filtered);
 
 }
 
 
+function clearAppointmentSearch(){
 
-// =====================================================
-// LOAD MESSAGES
-// =====================================================
+    document
+        .getElementById("appointmentSearch")
+        .value = "";
 
-function loadMessages(){
+    displayAppointments(
+        appointments
+    );
+
+}
+
+
+/* ============================================================
+MESSAGES
+============================================================ */
+
+async function loadMessages(){
 
     const container =
         document.getElementById(
             "messagesContainer"
         );
 
-    container.innerHTML = `
+    if(container){
 
-        <div class="loading">
+        container.innerHTML =
+            `<div class="loading">
+                ⏳ Loading messages...
+             </div>`;
 
-            <span class="spinner"></span>
+    }
 
-            <br>
+    try{
 
-            Loading messages...
+        const response =
+            await fetch(
+                API_URL +
+                "?action=getMessages"
+            );
 
-        </div>
+        const data =
+            await response.json();
 
-    `;
+        console.log(
+            "GET MESSAGES RESPONSE:",
+            data
+        );
 
-    fetch(
-        API_URL +
-        "?action=getMessages"
-    )
+        /*
+        IMPORTANT:
+        Supports all common Apps Script response formats:
+        Array
+        {data:[]}
+        {messages:[]}
+        {rows:[]}
+        */
 
-    .then(r => r.json())
+        messages =
+            normalizeResponse(data);
 
-    .then(data => {
+        displayMessages(messages);
 
-        messagesData =
-            Array.isArray(data)
-                ? data
-                : [];
+        updateDashboardCounts();
 
-        displayMessages(messagesData);
+    }catch(error){
 
-        updateDashboardCards();
+        console.error(
+            "MESSAGE ERROR:",
+            error
+        );
 
-    })
+        if(container){
 
-    .catch(error => {
+            container.innerHTML =
+                `<div class="empty">
 
-        console.error(error);
+                    ❌ Failed to load messages.
 
-        container.innerHTML = `
+                    <br><br>
 
-            <div
-                style="text-align:center;color:#c62828;padding:30px;">
+                    <small>
+                    ${escapeHtml(
+                        error.message
+                    )}
+                    </small>
 
-                Failed to load messages.
+                 </div>`;
 
-            </div>
+        }
 
-        `;
+        showNotification(
+            "Failed to load messages.",
+            "error"
+        );
 
-    });
+    }
 
 }
 
-
-
-// =====================================================
-// DISPLAY MESSAGES
-// =====================================================
 
 function displayMessages(data){
 
@@ -2471,29 +2153,104 @@ function displayMessages(data){
             "messagesContainer"
         );
 
-    if(!data.length){
-
-        container.innerHTML = `
-
-            <div class="panel">
-
-                <div class="history-empty">
-
-                    ✉️ No messages found.
-
-                </div>
-
-            </div>
-
-        `;
-
+    if(!container){
         return;
+    }
+
+    const countTitle =
+        document.getElementById(
+            "messagesCountTitle"
+        );
+
+    if(countTitle){
+
+        countTitle.textContent =
+            "(" + data.length + ")";
 
     }
 
-    container.innerHTML =
-        data.map(
-            msg => `
+    if(!data.length){
+
+        container.innerHTML =
+            `<div class="empty">
+
+                📭 No messages found.
+
+                <br><br>
+
+                <small>
+                Messages submitted through the
+                website will appear here.
+                </small>
+
+             </div>`;
+
+        return;
+    }
+
+
+    let html = "";
+
+
+    data.forEach((item,index)=>{
+
+        const timestamp =
+            getValue(item,[
+                "Timestamp",
+                "timestamp"
+            ]);
+
+        const name =
+            getValue(item,[
+                "Name",
+                "name"
+            ]);
+
+        const phone =
+            getValue(item,[
+                "Phone",
+                "phone"
+            ]);
+
+        const email =
+            getValue(item,[
+                "Email",
+                "email"
+            ]);
+
+        const message =
+            getValue(item,[
+                "Message",
+                "message"
+            ]);
+
+        const status =
+            getValue(item,[
+                "Status",
+                "status"
+            ]) || "Unread";
+
+        const messageId =
+            getValue(item,[
+                "Message ID",
+                "messageId",
+                "MessageID"
+            ]);
+
+        const reply =
+            getValue(item,[
+                "Reply",
+                "reply"
+            ]);
+
+        const replyDate =
+            getValue(item,[
+                "Reply Date",
+                "replyDate"
+            ]);
+
+
+        html += `
 
         <div class="message-box">
 
@@ -2502,29 +2259,19 @@ function displayMessages(data){
                 <div>
 
                     <div class="message-name">
-
-                        ${escapeHtml(
-                            msg.name || "Unknown"
-                        )}
-
+                        👤 ${escapeHtml(name || "Unknown")}
                     </div>
 
                     <div class="message-meta">
 
-                        📞 ${escapeHtml(
-                            msg.phone || "No phone"
-                        )}
+                        📞 ${escapeHtml(phone || "-")}
+                        <br>
 
-                        &nbsp;&nbsp;
+                        📧 ${escapeHtml(email || "-")}
+                        <br>
 
-                        ✉️ ${escapeHtml(
-                            msg.email || "No email"
-                        )}
-
-                        &nbsp;&nbsp;
-
-                        📅 ${escapeHtml(
-                            msg.timestamp || ""
+                        🕒 ${escapeHtml(
+                            formatDate(timestamp)
                         )}
 
                     </div>
@@ -2533,11 +2280,22 @@ function displayMessages(data){
 
                 <div>
 
-                    ${statusBadge(msg.status)}
+                    ${statusBadge(status)}
 
                 </div>
 
             </div>
+
+
+            ${
+                messageId
+                ?
+                `<div class="message-meta">
+                    🆔 ${escapeHtml(messageId)}
+                 </div>`
+                :
+                ""
+            }
 
 
             <div class="original-message">
@@ -2548,17 +2306,16 @@ function displayMessages(data){
 
                 <br><br>
 
-                ${escapeHtml(msg.message || "")}
+                ${escapeHtml(message)}
 
             </div>
 
 
             ${
-                msg.reply
+                reply
                 ?
                 `
-
-                <div class="previous-reply">
+                <div class="original-message">
 
                     <strong>
                         Previous Reply:
@@ -2566,49 +2323,52 @@ function displayMessages(data){
 
                     <br><br>
 
-                    ${escapeHtml(msg.reply)}
+                    ${escapeHtml(reply)}
 
-                    <br><br>
-
-                    <small>
-                        Replied:
-                        ${escapeHtml(
-                            msg.replyDate || ""
-                        )}
-                    </small>
+                    ${
+                        replyDate
+                        ?
+                        `<br><br>
+                         <small>
+                         Reply Date:
+                         ${escapeHtml(
+                            formatDate(replyDate)
+                         )}
+                         </small>`
+                        :
+                        ""
+                    }
 
                 </div>
-
                 `
                 :
                 ""
             }
 
 
-            <textarea
-                class="reply-area"
-                id="reply-${msg.row}"
-                placeholder="Write your reply here..."></textarea>
+            <div class="reply-area">
+
+                <textarea
+                    id="reply-${index}"
+                    placeholder="Write your reply to this message..."></textarea>
+
+            </div>
 
 
-            <div style="margin-top:10px;">
+            <div class="message-actions">
 
                 <button
-                    class="btn btn-reply"
-                    onclick="sendReply(
-                        ${msg.row},
-                        '${escapeJs(msg.email || "")}',
-                        '${escapeJs(msg.name || "")}'
-                    )">
+                    class="btn btn-success"
+                    onclick="sendReply(${index})">
 
-                    ✉️ Send Reply
+                    📩 Send Reply
 
                 </button>
 
 
                 <button
-                    class="btn btn-delete"
-                    onclick="deleteMessage(${msg.row})">
+                    class="btn btn-danger"
+                    onclick="deleteMessage(${index})">
 
                     🗑️ Move to Recycle Bin
 
@@ -2618,494 +2378,758 @@ function displayMessages(data){
 
         </div>
 
-    `).join("");
-
-}
-
-
-
-// =====================================================
-// SEND REPLY
-// =====================================================
-
-function sendReply(row,email,name){
-
-    const textarea =
-        document.getElementById(
-            "reply-" + row
-        );
-
-    const message =
-        textarea.value.trim();
-
-    if(!message){
-
-        showNotification(
-            "Andika igisubizo mbere yo kohereza.",
-            "error"
-        );
-
-        return;
-
-    }
-
-    if(!email){
-
-        showNotification(
-            "Uyu muntu nta email yasize.",
-            "error"
-        );
-
-        return;
-
-    }
-
-    if(!confirm(
-        "Send this reply to " +
-        email +
-        "?"
-    )){
-
-        return;
-
-    }
-
-    const body =
-        new URLSearchParams();
-
-    body.append("action","replyMessage");
-
-    body.append("row",row);
-
-    body.append("email",email);
-
-    body.append("name",name);
-
-    body.append("message",message);
-
-    fetch(
-        API_URL,
-        {
-            method:"POST",
-            body:body
-        }
-    )
-
-    .then(r => r.json())
-
-    .then(data => {
-
-        if(data.success){
-
-            showNotification(
-                data.message ||
-                "Reply sent successfully.",
-                "success"
-            );
-
-            loadMessages();
-
-        }
-        else{
-
-            showNotification(
-                data.message ||
-                "Reply failed.",
-                "error"
-            );
-
-        }
-
-    })
-
-    .catch(error => {
-
-        console.error(error);
-
-        showNotification(
-            "Server error.",
-            "error"
-        );
-
-    });
-
-}
-
-
-
-// =====================================================
-// DELETE MESSAGE
-// =====================================================
-
-function deleteMessage(row){
-
-    if(!confirm(
-        "Move this message to Recycle Bin?"
-    )){
-
-        return;
-
-    }
-
-    const body =
-        new URLSearchParams();
-
-    body.append("action","deleteMessage");
-
-    body.append("row",row);
-
-    fetch(
-        API_URL,
-        {
-            method:"POST",
-            body:body
-        }
-    )
-
-    .then(r => r.json())
-
-    .then(data => {
-
-        if(data.success){
-
-            showNotification(
-                data.message,
-                "success"
-            );
-
-            loadMessages();
-
-        }
-        else{
-
-            showNotification(
-                data.message,
-                "error"
-            );
-
-        }
-
-    })
-
-    .catch(error => {
-
-        console.error(error);
-
-        showNotification(
-            "Server error.",
-            "error"
-        );
-
-    });
-
-}
-
-
-
-// =====================================================
-// LOAD RECYCLE BIN
-// =====================================================
-
-function loadRecycleBin(){
-
-    const container =
-        document.getElementById(
-            "recycleContainer"
-        );
-
-    container.innerHTML = `
-
-        <div class="loading">
-
-            <span class="spinner"></span>
-
-            <br>
-
-            Loading Recycle Bin...
-
-        </div>
-
-    `;
-
-    fetch(
-        API_URL +
-        "?action=getRecycleBin"
-    )
-
-    .then(r => r.json())
-
-    .then(data => {
-
-        displayRecycleBin(
-            Array.isArray(data)
-                ? data
-                : []
-        );
-
-    })
-
-    .catch(error => {
-
-        console.error(error);
-
-        container.innerHTML = `
-
-            <div
-                style="text-align:center;color:#c62828;padding:30px;">
-
-                Failed to load Recycle Bin.
-
-            </div>
-
         `;
 
     });
 
+
+    container.innerHTML = html;
+
 }
 
 
+function filterMessages(){
 
-// =====================================================
-// DISPLAY RECYCLE BIN
-// =====================================================
+    const query =
+        document
+        .getElementById("messageSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    if(!query){
+
+        displayMessages(
+            messages
+        );
+
+        return;
+
+    }
+
+    const filtered =
+        messages.filter(item=>{
+
+            return JSON.stringify(item)
+                .toLowerCase()
+                .includes(query);
+
+        });
+
+    displayMessages(filtered);
+
+}
+
+
+function clearMessageSearch(){
+
+    document
+        .getElementById("messageSearch")
+        .value = "";
+
+    displayMessages(
+        messages
+    );
+
+}
+
+
+/* ============================================================
+SEND REPLY
+============================================================ */
+
+async function sendReply(index){
+
+    const item =
+        messages[index];
+
+    if(!item){
+        return;
+    }
+
+    const textarea =
+        document.getElementById(
+            "reply-" + index
+        );
+
+    if(!textarea){
+        return;
+    }
+
+    const reply =
+        textarea.value.trim();
+
+    if(!reply){
+
+        showNotification(
+            "Please write a reply first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const email =
+        getValue(item,[
+            "Email",
+            "email"
+        ]);
+
+    const name =
+        getValue(item,[
+            "Name",
+            "name"
+        ]);
+
+    const message =
+        getValue(item,[
+            "Message",
+            "message"
+        ]);
+
+    if(!email){
+
+        showNotification(
+            "This message has no email address.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const form =
+            new URLSearchParams();
+
+        form.append(
+            "action",
+            "replyMessage"
+        );
+
+        form.append(
+            "row",
+            index + 2
+        );
+
+        form.append(
+            "email",
+            email
+        );
+
+        form.append(
+            "name",
+            name
+        );
+
+        form.append(
+            "message",
+            message
+        );
+
+        form.append(
+            "reply",
+            reply
+        );
+
+
+        const response =
+            await fetch(API_URL,{
+                method:"POST",
+                body:form
+            });
+
+        const data =
+            await response.json();
+
+
+        if(
+            data.success === false
+        ){
+
+            throw new Error(
+                data.message ||
+                "Reply failed"
+            );
+
+        }
+
+
+        showNotification(
+            "Reply sent successfully.",
+            "success"
+        );
+
+        textarea.value = "";
+
+        loadMessages();
+
+    }catch(error){
+
+        console.error(error);
+
+        showNotification(
+            "Failed to send reply.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ============================================================
+DELETE MESSAGE
+============================================================ */
+
+async function deleteMessage(index){
+
+    const item =
+        messages[index];
+
+    if(!item){
+        return;
+    }
+
+    if(
+        !confirm(
+            "Move this message to the Recycle Bin?"
+        )
+    ){
+        return;
+    }
+
+    try{
+
+        const form =
+            new URLSearchParams();
+
+        form.append(
+            "action",
+            "deleteMessage"
+        );
+
+        form.append(
+            "row",
+            index + 2
+        );
+
+
+        const response =
+            await fetch(API_URL,{
+                method:"POST",
+                body:form
+            });
+
+        const data =
+            await response.json();
+
+
+        if(
+            data.success === false
+        ){
+
+            throw new Error(
+                data.message ||
+                "Delete failed"
+            );
+
+        }
+
+
+        showNotification(
+            "Message moved to Recycle Bin.",
+            "success"
+        );
+
+        loadMessages();
+
+    }catch(error){
+
+        console.error(error);
+
+        showNotification(
+            "Failed to delete message.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ============================================================
+RECYCLE BIN
+============================================================ */
+
+async function loadRecycleBin(){
+
+    const container =
+        document.getElementById(
+            "recycleBinContainer"
+        );
+
+    if(!container){
+        return;
+    }
+
+    container.innerHTML =
+        `<div class="loading">
+            ⏳ Loading recycle bin...
+         </div>`;
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "?action=getRecycleBin"
+            );
+
+        const data =
+            await response.json();
+
+        recycleMessages =
+            normalizeResponse(data);
+
+        displayRecycleBin(
+            recycleMessages
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        container.innerHTML =
+            `<div class="empty">
+                ❌ Failed to load recycle bin.
+             </div>`;
+
+    }
+
+}
+
 
 function displayRecycleBin(data){
 
     const container =
         document.getElementById(
-            "recycleContainer"
+            "recycleBinContainer"
         );
 
     if(!data.length){
 
-        container.innerHTML = `
+        container.innerHTML =
+            `<div class="empty">
+                🗑️ Recycle Bin is empty.
+             </div>`;
 
-            <div class="panel">
+        return;
 
-                <div class="history-empty">
+    }
 
-                    ♻️ Recycle Bin is empty.
+
+    let html = `
+
+    <div class="table-wrapper">
+
+    <table>
+
+    <thead>
+
+    <tr>
+
+        <th>#</th>
+        <th>Deleted At</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th>Action</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    `;
+
+
+    data.forEach((item,index)=>{
+
+        const deletedAt =
+            getValue(item,[
+                "Deleted At",
+                "deletedAt"
+            ]);
+
+        const name =
+            getValue(item,[
+                "Name",
+                "name"
+            ]);
+
+        const phone =
+            getValue(item,[
+                "Phone",
+                "phone"
+            ]);
+
+        const email =
+            getValue(item,[
+                "Email",
+                "email"
+            ]);
+
+        const message =
+            getValue(item,[
+                "Message",
+                "message"
+            ]);
+
+        const status =
+            getValue(item,[
+                "Status",
+                "status"
+            ]);
+
+
+        html += `
+
+        <tr>
+
+            <td>${index+1}</td>
+
+            <td>
+                ${escapeHtml(
+                    formatDate(deletedAt)
+                )}
+            </td>
+
+            <td>
+                ${escapeHtml(name)}
+            </td>
+
+            <td>
+                ${escapeHtml(phone)}
+            </td>
+
+            <td>
+                ${escapeHtml(email)}
+            </td>
+
+            <td>
+                ${escapeHtml(message)}
+            </td>
+
+            <td>
+                ${escapeHtml(status)}
+            </td>
+
+            <td>
+
+                <div style="
+                    display:flex;
+                    gap:6px;
+                    flex-wrap:wrap;
+                ">
+
+                    <button
+                        class="btn btn-success"
+                        onclick="restoreMessage(${index})">
+                        ♻️ Restore
+                    </button>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="permanentDeleteMessage(${index})">
+                        ❌ Delete Forever
+                    </button>
 
                 </div>
 
-            </div>
+            </td>
+
+        </tr>
 
         `;
 
-        return;
+    });
 
-    }
 
-    container.innerHTML =
-        data.map(
-            item => `
+    html += `
+    </tbody>
+    </table>
+    </div>
+    `;
 
-        <div class="recycle-card">
-
-            <h3>
-                🗑️ ${escapeHtml(
-                    item.name || "Unknown"
-                )}
-            </h3>
-
-            <div class="recycle-meta">
-
-                Deleted:
-                ${escapeHtml(
-                    item.deletedDate || ""
-                )}
-
-                &nbsp; | &nbsp;
-
-                Message ID:
-                ${escapeHtml(
-                    item.messageId || ""
-                )}
-
-            </div>
-
-            <div class="recycle-message">
-
-                ${escapeHtml(
-                    item.message || ""
-                )}
-
-            </div>
-
-            <button
-                class="btn btn-restore"
-                onclick="restoreMessage(${item.row})">
-
-                ♻️ Restore
-
-            </button>
-
-            <button
-                class="btn btn-danger"
-                onclick="permanentDeleteMessage(${item.row})">
-
-                ❌ Delete Permanently
-
-            </button>
-
-        </div>
-
-    `).join("");
+    container.innerHTML = html;
 
 }
 
 
+async function restoreMessage(index){
 
-// =====================================================
-// RESTORE MESSAGE
-// =====================================================
-
-function restoreMessage(row){
-
-    if(!confirm(
-        "Restore this message?"
-    )){
-
+    if(
+        !confirm(
+            "Restore this message?"
+        )
+    ){
         return;
-
     }
 
-    const body =
-        new URLSearchParams();
+    try{
 
-    body.append("action","restoreMessage");
+        const form =
+            new URLSearchParams();
 
-    body.append("row",row);
+        form.append(
+            "action",
+            "restoreMessage"
+        );
 
-    fetch(
-        API_URL,
-        {
-            method:"POST",
-            body:body
-        }
-    )
+        form.append(
+            "row",
+            index + 2
+        );
 
-    .then(r => r.json())
 
-    .then(data => {
+        const response =
+            await fetch(API_URL,{
+                method:"POST",
+                body:form
+            });
 
-        if(data.success){
+        const data =
+            await response.json();
 
-            showNotification(
-                data.message,
-                "success"
-            );
 
-            loadRecycleBin();
+        if(data.success === false){
 
-        }
-        else{
-
-            showNotification(
-                data.message,
-                "error"
+            throw new Error(
+                data.message ||
+                "Restore failed"
             );
 
         }
 
-    })
 
-    .catch(error => {
+        showNotification(
+            "Message restored.",
+            "success"
+        );
+
+        loadRecycleBin();
+
+    }catch(error){
 
         console.error(error);
 
         showNotification(
-            "Server error.",
+            "Failed to restore message.",
             "error"
         );
 
-    });
+    }
 
 }
 
 
+async function permanentDeleteMessage(index){
 
-// =====================================================
-// PERMANENT DELETE MESSAGE
-// =====================================================
-
-function permanentDeleteMessage(row){
-
-    if(!confirm(
-        "WARNING: This will permanently delete the message. Continue?"
-    )){
-
+    if(
+        !confirm(
+            "Permanently delete this message? This cannot be undone."
+        )
+    ){
         return;
-
     }
 
-    const body =
-        new URLSearchParams();
+    try{
 
-    body.append(
-        "action",
-        "permanentDeleteMessage"
-    );
+        const form =
+            new URLSearchParams();
 
-    body.append("row",row);
+        form.append(
+            "action",
+            "permanentDeleteMessage"
+        );
 
-    fetch(
-        API_URL,
-        {
-            method:"POST",
-            body:body
-        }
-    )
+        form.append(
+            "row",
+            index + 2
+        );
 
-    .then(r => r.json())
 
-    .then(data => {
+        const response =
+            await fetch(API_URL,{
+                method:"POST",
+                body:form
+            });
 
-        if(data.success){
+        const data =
+            await response.json();
 
-            showNotification(
-                data.message,
-                "success"
-            );
 
-            loadRecycleBin();
+        if(data.success === false){
 
-        }
-        else{
-
-            showNotification(
-                data.message,
-                "error"
+            throw new Error(
+                data.message ||
+                "Permanent delete failed"
             );
 
         }
 
-    })
 
-    .catch(error => {
+        showNotification(
+            "Message permanently deleted.",
+            "success"
+        );
+
+        loadRecycleBin();
+
+    }catch(error){
 
         console.error(error);
 
         showNotification(
-            "Server error.",
+            "Failed to permanently delete message.",
             "error"
         );
 
-    });
+    }
 
 }
 
 
+/* ============================================================
+DASHBOARD COUNTS
+============================================================ */
 
-// =====================================================
-// GENERATE ANALYSIS
-// =====================================================
+function updateDashboardCounts(){
+
+    const totalAppointments =
+        document.getElementById(
+            "totalAppointments"
+        );
+
+    const pendingAppointments =
+        document.getElementById(
+            "pendingAppointments"
+        );
+
+    const totalMessages =
+        document.getElementById(
+            "totalMessages"
+        );
+
+    const unreadMessages =
+        document.getElementById(
+            "unreadMessages"
+        );
+
+
+    if(totalAppointments){
+
+        totalAppointments.textContent =
+            appointments.length;
+
+    }
+
+
+    if(pendingAppointments){
+
+        pendingAppointments.textContent =
+            appointments.filter(item=>{
+
+                const status =
+                    getValue(item,[
+                        "Status",
+                        "status"
+                    ]) || "Pending";
+
+                return String(status)
+                    .toLowerCase()
+                    .includes("pending");
+
+            }).length;
+
+    }
+
+
+    if(totalMessages){
+
+        totalMessages.textContent =
+            messages.length;
+
+    }
+
+
+    if(unreadMessages){
+
+        unreadMessages.textContent =
+            messages.filter(item=>{
+
+                const status =
+                    getValue(item,[
+                        "Status",
+                        "status"
+                    ]) || "Unread";
+
+                return (
+                    String(status)
+                    .toLowerCase()
+                    .includes("unread")
+                    ||
+                    String(status)
+                    .toLowerCase()
+                    === ""
+                );
+
+            }).length;
+
+    }
+
+
+    const badge =
+        document.getElementById(
+            "messageBadge"
+        );
+
+    if(badge){
+
+        if(messages.length){
+
+            badge.textContent =
+                " (" + messages.length + ")";
+
+        }else{
+
+            badge.textContent = "";
+
+        }
+
+    }
+
+}
+
+
+/* ============================================================
+STATISTICS
+============================================================ */
 
 function generateAnalysis(){
 
     const dataType =
         document.getElementById(
-            "dataType"
+            "analysisDataType"
         ).value;
 
     const chartType =
@@ -3118,167 +3142,171 @@ function generateAnalysis(){
             "analysisTitle"
         ).value.trim();
 
-    if(!title){
-
-        showNotification(
-            "Andika Analysis Title.",
-            "error"
-        );
-
-        return;
-
-    }
 
     let labels = [];
-
     let values = [];
 
 
-    // =================================================
-    // APPOINTMENT STATUS
-    // =================================================
+    if(
+        dataType ===
+        "appointmentStatus"
+    ){
 
-    if(dataType === "appointmentStatus"){
+        const counts = {};
 
-        const statuses = {};
-
-        appointmentsData.forEach(item => {
+        appointments.forEach(item=>{
 
             const status =
-                item.status ||
-                "Pending";
+                getValue(item,[
+                    "Status",
+                    "status"
+                ]) || "Pending";
 
-            statuses[status] =
-                (statuses[status] || 0) + 1;
+            counts[status] =
+                (counts[status] || 0) + 1;
 
         });
 
-        labels = Object.keys(statuses);
+        labels =
+            Object.keys(counts);
 
-        values = Object.values(statuses);
+        values =
+            Object.values(counts);
 
     }
 
 
-    // =================================================
-    // DEPARTMENTS
-    // =================================================
+    else if(
+        dataType ===
+        "departments"
+    ){
 
-    else if(dataType === "departments"){
+        const counts = {};
 
-        const departments = {};
-
-        appointmentsData.forEach(item => {
+        appointments.forEach(item=>{
 
             const department =
-                item.department ||
-                "Unknown";
+                getValue(item,[
+                    "Department",
+                    "department"
+                ]) || "Unknown";
 
-            departments[department] =
-                (departments[department] || 0) + 1;
+            counts[department] =
+                (counts[department] || 0) + 1;
 
         });
 
         labels =
-            Object.keys(departments);
+            Object.keys(counts);
 
         values =
-            Object.values(departments);
+            Object.values(counts);
 
     }
 
 
-    // =================================================
-    // APPOINTMENT TREND
-    // =================================================
+    else if(
+        dataType ===
+        "appointmentTrend"
+    ){
 
-    else if(dataType === "appointmentTrend"){
+        const counts = {};
 
-        const trends = {};
+        appointments.forEach(item=>{
 
-        appointmentsData.forEach(item => {
+            const date =
+                getValue(item,[
+                    "Date",
+                    "date"
+                ]) || "Unknown";
 
-            let date =
-                item.date ||
-                item.timestamp ||
-                "Unknown";
-
-            date =
-                String(date).substring(0,10);
-
-            trends[date] =
-                (trends[date] || 0) + 1;
+            counts[date] =
+                (counts[date] || 0) + 1;
 
         });
 
-        const sorted =
-            Object.keys(trends).sort();
-
-        labels = sorted;
+        labels =
+            Object.keys(counts)
+            .sort();
 
         values =
-            sorted.map(key => trends[key]);
+            labels.map(
+                x=>counts[x]
+            );
 
     }
 
 
-    // =================================================
-    // MESSAGE STATUS
-    // =================================================
+    else if(
+        dataType ===
+        "messageStatus"
+    ){
 
-    else if(dataType === "messageStatus"){
+        const counts = {};
 
-        const statuses = {};
-
-        messagesData.forEach(item => {
+        messages.forEach(item=>{
 
             const status =
-                item.status ||
-                "New";
+                getValue(item,[
+                    "Status",
+                    "status"
+                ]) || "Unread";
 
-            statuses[status] =
-                (statuses[status] || 0) + 1;
+            counts[status] =
+                (counts[status] || 0) + 1;
 
         });
 
         labels =
-            Object.keys(statuses);
+            Object.keys(counts);
 
         values =
-            Object.values(statuses);
+            Object.values(counts);
 
     }
 
 
-    // =================================================
-    // MESSAGE TREND
-    // =================================================
+    else if(
+        dataType ===
+        "messageTrend"
+    ){
 
-    else if(dataType === "messageTrend"){
+        const counts = {};
 
-        const trends = {};
+        messages.forEach(item=>{
 
-        messagesData.forEach(item => {
+            const timestamp =
+                getValue(item,[
+                    "Timestamp",
+                    "timestamp"
+                ]);
 
-            let date =
-                item.timestamp ||
-                "Unknown";
+            let date = "Unknown";
 
-            date =
-                String(date).substring(0,10);
+            if(timestamp){
 
-            trends[date] =
-                (trends[date] || 0) + 1;
+                try{
+
+                    date =
+                        new Date(timestamp)
+                        .toLocaleDateString();
+
+                }catch(e){}
+
+            }
+
+            counts[date] =
+                (counts[date] || 0) + 1;
 
         });
 
-        const sorted =
-            Object.keys(trends).sort();
-
-        labels = sorted;
+        labels =
+            Object.keys(counts);
 
         values =
-            sorted.map(key => trends[key]);
+            labels.map(
+                x=>counts[x]
+            );
 
     }
 
@@ -3286,21 +3314,13 @@ function generateAnalysis(){
     if(!labels.length){
 
         showNotification(
-            "Nta data ihagije kuri iyi analysis.",
+            "No data available for this analysis.",
             "error"
         );
 
         return;
 
     }
-
-
-    const ctx =
-        document
-        .getElementById(
-            "analysisChart"
-        )
-        .getContext("2d");
 
 
     if(analysisChart){
@@ -3310,78 +3330,59 @@ function generateAnalysis(){
     }
 
 
+    const canvas =
+        document.getElementById(
+            "analysisChart"
+        );
+
     analysisChart =
-        new Chart(
-            ctx,
-            {
+        new Chart(canvas,{
 
-                type:chartType,
+            type:chartType,
 
-                data:{
+            data:{
 
-                    labels:labels,
+                labels:labels,
 
-                    datasets:[{
+                datasets:[{
 
-                        label:title,
+                    label:
+                        title ||
+                        "NASHO Health Center Analysis",
 
-                        data:values,
+                    data:values,
 
-                        borderWidth:2,
+                    borderWidth:2
 
-                        fill:
-                            chartType === "line"
+                }]
 
-                    }]
+            },
 
-                },
+            options:{
 
-                options:{
+                responsive:true,
 
-                    responsive:true,
+                maintainAspectRatio:false,
 
-                    maintainAspectRatio:false,
+                plugins:{
 
-                    plugins:{
-
-                        legend:{
-
-                            display:
-                                chartType === "pie" ||
-                                chartType === "doughnut"
-
-                        }
-
+                    legend:{
+                        display:true
                     },
 
-                    scales:
-                        (
-                            chartType === "pie" ||
-                            chartType === "doughnut"
-                        )
-                        ?
-                        {}
-                        :
-                        {
+                    title:{
 
-                            y:{
+                        display:!!title,
 
-                                beginAtZero:true,
+                        text:title
 
-                                ticks:{
-
-                                    precision:0
-
-                                }
-
-                            }
-
-                        }
+                    }
 
                 }
 
             }
-        );
+
+        });
 
 
     showNotification(
@@ -3392,20 +3393,11 @@ function generateAnalysis(){
 }
 
 
-
-// =====================================================
-// CLEAR ANALYSIS
-// =====================================================
+/* ============================================================
+CLEAR ANALYSIS
+============================================================ */
 
 function clearAnalysis(){
-
-    document.getElementById(
-        "analysisTitle"
-    ).value = "";
-
-    document.getElementById(
-        "analysisOutcome"
-    ).value = "";
 
     if(analysisChart){
 
@@ -3415,50 +3407,65 @@ function clearAnalysis(){
 
     }
 
+    document
+        .getElementById(
+            "analysisTitle"
+        )
+        .value = "";
+
+    document
+        .getElementById(
+            "analysisOutcome"
+        )
+        .value = "";
+
 }
 
 
+/* ============================================================
+SAVE ANALYSIS
+============================================================ */
 
-// =====================================================
-// SAVE ANALYSIS
-// =====================================================
-
-function saveAnalysis(){
+async function saveAnalysis(){
 
     const title =
-        document.getElementById(
+        document
+        .getElementById(
             "analysisTitle"
-        ).value.trim();
+        )
+        .value.trim();
 
     const chartType =
-        document.getElementById(
+        document
+        .getElementById(
             "chartType"
-        ).value;
+        )
+        .value;
 
     const dataType =
-        document.getElementById(
-            "dataType"
-        ).value;
+        document
+        .getElementById(
+            "analysisDataType"
+        )
+        .value;
 
     const outcome =
-        document.getElementById(
+        document
+        .getElementById(
             "analysisOutcome"
-        ).value.trim();
+        )
+        .value.trim();
 
     const createdBy =
         sessionStorage.getItem(
             "nashoAdminUsername"
-        ) ||
-        document.getElementById(
-            "username"
-        ).value.trim() ||
-        "Admin";
+        ) || "Admin";
 
 
     if(!title){
 
         showNotification(
-            "Analysis Title irakenewe.",
+            "Enter an analysis title.",
             "error"
         );
 
@@ -3467,177 +3474,136 @@ function saveAnalysis(){
     }
 
 
-    if(!outcome){
+    try{
+
+        const form =
+            new URLSearchParams();
+
+        form.append(
+            "action",
+            "saveAnalysis"
+        );
+
+        form.append(
+            "title",
+            title
+        );
+
+        form.append(
+            "chartType",
+            chartType
+        );
+
+        form.append(
+            "dataType",
+            dataType
+        );
+
+        form.append(
+            "outcome",
+            outcome
+        );
+
+        form.append(
+            "createdBy",
+            createdBy
+        );
+
+
+        const response =
+            await fetch(API_URL,{
+                method:"POST",
+                body:form
+            });
+
+
+        const data =
+            await response.json();
+
+
+        if(data.success === false){
+
+            throw new Error(
+                data.message ||
+                "Save failed"
+            );
+
+        }
+
 
         showNotification(
-            "Andika Outcome / Findings / Recommendation.",
-            "error"
+            "Analysis saved successfully.",
+            "success"
         );
 
-        return;
+        loadAnalysisHistory();
 
-    }
-
-
-    const body =
-        new URLSearchParams();
-
-    body.append(
-        "action",
-        "saveAnalysis"
-    );
-
-    body.append(
-        "title",
-        title
-    );
-
-    body.append(
-        "chartType",
-        chartType
-    );
-
-    body.append(
-        "dataType",
-        dataType
-    );
-
-    body.append(
-        "outcome",
-        outcome
-    );
-
-    body.append(
-        "createdBy",
-        createdBy
-    );
-
-
-    fetch(
-        API_URL,
-        {
-            method:"POST",
-            body:body
-        }
-    )
-
-    .then(r => r.json())
-
-    .then(data => {
-
-        if(data.success){
-
-            showNotification(
-                "Analysis saved successfully. ID: " +
-                (data.analysisId || ""),
-                "success"
-            );
-
-            loadAnalysisHistory();
-
-            clearAnalysis();
-
-        }
-        else{
-
-            showNotification(
-                data.message ||
-                "Analysis save failed.",
-                "error"
-            );
-
-        }
-
-    })
-
-    .catch(error => {
+    }catch(error){
 
         console.error(error);
 
         showNotification(
-            "Server error while saving analysis.",
+            "Failed to save analysis.",
             "error"
         );
 
-    });
+    }
 
 }
 
 
+/* ============================================================
+ANALYSIS HISTORY
+============================================================ */
 
-// =====================================================
-// LOAD ANALYSIS HISTORY
-// =====================================================
-
-function loadAnalysisHistory(){
+async function loadAnalysisHistory(){
 
     const container =
         document.getElementById(
             "analysisHistory"
         );
 
-    if(!container)
+    if(!container){
         return;
+    }
 
-    container.innerHTML = `
-
-        <div class="loading">
-
-            <span class="spinner"></span>
-
-            <br>
-
-            Loading analysis history...
-
-        </div>
-
-    `;
+    container.innerHTML =
+        `<div class="loading">
+            ⏳ Loading analysis history...
+         </div>`;
 
 
-    fetch(
-        API_URL +
-        "?action=getAnalysisHistory"
-    )
+    try{
 
-    .then(r => r.json())
+        const response =
+            await fetch(
+                API_URL +
+                "?action=getAnalysisHistory"
+            );
 
-    .then(data => {
+        const data =
+            await response.json();
 
-        analysisData =
-            Array.isArray(data)
-                ? data
-                : [];
+        analysisHistory =
+            normalizeResponse(data);
 
         displayAnalysisHistory(
-            analysisData.slice(0,5)
+            analysisHistory
         );
 
-    })
-
-    .catch(error => {
+    }catch(error){
 
         console.error(error);
 
-        container.innerHTML = `
+        container.innerHTML =
+            `<div class="empty">
+                ❌ Failed to load analysis history.
+             </div>`;
 
-            <div
-                style="color:#c62828;text-align:center;padding:25px;">
-
-                Failed to load analysis history.
-
-            </div>
-
-        `;
-
-    });
+    }
 
 }
 
-
-
-// =====================================================
-// DISPLAY RECENT ANALYSIS
-// =====================================================
 
 function displayAnalysisHistory(data){
 
@@ -3648,237 +3614,181 @@ function displayAnalysisHistory(data){
 
     if(!data.length){
 
-        container.innerHTML = `
-
-            <div class="history-empty">
-
-                📊 No analysis has been saved yet.
-
-            </div>
-
-        `;
+        container.innerHTML =
+            `<div class="empty">
+                📋 No saved analysis yet.
+             </div>`;
 
         return;
 
     }
 
 
-    container.innerHTML =
-        data.map(
-            item => `
-
-        <div class="history-card">
-
-            <div class="history-top">
-
-                <div>
-
-                    <div class="history-title">
-
-                        📊 ${escapeHtml(
-                            item.title ||
-                            "Untitled Analysis"
-                        )}
-
-                    </div>
-
-                    <div class="history-id">
-
-                        Analysis ID:
-                        ${escapeHtml(
-                            item.analysisId ||
-                            ""
-                        )}
-
-                    </div>
-
-                </div>
-
-                <div>
-
-                    <span class="status status-replied">
-
-                        💾 Saved
-
-                    </span>
-
-                </div>
-
-            </div>
+    let html = "";
 
 
-            <div class="history-meta">
+    data
+    .slice()
+    .reverse()
+    .slice(0,10)
+    .forEach(item=>{
 
-                <div>
+        const title =
+            getValue(item,[
+                "Analysis Title",
+                "title"
+            ]);
 
-                    <small>👤 Created By</small>
+        const id =
+            getValue(item,[
+                "Analysis ID",
+                "analysisId"
+            ]);
 
-                    <strong>
-                        ${escapeHtml(
-                            item.createdBy ||
-                            "Admin"
-                        )}
-                    </strong>
+        const createdBy =
+            getValue(item,[
+                "Created By",
+                "createdBy"
+            ]);
 
-                </div>
+        const savedAt =
+            getValue(item,[
+                "Saved At",
+                "savedAt",
+                "Created At",
+                "createdAt"
+            ]);
 
+        const chartType =
+            getValue(item,[
+                "Chart Type",
+                "chartType"
+            ]);
 
-                <div>
+        const dataType =
+            getValue(item,[
+                "Data Analyzed",
+                "dataType"
+            ]);
 
-                    <small>📅 Date & Time</small>
-
-                    <strong>
-                        ${escapeHtml(
-                            item.createdAt ||
-                            ""
-                        )}
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <small>📈 Chart Type</small>
-
-                    <strong>
-                        ${escapeHtml(
-                            item.chartType ||
-                            ""
-                        )}
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <small>🔎 Data Analyzed</small>
-
-                    <strong>
-                        ${escapeHtml(
-                            item.dataType ||
-                            ""
-                        )}
-                    </strong>
-
-                </div>
-
-            </div>
+        const outcome =
+            getValue(item,[
+                "Outcome / Findings / Recommendation",
+                "outcome"
+            ]);
 
 
-            <div class="history-outcome">
+        html += `
 
-                <strong>
-                    📝 Outcome
-                </strong>
+        <div class="analysis-history-item">
 
-                <br><br>
+            <h3>
+                ${escapeHtml(title)}
+            </h3>
 
+            <p>
+                <strong>Analysis ID:</strong>
+                ${escapeHtml(id)}
+            </p>
+
+            <p>
+                <strong>Created By:</strong>
+                ${escapeHtml(createdBy)}
+            </p>
+
+            <p>
+                <strong>Saved At:</strong>
                 ${escapeHtml(
-                    item.outcome ||
-                    ""
+                    formatDate(savedAt)
                 )}
+            </p>
 
-            </div>
+            <p>
+                <strong>Chart:</strong>
+                ${escapeHtml(chartType)}
+            </p>
 
+            <p>
+                <strong>Data:</strong>
+                ${escapeHtml(dataType)}
+            </p>
 
-            <div class="history-actions">
-
-                <button
-                    class="btn btn-view-analysis"
-                    onclick="openAllAnalysis()">
-
-                    👁️ View All Analysis
-
-                </button>
-
-            </div>
+            ${
+                outcome
+                ?
+                `<div class="outcome-box">
+                    <strong>Outcome:</strong>
+                    <br><br>
+                    ${escapeHtml(outcome)}
+                 </div>`
+                :
+                ""
+            }
 
         </div>
 
-    `).join("");
+        `;
+
+    });
+
+
+    container.innerHTML = html;
 
 }
 
 
+/* ============================================================
+ALL ANALYSIS
+============================================================ */
 
-// =====================================================
-// LOAD ALL ANALYSIS
-// =====================================================
-
-function loadAllAnalysis(){
+async function loadAllAnalysis(){
 
     const container =
         document.getElementById(
             "allAnalysisContainer"
         );
 
-    container.innerHTML = `
+    if(!container){
+        return;
+    }
 
-        <div class="loading">
-
-            <span class="spinner"></span>
-
-            <br>
-
-            Loading all analysis...
-
-        </div>
-
-    `;
+    container.innerHTML =
+        `<div class="loading">
+            ⏳ Loading analysis...
+         </div>`;
 
 
-    fetch(
-        API_URL +
-        "?action=getAnalysisHistory"
-    )
+    try{
 
-    .then(r => r.json())
+        const response =
+            await fetch(
+                API_URL +
+                "?action=getAnalysisHistory"
+            );
 
-    .then(data => {
+        const data =
+            await response.json();
 
-        analysisData =
-            Array.isArray(data)
-                ? data
-                : [];
-
-        document.getElementById(
-            "allAnalysisCount"
-        ).textContent =
-            analysisData.length;
-
+        analysisHistory =
+            normalizeResponse(data);
 
         displayAllAnalysis(
-            analysisData
+            analysisHistory
         );
 
-    })
-
-    .catch(error => {
+    }catch(error){
 
         console.error(error);
 
-        container.innerHTML = `
+        container.innerHTML =
+            `<div class="empty">
+                ❌ Failed to load analysis.
+             </div>`;
 
-            <div
-                style="color:#c62828;text-align:center;padding:30px;">
-
-                Failed to load all analysis.
-
-            </div>
-
-        `;
-
-    });
+    }
 
 }
 
-
-
-// =====================================================
-// DISPLAY ALL ANALYSIS
-// =====================================================
 
 function displayAllAnalysis(data){
 
@@ -3887,542 +3797,307 @@ function displayAllAnalysis(data){
             "allAnalysisContainer"
         );
 
-
     if(!data.length){
 
-        container.innerHTML = `
-
-            <div class="panel">
-
-                <div class="history-empty">
-
-                    📊 Nta analysis zabitswe.
-
-                </div>
-
-            </div>
-
-        `;
+        container.innerHTML =
+            `<div class="empty">
+                📋 No analysis found.
+             </div>`;
 
         return;
 
     }
 
 
-    container.innerHTML =
-        data.map(
-            item => `
-
-        <div class="all-analysis-card">
-
-            <div class="analysis-card-header">
-
-                <div>
-
-                    <div class="analysis-card-title">
-
-                        📊 ${escapeHtml(
-                            item.title ||
-                            "Untitled Analysis"
-                        )}
-
-                    </div>
+    let html = "";
 
 
-                    <div class="analysis-card-id">
+    data
+    .slice()
+    .reverse()
+    .forEach((item,index)=>{
 
-                        Analysis ID:
-                        ${escapeHtml(
-                            item.analysisId ||
-                            ""
-                        )}
+        const title =
+            getValue(item,[
+                "Analysis Title",
+                "title"
+            ]);
 
-                    </div>
+        const id =
+            getValue(item,[
+                "Analysis ID",
+                "analysisId"
+            ]);
 
-                </div>
+        const createdBy =
+            getValue(item,[
+                "Created By",
+                "createdBy"
+            ]);
 
+        const savedAt =
+            getValue(item,[
+                "Saved At",
+                "savedAt",
+                "Created At",
+                "createdAt"
+            ]);
 
-                <div>
+        const chartType =
+            getValue(item,[
+                "Chart Type",
+                "chartType"
+            ]);
 
-                    <span class="status status-replied">
+        const dataType =
+            getValue(item,[
+                "Data Analyzed",
+                "dataType"
+            ]);
 
-                        💾 Saved
-
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="analysis-details">
-
-
-                <div class="analysis-detail">
-
-                    <small>
-                        👤 Created By
-                    </small>
-
-                    <strong>
-
-                        ${escapeHtml(
-                            item.createdBy ||
-                            "Admin"
-                        )}
-
-                    </strong>
-
-                </div>
-
-
-                <div class="analysis-detail">
-
-                    <small>
-                        📅 Created At
-                    </small>
-
-                    <strong>
-
-                        ${escapeHtml(
-                            item.createdAt ||
-                            ""
-                        )}
-
-                    </strong>
-
-                </div>
+        const outcome =
+            getValue(item,[
+                "Outcome / Findings / Recommendation",
+                "outcome"
+            ]);
 
 
-                <div class="analysis-detail">
+        /*
+        Original row in Analysis sheet:
+        header row = 1
+        first data row = 2
 
-                    <small>
-                        📈 Chart Type
-                    </small>
+        Because we reverse the array for display,
+        calculate actual row from original index.
+        */
 
-                    <strong>
+        const originalIndex =
+            data.length - 1 - index;
 
-                        ${escapeHtml(
-                            item.chartType ||
-                            ""
-                        )}
-
-                    </strong>
-
-                </div>
+        const row =
+            originalIndex + 2;
 
 
-                <div class="analysis-detail">
+        html += `
 
-                    <small>
-                        🔎 Data Analyzed
-                    </small>
+        <div class="analysis-history-item">
 
-                    <strong>
+            <h3>
+                ${escapeHtml(title)}
+            </h3>
 
-                        ${escapeHtml(
-                            item.dataType ||
-                            ""
-                        )}
+            <p>
+                <strong>Analysis ID:</strong>
+                ${escapeHtml(id)}
+            </p>
 
-                    </strong>
+            <p>
+                <strong>Created By:</strong>
+                ${escapeHtml(createdBy)}
+            </p>
 
-                </div>
-
-
-            </div>
-
-
-            <div class="analysis-outcome">
-
-                <div class="analysis-outcome-title">
-
-                    📝 Outcome / Findings / Recommendation
-
-                </div>
-
+            <p>
+                <strong>Saved At:</strong>
                 ${escapeHtml(
-                    item.outcome ||
-                    ""
+                    formatDate(savedAt)
                 )}
+            </p>
 
-            </div>
+            <p>
+                <strong>Chart Type:</strong>
+                ${escapeHtml(chartType)}
+            </p>
 
+            <p>
+                <strong>Data:</strong>
+                ${escapeHtml(dataType)}
+            </p>
 
-            <div class="analysis-card-actions">
+            ${
+                outcome
+                ?
+                `<div class="outcome-box">
+                    ${escapeHtml(outcome)}
+                 </div>`
+                :
+                ""
+            }
 
+            <div class="message-actions">
 
                 <button
-                    class="btn btn-view-analysis"
-                    onclick="viewAnalysisDetails(
-                        '${escapeJs(
-                            item.analysisId || ""
-                        )}'
+                    class="btn btn-primary"
+                    onclick="viewAnalysis(
+                        ${index}
                     )">
-
                     👁️ View
-
                 </button>
-
 
                 <button
-                    class="btn btn-remove-analysis"
+                    class="btn btn-danger"
                     onclick="removeAnalysis(
-                        ${item.row},
-                        '${escapeJs(
-                            item.title || ""
-                        )}'
+                        ${row},
+                        '${escapeJs(title)}'
                     )">
-
                     🗑️ Remove
-
                 </button>
-
 
             </div>
 
         </div>
 
-    `).join("");
+        `;
+
+    });
+
+
+    container.innerHTML = html;
 
 }
 
 
+function escapeJs(value){
 
-// =====================================================
-// VIEW ANALYSIS DETAILS
-// =====================================================
+    return String(value || "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,'\\"')
+        .replace(/\n/g,"\\n")
+        .replace(/\r/g,"\\r");
 
-function viewAnalysisDetails(analysisId){
+}
+
+
+function viewAnalysis(index){
+
+    const data =
+        analysisHistory;
 
     const item =
-        analysisData.find(
-            analysis =>
-                String(
-                    analysis.analysisId
-                ) ===
-                String(analysisId)
-        );
-
+        data[
+            data.length - 1 - index
+        ];
 
     if(!item){
-
-        showNotification(
-            "Analysis ntabwo yabonetse.",
-            "error"
-        );
-
         return;
-
     }
 
-
-    alert(
-        "ANALYSIS DETAILS\n\n" +
-
-        "Title: " +
-        (item.title || "") +
-
-        "\n\nAnalysis ID: " +
-        (item.analysisId || "") +
-
-        "\n\nCreated By: " +
-        (item.createdBy || "") +
-
-        "\n\nCreated At: " +
-        (item.createdAt || "") +
-
-        "\n\nChart Type: " +
-        (item.chartType || "") +
-
-        "\n\nData Analyzed: " +
-        (item.dataType || "") +
-
-        "\n\nOutcome:\n" +
-        (item.outcome || "")
+    showSection(
+        "statistics",
+        null
     );
+
+    document
+        .getElementById(
+            "analysisTitle"
+        )
+        .value =
+            getValue(item,[
+                "Analysis Title",
+                "title"
+            ]);
+
+    document
+        .getElementById(
+            "chartType"
+        )
+        .value =
+            getValue(item,[
+                "Chart Type",
+                "chartType"
+            ]) || "bar";
+
+    document
+        .getElementById(
+            "analysisDataType"
+        )
+        .value =
+            getValue(item,[
+                "Data Analyzed",
+                "dataType"
+            ]) || "appointmentStatus";
+
+    document
+        .getElementById(
+            "analysisOutcome"
+        )
+        .value =
+            getValue(item,[
+                "Outcome / Findings / Recommendation",
+                "outcome"
+            ]);
+
+    generateAnalysis();
 
 }
 
 
+async function removeAnalysis(row,title){
 
-// =====================================================
-// REMOVE ANALYSIS
-// =====================================================
-
-function removeAnalysis(row,title){
-
-    const confirmation =
-        confirm(
-            "REMOVE ANALYSIS\n\n" +
-
-            "Title: " +
+    if(
+        !confirm(
+            "Remove analysis:\n\n" +
             title +
+            "\n\nContinue?"
+        )
+    ){
+        return;
+    }
 
-            "\n\n" +
+    try{
 
-            "Iyi analysis izavanwa muri All Analysis.\n" +
+        const form =
+            new URLSearchParams();
 
-            "Urashaka gukomeza?"
+        form.append(
+            "action",
+            "removeAnalysis"
+        );
+
+        form.append(
+            "row",
+            row
         );
 
 
-    if(!confirmation){
-
-        return;
-
-    }
-
-
-    const body =
-        new URLSearchParams();
-
-    body.append(
-        "action",
-        "removeAnalysis"
-    );
-
-    body.append(
-        "row",
-        row
-    );
+        const response =
+            await fetch(API_URL,{
+                method:"POST",
+                body:form
+            });
 
 
-    fetch(
-        API_URL,
-        {
-            method:"POST",
-            body:body
-        }
-    )
+        const data =
+            await response.json();
 
-    .then(r => r.json())
 
-    .then(data => {
+        if(data.success === false){
 
-        if(data.success){
-
-            showNotification(
+            throw new Error(
                 data.message ||
-                "Analysis removed successfully.",
-                "success"
-            );
-
-            loadAllAnalysis();
-
-        }
-        else{
-
-            showNotification(
-                data.message ||
-                "Analysis removal failed.",
-                "error"
+                "Remove failed"
             );
 
         }
 
-    })
 
-    .catch(error => {
+        showNotification(
+            "Analysis removed.",
+            "success"
+        );
+
+        loadAllAnalysis();
+
+    }catch(error){
 
         console.error(error);
 
         showNotification(
-            "Server error while removing analysis.",
+            "Failed to remove analysis.",
             "error"
         );
 
-    });
-
-}
-
-
-
-// =====================================================
-// UPDATE DASHBOARD CARDS
-// =====================================================
-
-function updateDashboardCards(){
-
-    document.getElementById(
-        "totalAppointments"
-    ).textContent =
-        appointmentsData.length;
-
-
-    document.getElementById(
-        "pendingAppointments"
-    ).textContent =
-        appointmentsData.filter(
-            item =>
-                String(item.status)
-                .toLowerCase()
-                === "pending"
-        ).length;
-
-
-    document.getElementById(
-        "totalMessages"
-    ).textContent =
-        messagesData.length;
-
-
-    document.getElementById(
-        "newMessages"
-    ).textContent =
-        messagesData.filter(
-            item =>
-                String(item.status)
-                .toLowerCase()
-                === "new"
-        ).length;
-
-}
-
-
-
-// =====================================================
-// STATUS BADGE
-// =====================================================
-
-function statusBadge(status){
-
-    const value =
-        String(
-            status ||
-            "Pending"
-        );
-
-    const lower =
-        value.toLowerCase();
-
-    let className =
-        "status-pending";
-
-
-    if(lower === "confirmed"){
-
-        className =
-            "status-confirmed";
-
     }
-
-    else if(lower === "completed"){
-
-        className =
-            "status-completed";
-
-    }
-
-    else if(lower === "cancelled"){
-
-        className =
-            "status-cancelled";
-
-    }
-
-    else if(lower === "replied"){
-
-        className =
-            "status-replied";
-
-    }
-
-    else if(lower === "new"){
-
-        className =
-            "status-new";
-
-    }
-
-
-    return `
-
-        <span class="status ${className}">
-
-            ${escapeHtml(value)}
-
-        </span>
-
-    `;
-
-}
-
-
-
-// =====================================================
-// NOTIFICATION
-// =====================================================
-
-function showNotification(message,type){
-
-    const box =
-        document.getElementById(
-            "notification"
-        );
-
-    box.textContent =
-        message;
-
-    box.className =
-        "notification " +
-        (
-            type === "error"
-            ? "error"
-            : "success"
-        );
-
-    box.style.display =
-        "block";
-
-
-    setTimeout(
-        () => {
-
-            box.style.display =
-                "none";
-
-        },
-        4000
-    );
-
-}
-
-
-
-// =====================================================
-// ESCAPE HTML
-// =====================================================
-
-function escapeHtml(text){
-
-    return String(
-        text || ""
-    )
-
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-
-// =====================================================
-// ESCAPE JAVASCRIPT
-// =====================================================
-
-function escapeJs(text){
-
-    return String(
-        text || ""
-    )
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'")
-    .replace(/\n/g,"\\n")
-    .replace(/\r/g,"\\r");
 
 }
 
